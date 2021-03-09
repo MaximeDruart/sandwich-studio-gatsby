@@ -65,8 +65,8 @@ const variants = {
 }
 
 const Header = () => {
-  const [hovering, setHovering] = useState(false)
-  const { t } = useTranslation()
+  const all = useTranslation()
+  const { t, ready, i18n } = all
 
   return (
     <StyledHeader>
@@ -78,18 +78,31 @@ const Header = () => {
       </Link>
       <div className="right">
         <ul>
-          {t("headerLinks", { returnObjects: true }).map((link, i) => (
-            <li key={link}>
-              <Link to={`/${link.toLowerCase()}`}>
-                <motion.span whileHover="hovering">
-                  <motion.div variants={variants}>
-                    <div className="anim-link top-link">{link}</div>
-                    <div className="anim-link bottom-link">{link}</div>
-                  </motion.div>
-                </motion.span>
-              </Link>
-            </li>
-          ))}
+          {ready &&
+            t("headerLinks", { returnObjects: true }).map(link => (
+              <li key={link}>
+                <Link to={`/${link.toLowerCase()}`}>
+                  <motion.span whileHover="hovering">
+                    <motion.div variants={variants}>
+                      <div className="anim-link top-link">{link}</div>
+                      <div className="anim-link bottom-link">{link}</div>
+                    </motion.div>
+                  </motion.span>
+                </Link>
+              </li>
+            ))}
+          {/* functional language switch */}
+          <li
+            style={{ display: "none" }}
+            onClick={() => {
+              console.log(i18n.language)
+              i18n.language === "fr"
+                ? i18n.changeLanguage("en")
+                : i18n.changeLanguage("fr")
+            }}
+          >
+            LANG
+          </li>
         </ul>
       </div>
     </StyledHeader>
