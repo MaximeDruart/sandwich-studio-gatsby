@@ -7,6 +7,7 @@ import Hero from "../components/homepage/Hero"
 import About from "../components/homepage/About"
 import Services from "../components/homepage/Services"
 import Footer from "../components/Footer"
+import ContactSpinner from "../components/homepage/ContactSpinner"
 
 export default function Home() {
   const mainContainerRef = useRef(null)
@@ -18,6 +19,8 @@ export default function Home() {
       let s = new LocomotiveScroll()
       s.smooth = true
       s.init()
+      s.scrollbarContainer = mainContainerRef.current
+      s.el = mainContainerRef.current
       setScroll(s)
     }
     return () => scroll && scroll.destroy()
@@ -36,8 +39,10 @@ export default function Home() {
         />
       </Helmet>
 
+      <Header />
+
       <main data-scroll-container ref={mainContainerRef}>
-        <Header />
+        <ContactSpinner />
         <Hero />
         <About />
         <Services scroll={scroll} />

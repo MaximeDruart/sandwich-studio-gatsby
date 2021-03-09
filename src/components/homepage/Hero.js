@@ -11,6 +11,7 @@ import { gsap } from "gsap"
 
 import HeroCanvas from "./HeroCanvas"
 import { useTranslation } from "react-i18next"
+import useStore from "../../../store"
 
 const StyledHero = styled.div`
   width: 100vw;
@@ -27,25 +28,22 @@ const StyledHero = styled.div`
     top: 0;
     left: 0;
   }
-
+  .load-screen {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 120;
+    background: #0d0d0d;
+  }
   .dom {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    overflow: hidden;
     position: relative;
     width: 100%;
     height: 100%;
-
-    .load-screen {
-      width: 100vw;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 120;
-      background: #0d0d0d;
-    }
 
     .top-line,
     .bottom-line {
@@ -69,24 +67,13 @@ const StyledHero = styled.div`
     .bottom-line {
       display: flex;
       flex-flow: row nowrap;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       p {
         ${({ theme }) => theme.textStyles.h3};
         width: 40%;
         &:first-letter {
           text-transform: capitalize;
-        }
-      }
-
-      .contact-spinner {
-        position: relative;
-        width: 135px;
-        height: 135px;
-        .img {
-          width: 100%;
-          height: 100%;
-          cursor: pointer;
         }
       }
     }
@@ -148,10 +135,8 @@ const Hero = () => {
   const caretRef = useRef(null)
   const loadScreenRef = useRef(null)
 
-  const [canvasLoadStatus, setCanvasLoadStatus] = useState({
-    active: true,
-    progress: 0,
-  })
+  const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
+  console.log(canvasLoadStatus)
 
   useLayoutEffect(() => {
     possibleWords.forEach(word => {
@@ -193,8 +178,8 @@ const Hero = () => {
 
   return (
     <StyledHero data-scroll-section>
+      <div ref={loadScreenRef} className="load-screen"></div>
       <div className="dom">
-        <div ref={loadScreenRef} className="load-screen"></div>
         <div className="top-line">
           <p>{t("topLine")}</p>
         </div>
@@ -202,15 +187,11 @@ const Hero = () => {
           <span className="left">We are</span>
           <span ref={activeWordRef} className="right"></span>
           <motion.span
-            // style={{
-            //   display: canvasLoadStatus.progress < 100 ? "none" : "block",
-            // }}
             initial={{ scaleY: 0 }}
             animate={{
               scaleY: canvasLoadStatus.progress < 100 ? 0 : 1,
               transition: { delay: 2.2, duration: 0.3 },
             }}
-            // style={{ display: !canvasLoadStatus.active ? "inline" : "none" }}
             ref={caretRef}
             className="caret"
           >
@@ -219,13 +200,7 @@ const Hero = () => {
           <motion.div
             animate={{
               width: canvasLoadStatus.progress < 100 ? "initial" : 0,
-              // x: canvasLoadStatus.progress < 100 ? 0 : -100,
             }}
-            // transition={{ duration: 0.8 }}
-            // style={{
-            //   display: canvasLoadStatus.progress < 100 ? "block" : "none",
-            // }}
-            // style={{ display: canvasLoadStatus.active ? "inline" : "none" }}
             className="caret caret-loader"
           >
             <motion.span>
@@ -235,20 +210,9 @@ const Hero = () => {
         </div>
         <div className="bottom-line">
           <p>{t("bottomLine")}</p>
-          <div className="contact-spinner">
-            <motion.img
-              animate={{
-                rotate: 360,
-                transition: { ease: "linear", repeat: Infinity, duration: 12 },
-              }}
-              whileHover={{ scale: 1.15 }}
-              className="img"
-              src="/images/contact.png"
-            />
-          </div>
         </div>
       </div>
-      <HeroCanvas setCanvasLoadStatus={setCanvasLoadStatus} />
+      <HeroCanvas />
     </StyledHero>
   )
 }

@@ -35,7 +35,8 @@
     "simplex-noise": "^2.4.0",
     "smooth-scrolling": "^2.3.12",
     "styled-components": "^5.2.1",
-    "three": "0.123.0"
+    "three": "0.123.0",
+    "zustand": "^3.3.3"
   },
   "devDependencies": {
     "prettier": "2.2.1"

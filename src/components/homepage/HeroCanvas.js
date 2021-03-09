@@ -10,19 +10,19 @@ import {
 import * as THREE from "three"
 import SimplexNoise from "simplex-noise"
 import gsap from "gsap"
+import useStore from "../../../store"
 
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
-import { Html, OrbitControls, useProgress } from "drei"
+import { OrbitControls, useProgress } from "drei"
 import { HDRCubeTextureLoader } from "three/examples/jsm/loaders/HDRCubeTextureLoader"
 
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer"
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
 import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass"
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass"
 import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader"
 
-extend({ EffectComposer, ShaderPass, RenderPass, UnrealBloomPass, SSAOPass })
+extend({ EffectComposer, ShaderPass, RenderPass, SSAOPass })
 gsap.registerPlugin(ThreePlugin)
 const simplex = new SimplexNoise()
 
@@ -52,7 +52,6 @@ const Effects = () => {
         kernelRadius={0.8}
         maxDistance={0.4}
       />
-      {/* <unrealBloomPass attachArray="passes" args={[undefined, 1.6, 1, 0.5]} /> */}
       <shaderPass
         attachArray="passes"
         args={[FXAAShader]}
@@ -149,32 +148,31 @@ const Blob = () => {
   )
 }
 
-const Loader = ({ setCanvasLoadStatus }) => {
-  const p = useProgress()
-  const { progress } = p
-  // console.log({ active, progress, errors, item, loaded, total })
+const selector = state => state.setCanvasLoadStatus
+
+const Loader = () => {
+  const setCanvasLoadStatus = useStore(selector)
+  const progress = useProgress(state => state.progress)
   useEffect(() => {
-    setCanvasLoadStatus(p)
+    setCanvasLoadStatus({ progress })
   }, [progress])
-  return <Html center>{progress} % loaded</Html>
+  return null
 }
 
-const HeroCanvas = ({ setCanvasLoadStatus }) => {
+const HeroCanvas = () => {
   return (
     <StyledHeroCanvas scroll-section className="canvas">
       <Canvas
         shadowMap
         colorManagement
         camera={{ position: [0, 0, 6], far: 15 }}
-        onCreated={({ gl, camera }) => {
+        onCreated={({ gl }) => {
           gl.setClearColor("#32a899")
           gl.toneMapping = THREE.ACESFilmicToneMapping
           gl.outputEncoding = THREE.sRGBEncoding
         }}
       >
-        <Suspense
-          fallback={<Loader setCanvasLoadStatus={setCanvasLoadStatus} />}
-        >
+        <Suspense fallback={<Loader />}>
           <Environment />
           <Lights />
           <Blob />
