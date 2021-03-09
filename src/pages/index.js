@@ -36,8 +36,8 @@ export default function Home() {
         />
       </Helmet>
 
-      <Header />
       <main data-scroll-container ref={mainContainerRef}>
+        <Header />
         <Hero />
         <About />
         <Services scroll={scroll} />

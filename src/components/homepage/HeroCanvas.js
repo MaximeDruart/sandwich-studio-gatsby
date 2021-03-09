@@ -101,11 +101,12 @@ const Blob = () => {
   const sphere = useRef()
 
   useEffect(() => {
+    console.log("animating !")
     gsap.fromTo(
       sphere.current,
       {
         three: {
-          rotationX: Math.PI * 2,
+          rotationZ: Math.PI * 4,
           scaleX: 0.01,
           scaleY: 0.01,
           scaleZ: 0.01,
@@ -113,7 +114,8 @@ const Blob = () => {
       },
       {
         three: { rotationX: 0, scaleX: 1, scaleY: 1, scaleZ: 1 },
-        duration: 1.2,
+        duration: 1,
+        delay: 0.8,
       }
     )
   }, [])
@@ -147,13 +149,17 @@ const Blob = () => {
   )
 }
 
-const Loader = () => {
-  const { active, progress, errors, item, loaded, total } = useProgress()
+const Loader = ({ setCanvasLoadStatus }) => {
+  const p = useProgress()
+  const { progress } = p
   // console.log({ active, progress, errors, item, loaded, total })
+  useEffect(() => {
+    setCanvasLoadStatus(p)
+  }, [progress])
   return <Html center>{progress} % loaded</Html>
 }
 
-const HeroCanvas = () => {
+const HeroCanvas = ({ setCanvasLoadStatus }) => {
   return (
     <StyledHeroCanvas scroll-section className="canvas">
       <Canvas
@@ -166,7 +172,9 @@ const HeroCanvas = () => {
           gl.outputEncoding = THREE.sRGBEncoding
         }}
       >
-        <Suspense fallback={<Loader />}>
+        <Suspense
+          fallback={<Loader setCanvasLoadStatus={setCanvasLoadStatus} />}
+        >
           <Environment />
           <Lights />
           <Blob />
