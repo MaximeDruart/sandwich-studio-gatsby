@@ -1,11 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { ReactComponent as Logo } from "../../assets/icons/header-logo.svg"
-import { motion, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
+import useStore from "../../store"
 
-const StyledHeader = styled.div`
+const StyledHeader = styled(motion.div)`
   * {
     font-family: NeueMontrealRegular;
     color: ${({ theme }) => theme.colors.text};
@@ -66,10 +67,19 @@ const variants = {
 
 const Header = () => {
   const all = useTranslation()
-  const { t, ready, i18n } = all
+  // const { t, i18n } = all
+  const { t } = all
+
+  const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
 
   return (
-    <StyledHeader>
+    <StyledHeader
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: canvasLoadStatus.progress < 100 ? 0 : 1,
+        transition: { delay: 1.5 },
+      }}
+    >
       <Link to="/">
         <div className="left">
           <Logo className="logo" />
@@ -78,31 +88,29 @@ const Header = () => {
       </Link>
       <div className="right">
         <ul>
-          {ready &&
-            t("headerLinks", { returnObjects: true }).map(link => (
-              <li key={link}>
-                <Link to={`/${link.toLowerCase()}`}>
-                  <motion.span whileHover="hovering">
-                    <motion.div variants={variants}>
-                      <div className="anim-link top-link">{link}</div>
-                      <div className="anim-link bottom-link">{link}</div>
-                    </motion.div>
-                  </motion.span>
-                </Link>
-              </li>
-            ))}
+          {t("headerLinks", { returnObjects: true }).map(link => (
+            <li key={link}>
+              <Link to={`/${link.toLowerCase()}`}>
+                <motion.span whileHover="hovering">
+                  <motion.div variants={variants}>
+                    <div className="anim-link top-link">{link}</div>
+                    <div className="anim-link bottom-link">{link}</div>
+                  </motion.div>
+                </motion.span>
+              </Link>
+            </li>
+          ))}
           {/* functional language switch */}
-          <li
+          {/* <li
             style={{ display: "none" }}
             onClick={() => {
-              console.log(i18n.language)
               i18n.language === "fr"
                 ? i18n.changeLanguage("en")
                 : i18n.changeLanguage("fr")
             }}
           >
             LANG
-          </li>
+          </li> */}
         </ul>
       </div>
     </StyledHeader>

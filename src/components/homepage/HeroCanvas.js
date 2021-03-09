@@ -13,7 +13,7 @@ import gsap from "gsap"
 import useStore from "../../../store"
 
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
-import { OrbitControls, useProgress } from "drei"
+import { useProgress } from "drei"
 import { HDRCubeTextureLoader } from "three/examples/jsm/loaders/HDRCubeTextureLoader"
 
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer"
@@ -66,7 +66,7 @@ const Lights = () => {
   // useFrame(() => (ref.current.rotation.y = ref.current.rotation.z += 0.01))
   return (
     <group ref={ref}>
-      <ambientLight intensity={0.2} />
+      <ambientLight intensity={0.45} />
       <directionalLight intensity={1.3} position={[30, 30, 50]} />
       {/* <pointLight intensity={5} position={[0, 0, 0]} /> */}
     </group>
@@ -92,6 +92,7 @@ function Environment({ background = false }) {
     if (background) scene.background = hdrCubeRenderTarget.texture
     scene.environment = hdrCubeRenderTarget.texture
     return () => (scene.environment = scene.background = null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cubeMap])
   return null
 }
@@ -100,7 +101,6 @@ const Blob = () => {
   const sphere = useRef()
 
   useEffect(() => {
-    console.log("animating !")
     gsap.fromTo(
       sphere.current,
       {
@@ -155,6 +155,7 @@ const Loader = () => {
   const progress = useProgress(state => state.progress)
   useEffect(() => {
     setCanvasLoadStatus({ progress })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress])
   return null
 }

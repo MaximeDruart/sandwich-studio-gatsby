@@ -1,12 +1,10 @@
-import { useViewportScroll, motion } from "framer-motion"
-import React, { useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "react-i18next"
 
 const StyledAbout = styled.div`
   border: 1px solid yellow;
   width: 100vw;
-  /* overflow: hidden; */
 
   padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
 

@@ -24,6 +24,7 @@ export default function Home() {
       setScroll(s)
     }
     return () => scroll && scroll.destroy()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainContainerRef])
 
   return (

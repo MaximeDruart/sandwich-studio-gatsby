@@ -1,12 +1,6 @@
 import styled from "styled-components"
 import { motion } from "framer-motion"
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
+import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react"
 import { gsap } from "gsap"
 
 import HeroCanvas from "./HeroCanvas"
@@ -128,15 +122,15 @@ const Hero = () => {
     []
   )
   const { t } = useTranslation()
-  const possibleWords = useMemo(() =>
-    t("weAre", { returnObjects: true }).map(word => word + ".")
+  const possibleWords = useMemo(
+    () => t("weAre", { returnObjects: true }).map(word => word + "."),
+    [t]
   )
   const activeWordRef = useRef(null)
   const caretRef = useRef(null)
   const loadScreenRef = useRef(null)
 
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
-  console.log(canvasLoadStatus)
 
   useLayoutEffect(() => {
     possibleWords.forEach(word => {
@@ -163,6 +157,8 @@ const Hero = () => {
     return () => {
       globalTimeline.kill()
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -174,6 +170,7 @@ const Hero = () => {
           globalTimeline.play()
         })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canvasLoadStatus])
 
   return (
