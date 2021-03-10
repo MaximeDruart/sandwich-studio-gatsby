@@ -121,10 +121,13 @@ const Hero = () => {
       }),
     []
   )
-  const { t } = useTranslation()
+  const { t, ready } = useTranslation()
   const possibleWords = useMemo(
-    () => t("weAre", { returnObjects: true }).map(word => word + "."),
-    [t]
+    () =>
+      ready
+        ? t("weAre", { returnObjects: true }).map(word => word + ".")
+        : null,
+    [t, ready]
   )
   const activeWordRef = useRef(null)
   const caretRef = useRef(null)
@@ -133,33 +136,35 @@ const Hero = () => {
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
 
   useLayoutEffect(() => {
-    possibleWords.forEach(word => {
-      let tl = gsap.timeline({ defaults: { delay: 0.11 }, delay: 0.65 })
-      word.split("").forEach((_, index) => {
-        tl.set(activeWordRef.current, { innerText: word.slice(0, index + 1) })
-      })
-      tl.to(caretRef.current, {
-        opacity: 0,
-        duration: 0,
-        delay: 0.2,
-        repeatDelay: 0.7,
-        repeat: 4,
-        yoyo: true,
-      })
-      word.split("").forEach((_, index) => {
-        tl.set(activeWordRef.current, {
-          innerText: word.slice(0, word.length - (index + 1)),
+    if (possibleWords) {
+      possibleWords.forEach(word => {
+        let tl = gsap.timeline({ defaults: { delay: 0.11 }, delay: 0.65 })
+        word.split("").forEach((_, index) => {
+          tl.set(activeWordRef.current, { innerText: word.slice(0, index + 1) })
         })
+        tl.to(caretRef.current, {
+          opacity: 0,
+          duration: 0,
+          delay: 0.2,
+          repeatDelay: 0.7,
+          repeat: 4,
+          yoyo: true,
+        })
+        word.split("").forEach((_, index) => {
+          tl.set(activeWordRef.current, {
+            innerText: word.slice(0, word.length - (index + 1)),
+          })
+        })
+        globalTimeline.add(tl)
       })
-      globalTimeline.add(tl)
-    })
+    }
 
     return () => {
       globalTimeline.kill()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [possibleWords])
 
   useEffect(() => {
     if (canvasLoadStatus.progress < 100) {
