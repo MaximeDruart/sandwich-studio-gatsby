@@ -11,5 +11,14 @@
   "services-headline": "Our services • Product",
   "services-1-title": "Logo design, Graphic identity & Branding",
   "services-1-body": "Our speakers are experienced marketers willing to share and let you in on their little secrets that lead to big successes. We prepared an amazing line-up of digital marketers & brand experts from various industries.",
-  "services-1-cta": "Discover our Design related services"
+  "services-1-cta": "Discover our Design related services",
+  "selected-works-headline": "Selected Works",
+  "selected-works-categories": [
+    "Canabur & burrings  branding",
+    "Canabur & burrings  branding",
+    "Canabur & burrings  branding",
+    "Canabur & burrings  branding",
+    "Canabur & burrings  branding"
+  ],
+  "selected-works-hover-text": "Discover"
 }

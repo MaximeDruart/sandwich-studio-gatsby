@@ -1,8 +1,10 @@
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { useTranslation } from "react-i18next"
-
 import { motion } from "framer-motion"
-import React, { useEffect, useState } from "react"
+
+import { ReactComponent as Arrow } from "../../../assets/icons/arrow.svg"
+import CanCanvas from "./CanCanvas"
 
 const StyledServices = styled.div`
   border: 1px solid yellow;
@@ -22,20 +24,37 @@ const StyledServices = styled.div`
     width: 100%;
   }
 
-  .design {
+  .section {
     margin-top: 20vh;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    text-align: right;
 
-    .left {
+    &.second {
+      margin-top: 100vh;
     }
 
-    .right {
+    .decoration {
+    }
+
+    .text {
       width: 40%;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      &.align-right {
+        text-align: right;
+        align-items: flex-end;
+      }
       .title {
-        ${({ theme }) => theme.textStyles.h2};
+        ${({ theme }) => theme.textStyles.h3};
+      }
+      .body {
+        ${({ theme }) => theme.textStyles.text};
+      }
+
+      .cta {
+        ${({ theme }) => theme.textStyles.button};
       }
     }
   }
@@ -76,9 +95,9 @@ const Services = ({ scroll }) => {
         data-scroll
         data-scroll-call="design"
         data-scroll-offset="40%"
-        className="design"
+        className="section"
       >
-        <div className="left">
+        <div className="decoration">
           <motion.svg
             whileHover="drawn"
             animate={isOnScreen ? "drawn" : "hidden"}
@@ -129,11 +148,33 @@ const Services = ({ scroll }) => {
             />
           </motion.svg>
         </div>
-        <div className="right">
+        <div className="text align-right">
           <div className="title">{t("services-1-title")} </div>
           <div className="body">{t("services-1-body")} </div>
-          <div className="cta">{t("services-1-cta")} </div>
+          <button className="cta">
+            <span className="text-content">{t("services-1-cta")}</span>
+            <Arrow className="arrow" />
+          </button>
         </div>
+      </div>
+
+      <CanCanvas />
+
+      <div
+        data-scroll
+        data-scroll-call="design"
+        data-scroll-offset="40%"
+        className="section second"
+      >
+        <div className="text">
+          <div className="title">{t("services-1-title")} </div>
+          <div className="body">{t("services-1-body")} </div>
+          <button className="cta">
+            <span className="text-content">{t("services-1-cta")}</span>
+            <Arrow className="arrow" />
+          </button>
+        </div>
+        <div className="decoration"></div>
       </div>
     </StyledServices>
   )

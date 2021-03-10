@@ -7,6 +7,7 @@ import About from "../components/homepage/About"
 import Services from "../components/homepage/Services"
 import Footer from "../components/Footer"
 import ContactSpinner from "../components/homepage/ContactSpinner"
+import SelectedWorks from "../components/homepage/SelectedWorks"
 import useStore from "../../store"
 
 export default function Home() {
@@ -64,6 +65,7 @@ export default function Home() {
         <Hero />
         <About />
         <Services scroll={scroll} />
+        <SelectedWorks />
       </main>
       <Footer />
     </>

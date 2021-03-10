@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { useTranslation } from "react-i18next"
 
 const StyledAbout = styled.div`
-  border: 1px solid yellow;
   width: 100vw;
 
   padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
@@ -23,12 +22,10 @@ const StyledAbout = styled.div`
     display: flex;
     flex-flow: row nowrap;
     margin-top: 7vh;
-    border: thin solid red;
     justify-content: space-between;
 
     .photos {
       width: 30%;
-      border: thin solid white;
       position: relative;
       width: max(30vw, 400px);
       height: max(30vw, 400px);
@@ -70,7 +67,7 @@ const StyledAbout = styled.div`
           width: max(30vw, 400px);
           height: max(30vw, 400px);
           background: center / cover url("/images/mission-3.jpg");
-          bottom: -60vh;
+          bottom: -50vh;
           left: -20vw;
         }
         .photo-bl {
@@ -120,7 +117,7 @@ const About = () => {
           ></div>
           <div
             data-scroll
-            data-scroll-speed="1.5"
+            data-scroll-speed="2"
             className="photo photo-bm"
           ></div>
         </div>

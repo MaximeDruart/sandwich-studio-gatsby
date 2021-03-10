@@ -10,7 +10,7 @@ theme.colors = {
 theme.textStyles = {
   headline: css`
     font-family: NeueMontrealRegular;
-    font-size: 14vw;
+    font-size: 12vw;
     letter-spacing: 0.01em;
   `,
   h1: css`
@@ -24,7 +24,7 @@ theme.textStyles = {
     font-family: NeueMontrealRegular;
     font-style: normal;
     font-weight: normal;
-    font-size: 70px;
+    font-size: 74px;
     line-height: 110%;
     /* identical to box height, or 79px */
     letter-spacing: 0.0125em;
@@ -34,7 +34,7 @@ theme.textStyles = {
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
-    line-height: 140.62%;
+    line-height: 116%;
     /* identical to box height, or 67px */
     letter-spacing: 0.01em;
   `,
@@ -69,10 +69,10 @@ theme.textStyles = {
     font-family: NeueMontrealRegular;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 19px;
     line-height: 140.62%;
     /* identical to box height, or 22px */
-    letter-spacing: 0.02em;
+    letter-spacing: 0.03em;
   `,
   smallText: css`
     font-family: NeueMontrealRegular;
@@ -84,14 +84,34 @@ theme.textStyles = {
     letter-spacing: 0.01em;
   `,
   button: css`
+    background: #ebdcd4;
     font-family: NeueMontrealRegular;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
-    line-height: 140.62%;
-    /* identical to box height, or 20px */
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.08px;
+    padding: 15px 30px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    .text-content {
+      color: black;
+    }
+
+    .arrow {
+      margin-left: 18px;
+    }
+    &:focus {
+      border: none;
+      outline: none;
+    }
   `,
 }
 
