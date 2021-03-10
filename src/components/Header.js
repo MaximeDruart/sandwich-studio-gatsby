@@ -68,7 +68,7 @@ const variants = {
 const Header = () => {
   const all = useTranslation()
   // const { t, i18n } = all
-  const { t } = all
+  const { t, ready } = all
 
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
 
@@ -88,18 +88,19 @@ const Header = () => {
       </Link>
       <div className="right">
         <ul>
-          {t("headerLinks", { returnObjects: true }).map(link => (
-            <li key={link}>
-              <Link to={`/${link.toLowerCase()}`}>
-                <motion.span whileHover="hovering">
-                  <motion.div variants={variants}>
-                    <div className="anim-link top-link">{link}</div>
-                    <div className="anim-link bottom-link">{link}</div>
-                  </motion.div>
-                </motion.span>
-              </Link>
-            </li>
-          ))}
+          {ready &&
+            t("headerLinks", { returnObjects: true }).map(link => (
+              <li key={link}>
+                <Link to={`/${link.toLowerCase()}`}>
+                  <motion.span whileHover="hovering">
+                    <motion.div variants={variants}>
+                      <div className="anim-link top-link">{link}</div>
+                      <div className="anim-link bottom-link">{link}</div>
+                    </motion.div>
+                  </motion.span>
+                </Link>
+              </li>
+            ))}
           {/* functional language switch */}
           {/* <li
             style={{ display: "none" }}
