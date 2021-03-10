@@ -236,6 +236,7 @@ html.has-scroll-dragging {
       font-family : NeueMontrealRegular;
       /* background : ${({ theme }) => theme.colors.background}; */
       /* color : ${({ theme }) => theme.colors.textStandard}; */
+      color : white;
     }
 
     html {

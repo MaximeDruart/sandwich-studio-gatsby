@@ -78,7 +78,7 @@ theme.textStyles = {
     font-family: NeueMontrealRegular;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 140.62%;
     /* identical to box height, or 20px */
     letter-spacing: 0.01em;
