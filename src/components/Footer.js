@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="right">
-        <Link className="privacy" href="/privacy-policy">
+        <Link className="privacy" to="/privacy-policy">
           {t("footer-privacy-policy")}
         </Link>
         <span className="creator-tag">{t("footer-creator-tag")}</span>
