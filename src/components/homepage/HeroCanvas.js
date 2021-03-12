@@ -208,7 +208,7 @@ const HeroCanvas = () => {
           <Environment />
           <Lights />
           <Blob />
-          <OrbitControls />
+          {/* <OrbitControls /> */}
           {/* <gridHelper /> */}
           <Effects />
         </Suspense>
