@@ -4,14 +4,14 @@ import { useTranslation } from "react-i18next"
 import { motion } from "framer-motion"
 
 import { ReactComponent as Arrow } from "../../../assets/icons/arrow.svg"
-import CanCanvas from "./CanCanvas"
+import useStore from "../../../store"
 
 const StyledServices = styled.div`
   border: 1px solid yellow;
   width: 100vw;
   /* overflow: hidden; */
 
-  padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
+  /* padding: 5vh max(5vw, 50px) 0 max(5vw, 50px); */
 
   * {
     font-family: NeueMontrealRegular;
@@ -24,14 +24,28 @@ const StyledServices = styled.div`
     width: 100%;
   }
 
+  .tl-section {
+    &.tl-section-1 {
+      padding-top: 130vh;
+      border: 5px solid red;
+    }
+    &.tl-section-2 {
+      padding-top: 200vh;
+      border: 5px solid blue;
+    }
+    &.tl-section-3 {
+      padding-top: 170vh;
+      border: 5px solid green;
+    }
+  }
   .section {
     margin-top: 20vh;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
 
     &.second {
-      margin-top: 100vh;
     }
 
     .decoration {
@@ -72,14 +86,6 @@ const Services = ({ scroll }) => {
   const { t } = useTranslation()
   const [isOnScreen, setIsOnScreen] = useState(false)
 
-  useEffect(() => {
-    if (scroll) {
-      scroll.on("call", call => {
-        call === "design" && setIsOnScreen(true)
-      })
-    }
-  }, [scroll])
-
   return (
     <StyledServices data-scroll-section>
       <div
@@ -105,14 +111,6 @@ const Services = ({ scroll }) => {
             height="234"
             viewBox="0 0 199 234"
           >
-            {/* <motion.path
-              strokeDasharray='1000'
-              strokeDashoffset='1000'
-              variants={variants}
-              d='M3.27139 0.5H195.472C197.002 0.5 198.242 1.74041 198.242 3.27054V32.0885V63.6769H0.500854V3.27054C0.500854 1.74041 1.74127 0.5 3.27139 0.5Z'
-              fill='none'
-              stroke='white'
-            /> */}
             <motion.path
               initial={{ opacity: 0 }}
               tag="FILL"
@@ -158,13 +156,46 @@ const Services = ({ scroll }) => {
         </div>
       </div>
 
-      <CanCanvas />
+      <div
+        data-scroll
+        data-scroll-id="tl-top-to-side"
+        data-scroll-offset="15%,77%"
+        data-scroll-position="top"
+        className="section second tl-section tl-section-1"
+      >
+        <div className="text">
+          <div className="title">{t("services-1-title")} </div>
+          <div className="body">{t("services-1-body")} </div>
+          <button className="cta">
+            <span className="text-content">{t("services-1-cta")}</span>
+            <Arrow className="arrow" />
+          </button>
+        </div>
+        <div className="decoration"></div>
+      </div>
 
       <div
         data-scroll
-        data-scroll-call="design"
-        data-scroll-offset="40%"
-        className="section second"
+        data-scroll-id="tl-branding"
+        data-scroll-offset="35%,77%"
+        data-scroll-position="top"
+        className="section tl-section tl-section-2"
+      >
+        <div className="decoration"></div>
+        <div className="text align-right">
+          <div className="title">{t("services-1-title")} </div>
+          <div className="body">{t("services-1-body")} </div>
+          <button className="cta">
+            <span className="text-content">{t("services-1-cta")}</span>
+            <Arrow className="arrow" />
+          </button>
+        </div>
+      </div>
+      <div
+        data-scroll
+        data-scroll-id="tl-website"
+        data-scroll-offset={window.innerHeight / 2}
+        className="section second tl-section tl-section-3"
       >
         <div className="text">
           <div className="title">{t("services-1-title")} </div>

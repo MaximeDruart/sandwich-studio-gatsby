@@ -9,6 +9,7 @@ import Footer from "../components/Footer"
 import ContactSpinner from "../components/homepage/ContactSpinner"
 import SelectedWorks from "../components/homepage/SelectedWorks"
 import useStore from "../../store"
+import CanCanvas from "../components/homepage/CanCanvas"
 
 export default function Home() {
   const mainContainerRef = useRef(null)
@@ -62,6 +63,7 @@ export default function Home() {
 
       <main data-scroll-container ref={mainContainerRef}>
         <ContactSpinner />
+        <CanCanvas scroll={scroll} />
         <Hero />
         <About />
         <Services scroll={scroll} />
