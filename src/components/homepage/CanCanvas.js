@@ -122,111 +122,177 @@ const tlWebsite = gsap.timeline({
 })
 
 const Content = () => {
-  const can = useRef()
-  const brandedCan = useRef()
-  const cameraFocusGuide = useRef()
-  const { nodes } = useGLTF("/models/can2.glb")
-
   const { camera } = useThree()
 
+  const can = useRef()
+  const brandedCan = useRef()
+  const { nodes } = useGLTF("/models/can2.glb")
+
+  const [pcTexture, mobileTexture, alphaMobileTexture] = useTexture([
+    "/images/pc-mockup.jpg",
+    "/images/mobile-mockup.png",
+    "/images/mobile-mockup-alpha.png",
+  ])
+  const screens = useRef()
+  const mobileScreen = useRef()
+  const pcScreen = useRef()
+
   useEffect(() => {
-    // tl.to(can.current, {
-    //   three: {},
-    // })
     if (can.current) {
-      // move from top view to center focus
-      tlTopToSide.addLabel("sync0")
-      tlTopToSide.fromTo(
-        [can.current],
-        {
-          three: { scaleX: 0.0001, scaleY: 0.0001, scaleZ: 0.0001 },
-        },
-        { three: { scaleX: 1, scaleY: 1, scaleZ: 1 }, duration: 1.9 },
-        "sync0"
-      )
-      tlTopToSide.fromTo(
-        [can.current.material],
-        { opacity: 0 },
-        { opacity: 1, duration: 1.9 },
-        "sync0"
-      )
-      tlTopToSide.to(
-        camera,
-        {
-          three: {
-            positionY: 0.5,
-            positionZ: 0.7,
+      /////////// TL TOPTOSIDE
+      {
+        // move from top view to center focus
+        tlTopToSide.addLabel("sync0")
+        tlTopToSide.fromTo(
+          [can.current],
+          {
+            three: { scaleX: 0.0001, scaleY: 0.0001, scaleZ: 0.0001 },
           },
-          onUpdate: () => camera.lookAt(0, 0.2, 0),
-          duration: 3.6,
-        },
-        "sync0"
-      )
-      // move can aside for text
-      tlTopToSide.to(
-        [can.current, brandedCan.current],
-        {
-          three: { positionX: 0.3 },
-          duration: 1.8,
-        },
-        "-=0.9"
-      )
+          { three: { scaleX: 1, scaleY: 1, scaleZ: 1 }, duration: 1.9 },
+          "sync0"
+        )
+        tlTopToSide.fromTo(
+          [can.current.material],
+          { opacity: 0 },
+          { opacity: 1, duration: 1.9 },
+          "sync0"
+        )
+        tlTopToSide.to(
+          camera,
+          {
+            three: {
+              positionY: 0.5,
+              positionZ: 0.7,
+            },
+            onUpdate: () => camera.lookAt(0, 0.2, 0),
+            duration: 3.6,
+          },
+          "sync0"
+        )
+        // move can aside for text
+        tlTopToSide.to(
+          [can.current, brandedCan.current],
+          {
+            three: { positionX: 0.3 },
+            duration: 1.8,
+          },
+          "-=0.9"
+        )
+      }
 
       /////////// TL BRANDING
 
-      // move can back on forefront
-      tlBranding.addLabel("sync")
-      tlBranding.to(
-        [can.current, brandedCan.current],
-        {
-          three: {
-            positionX: -0.2,
+      {
+        tlBranding.addLabel("sync")
+        tlBranding.to(
+          [can.current, brandedCan.current],
+          {
+            three: {
+              positionX: -0.2,
+            },
+            duration: 2,
           },
-          duration: 2,
-        },
-        "sync"
-      )
-      tlBranding.to(
-        camera,
-        {
-          three: {
-            positionY: 0.25,
-            positionZ: 0.7,
-            rotationX: 0,
+          "sync"
+        )
+        tlBranding.to(
+          camera,
+          {
+            three: {
+              positionY: 0.25,
+              positionZ: 0.7,
+              rotationX: 0,
+            },
+
+            duration: 2,
           },
+          "sync"
+        )
 
+        tlBranding.to([can.current, brandedCan.current], {
+          three: { rotationY: 180, rotationZ: 30, rotationX: 30 },
           duration: 2,
-        },
-        "sync"
-      )
+        })
+        tlBranding.addLabel("sync2", "-=0.8")
+        tlBranding.to(
+          can.current.material,
+          { opacity: 0, duration: 2 },
+          "sync2"
+        )
+        tlBranding.to(
+          brandedCan.current.material,
+          { opacity: 1, duration: 2 },
+          "sync2"
+        )
+        tlBranding.to(
+          [can.current, brandedCan.current],
+          {
+            three: { rotationX: 0, rotationY: 0, rotationZ: 0 },
+            duration: 2,
+          },
+          "-=0.7"
+        )
+      }
 
-      tlBranding.to([can.current, brandedCan.current], {
-        three: { rotationY: 180, rotationZ: 30, rotationX: 30 },
-        duration: 2,
-      })
-      tlBranding.addLabel("sync2", "-=0.8")
-      tlBranding.to(can.current.material, { opacity: 0, duration: 2 }, "sync2")
-      tlBranding.to(
-        brandedCan.current.material,
-        { opacity: 1, duration: 2 },
-        "sync2"
-      )
-      tlBranding.to(
-        [can.current, brandedCan.current],
-        {
-          three: { rotationX: 0, rotationY: 0, rotationZ: 0 },
-          duration: 2,
-        },
-        "-=0.7"
-      )
-
-      // TL WEBSITE
+      /////////// TL WEBSITE
+      {
+        tlWebsite.set(screens.current, { visible: true })
+        tlWebsite.addLabel("sync")
+        tlWebsite.to(
+          brandedCan.current,
+          {
+            three: { positionX: 2.8 },
+            duration: 1,
+          },
+          "sync"
+        )
+        tlWebsite.to(
+          camera,
+          {
+            three: {
+              positionZ: 0.6,
+              positionX: 2.05,
+              rotationY: -45,
+            },
+            duration: 1,
+          },
+          "sync"
+        )
+      }
     }
   }, [])
 
   return (
     <>
-      <Box wireframe args={[0.1, 0.1, 0.1]} ref={cameraFocusGuide} />
+      <group
+        scale={[0.7, 0.7, 0.7]}
+        ref={screens}
+        visible={false}
+        position={[3, 0.5, 0]}
+      >
+        <mesh
+          ref={pcScreen}
+          receiveShadow
+          castShadow
+          rotation-y={-Math.PI / 2.5}
+        >
+          <planeBufferGeometry args={[2.207, 1.387]} attach="geometry" />
+          <meshStandardMaterial map={pcTexture} attach="material" />
+          <mesh
+            ref={mobileScreen}
+            castShadow
+            receiveShadow
+            position={[0.4, -0.35, 0.2]}
+          >
+            <planeBufferGeometry args={[0.621, 1.138]} attach="geometry" />
+            <meshStandardMaterial
+              transparent
+              alphaMap={alphaMobileTexture}
+              map={mobileTexture}
+              attach="material"
+            />
+          </mesh>
+        </mesh>
+      </group>
       {/* normal doy */}
       <mesh geometry={nodes.can_2.geometry} ref={can}>
         {/* <meshStandardMaterial roughness={1} color={"grey"} attach="material" /> */}
@@ -252,35 +318,6 @@ const Content = () => {
         />
       </mesh>
     </>
-  )
-}
-
-const Screens = () => {
-  const [
-    pcTexture,
-    mobileTexture,
-    alphaMobileTexture,
-  ] = useLoader(THREE.TextureLoader, [
-    "/images/pc-mockup.jpg",
-    "/images/mobile-mockup.png",
-    "/images/mobile-mockup-alpha.png",
-  ])
-  return (
-    <group visible={false} position-x={3}>
-      <mesh receiveShadow castShadow rotation-y={-Math.PI / 2.5}>
-        <planeBufferGeometry args={[2.207, 1.387]} attach="geometry" />
-        <meshStandardMaterial map={pcTexture} attach="material" />
-        <mesh castShadow receiveShadow position={[0.4, -0.35, 0.2]}>
-          <planeBufferGeometry args={[0.621, 1.138]} attach="geometry" />
-          <meshStandardMaterial
-            transparent
-            alphaMap={alphaMobileTexture}
-            map={mobileTexture}
-            attach="material"
-          />
-        </mesh>
-      </mesh>
-    </group>
   )
 }
 
@@ -330,8 +367,7 @@ const CanCanvas = ({ scroll }) => {
           <Environment />
           <Lights />
 
-          <Content />
-          <Screens />
+          {/* <Content /> */}
           {/* <OrbitControls /> */}
           <gridHelper />
           {/* <Effects /> */}

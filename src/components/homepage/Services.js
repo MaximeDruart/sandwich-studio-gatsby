@@ -24,20 +24,6 @@ const StyledServices = styled.div`
     width: 100%;
   }
 
-  .tl-section {
-    &.tl-section-1 {
-      padding-top: 130vh;
-      border: 5px solid red;
-    }
-    &.tl-section-2 {
-      padding-top: 200vh;
-      border: 5px solid blue;
-    }
-    &.tl-section-3 {
-      padding-top: 170vh;
-      border: 5px solid green;
-    }
-  }
   .section {
     margin-top: 20vh;
     display: flex;
@@ -45,7 +31,42 @@ const StyledServices = styled.div`
     justify-content: space-between;
     padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
 
-    &.second {
+    &.tl-section {
+      &.tl-section-1 {
+        padding-top: 130vh;
+        border: 5px solid red;
+      }
+      &.tl-section-2 {
+        padding-top: 200vh;
+        border: 5px solid blue;
+      }
+      &.tl-section-3 {
+        padding-top: 170vh;
+        border: 5px solid green;
+      }
+    }
+
+    &.merch {
+      margin-top: 90vh;
+      .decoration {
+        position: relative;
+        width: 55%;
+        .merch-img {
+          position: absolute;
+          &.merch-img-2 {
+            left: 30%;
+            top: -80%;
+          }
+          &.merch-img-3 {
+            left: -15%;
+            bottom: -30%;
+          }
+          &.merch-img-1 {
+            top: 30%;
+            right: 20%;
+          }
+        }
+      }
     }
 
     .decoration {
@@ -82,7 +103,7 @@ const fillVariants = {
   drawn: { opacity: 1 },
 }
 
-const Services = ({ scroll }) => {
+const Services = () => {
   const { t } = useTranslation()
   const [isOnScreen, setIsOnScreen] = useState(false)
 
@@ -191,10 +212,12 @@ const Services = ({ scroll }) => {
           </button>
         </div>
       </div>
+
       <div
         data-scroll
         data-scroll-id="tl-website"
-        data-scroll-offset={window.innerHeight / 2}
+        data-scroll-offset="35%,77%"
+        data-scroll-position="top"
         className="section second tl-section tl-section-3"
       >
         <div className="text">
@@ -206,6 +229,69 @@ const Services = ({ scroll }) => {
           </button>
         </div>
         <div className="decoration"></div>
+      </div>
+
+      <div
+        data-scroll
+        data-scroll-call="design"
+        data-scroll-offset="40%"
+        className="section merch"
+      >
+        <div className="decoration">
+          <motion.img
+            className="merch-img merch-img-1"
+            animate={{
+              y: 20,
+              transition: {
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 3,
+                delay: 0,
+              },
+            }}
+            src="/images/merch-1.png"
+            alt=""
+          />
+          <motion.img
+            className="merch-img merch-img-2"
+            animate={{
+              y: 20,
+              transition: {
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 3.2,
+                delay: 0.5,
+              },
+            }}
+            src="/images/merch-2.png"
+            alt=""
+          />
+          <motion.img
+            className="merch-img merch-img-3"
+            animate={{
+              y: 20,
+              transition: {
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 2.8,
+                delay: 1,
+              },
+            }}
+            src="/images/merch-3.png"
+            alt=""
+          />
+        </div>
+        <div className="text align-right">
+          <div className="title">{t("services-1-title")} </div>
+          <div className="body">{t("services-1-body")} </div>
+          <button className="cta">
+            <span className="text-content">{t("services-1-cta")}</span>
+            <Arrow className="arrow" />
+          </button>
+        </div>
       </div>
     </StyledServices>
   )

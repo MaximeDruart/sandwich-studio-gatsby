@@ -7,6 +7,7 @@ import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg
 const StyledSelectedWorks = styled.div`
   border: 1px solid yellow;
   width: 100vw;
+  margin-top: 30vh;
   /* overflow: hidden; */
 
   padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
@@ -20,6 +21,7 @@ const StyledSelectedWorks = styled.div`
     ${({ theme }) => theme.textStyles.headline};
     white-space: nowrap;
     width: 100%;
+    margin-bottom: 8vh;
   }
 
   .works-wrapper {
