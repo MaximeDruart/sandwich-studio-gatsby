@@ -21,6 +21,19 @@
     "Canabur & burrings  branding"
   ],
   "selected-works-hover-text": "Discover",
+  "forms-headline": "Get in touch • Contact",
+  "form-contact-headline": "Get in touch",
+  "form-contact-bottom-line": "Our team is always available",
+  "form-contact-display-names": [
+    "Name",
+    "Company Name (optional)",
+    "Email",
+    "Phone",
+    "Deadline",
+    "Service",
+    "Your message (optional)"
+  ],
+  "form-submit-text": "Send Form",
   "footer-privacy-policy": "Privacy Policy",
   "footer-creator-tag": "Developped & Designed by sandwich.studio"
 }

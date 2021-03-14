@@ -9,6 +9,8 @@ import Footer from "../components/Footer"
 import ContactSpinner from "../components/homepage/ContactSpinner"
 import SelectedWorks from "../components/homepage/SelectedWorks"
 import useStore from "../../store"
+import CanCanvas from "../components/homepage/CanCanvas"
+import Forms from "../components/homepage/Forms"
 
 export default function Home() {
   const mainContainerRef = useRef(null)
@@ -34,10 +36,10 @@ export default function Home() {
     if (mainContainerRef.current) {
       import("locomotive-scroll").then(LocomotiveScroll => {
         let s = new LocomotiveScroll.default()
+        // s.el = mainContainerRef.current
+        // s.scrollbarContainer = mainContainerRef.current
         s.smooth = true
         s.init()
-        s.scrollbarContainer = mainContainerRef.current
-        s.el = mainContainerRef.current
         setScroll(s)
       })
     }
@@ -62,10 +64,12 @@ export default function Home() {
 
       <main data-scroll-container ref={mainContainerRef}>
         <ContactSpinner />
+        <CanCanvas scroll={scroll} />
         <Hero />
         <About />
-        <Services scroll={scroll} />
+        <Services />
         <SelectedWorks />
+        <Forms />
       </main>
       <Footer />
     </>

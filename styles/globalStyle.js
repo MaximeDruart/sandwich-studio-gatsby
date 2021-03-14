@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components"
 export default createGlobalStyle`
     @font-face {
       font-family: "NeueMontrealRegular";
+      font-display : fallback ;
       src: url("/fonts/neueRegular.otf");
     }
     @font-face {
@@ -241,6 +242,7 @@ html.has-scroll-dragging {
 
     html {
       /* overflow : hidden; */
+
     }
     body {
       overflow-x: hidden;

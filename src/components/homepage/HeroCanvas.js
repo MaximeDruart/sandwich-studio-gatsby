@@ -183,17 +183,17 @@ const selector = state => state.setCanvasLoadStatus
 
 const Loader = () => {
   const setCanvasLoadStatus = useStore(selector)
-  const progress = useProgress(state => state.progress)
+  const { loaded, total } = useProgress(state => state)
   useEffect(() => {
-    setCanvasLoadStatus({ progress })
+    setCanvasLoadStatus({ loaded, total })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progress])
+  }, [loaded])
   return null
 }
 
 const HeroCanvas = () => {
   return (
-    <StyledHeroCanvas scroll-section className="canvas">
+    <StyledHeroCanvas className="canvas">
       <Canvas
         shadowMap
         colorManagement
