@@ -367,7 +367,7 @@ const CanCanvas = ({ scroll }) => {
           <Environment />
           <Lights />
 
-          {/* <Content /> */}
+          <Content />
           {/* <OrbitControls /> */}
           <gridHelper />
           {/* <Effects /> */}

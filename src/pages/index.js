@@ -60,7 +60,7 @@ export default function Home() {
         />
       </Helmet>
 
-      {/* <Header /> */}
+      <Header />
 
       <main data-scroll-container ref={mainContainerRef}>
         <ContactSpinner />
@@ -71,7 +71,7 @@ export default function Home() {
         <SelectedWorks />
         <Forms />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }
