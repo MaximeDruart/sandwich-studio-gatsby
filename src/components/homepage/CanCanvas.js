@@ -369,7 +369,7 @@ const CanCanvas = ({ scroll }) => {
 
           <Content />
           {/* <OrbitControls /> */}
-          <gridHelper />
+          {/* <gridHelper /> */}
           {/* <Effects /> */}
         </Suspense>
       </Canvas>

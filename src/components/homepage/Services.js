@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { useTranslation } from "react-i18next"
 import { motion } from "framer-motion"
@@ -11,7 +11,7 @@ const StyledServices = styled.div`
   width: 100vw;
   /* overflow: hidden; */
 
-  /* padding: 5vh max(5vw, 50px) 0 max(5vw, 50px); */
+  /* padding: 5vh max(5vw, 10px) 0 max(5vw, 10px); */
 
   * {
     font-family: NeueMontrealRegular;
@@ -29,7 +29,7 @@ const StyledServices = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
+    padding: 5vh max(5vw, 10px) 0 max(5vw, 10px);
 
     &.tl-section {
       &.tl-section-1 {

@@ -21,14 +21,9 @@ export default function Home() {
     // sadly this is kind of the best solution to stop the user from scrolling on load time AND hide scrollbar during the time
     // where locomotivescroll isnt dynamically loaded yet
     if (canvasLoadStatus.progress < 100) {
-      document.body.style.overflow = "hidden"
       document.body.style.position = "fixed"
     } else {
-      // gosh look away pls
-      setTimeout(() => {
-        document.body.style.overflow = "initial"
-        document.body.style.position = "static"
-      }, 300)
+      document.body.style.position = "static"
     }
   }, [canvasLoadStatus])
 
@@ -39,6 +34,12 @@ export default function Home() {
         // s.el = mainContainerRef.current
         // s.scrollbarContainer = mainContainerRef.current
         s.smooth = true
+        s.tablet = {
+          smooth: true,
+        }
+        s.smartphone = {
+          smooth: true,
+        }
         s.init()
         setScroll(s)
       })

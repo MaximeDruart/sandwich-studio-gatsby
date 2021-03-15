@@ -9,7 +9,7 @@ const StyledForms = styled.div`
   margin-top: 30vh;
   /* overflow: hidden; */
 
-  padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
+  padding: 5vh max(5vw, 10px) 0 max(5vw, 10px);
 
   * {
     font-family: NeueMontrealRegular;

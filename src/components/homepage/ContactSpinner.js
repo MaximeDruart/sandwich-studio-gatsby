@@ -5,7 +5,7 @@ import useStore from "../../../store"
 
 const StyledContactSpinner = styled(motion.div)`
   position: fixed;
-  right: max(5vw, 50px);
+  right: max(5vw, 10px);
   z-index: 2;
   bottom: 5vh;
   width: 135px;

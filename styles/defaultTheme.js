@@ -4,13 +4,14 @@ const theme = {}
 
 theme.colors = {
   background: "#0D0D0D",
+  grey: "#828F91",
   text: "#FFFFFF",
 }
 
 theme.textStyles = {
   headline: css`
     font-family: NeueMontrealRegular;
-    font-size: 12vw;
+    font-size: max(12vw, 85px);
     letter-spacing: 0.01em;
   `,
   h1: css`
@@ -19,6 +20,9 @@ theme.textStyles = {
     line-height: 140.62%;
     /* or 101px */
     letter-spacing: 0.01em;
+    @media (max-width: 600px) {
+      font-size: 43px;
+    }
   `,
   h2: css`
     font-family: NeueMontrealRegular;
@@ -37,6 +41,9 @@ theme.textStyles = {
     line-height: 116%;
     /* identical to box height, or 67px */
     letter-spacing: 0.01em;
+    @media (max-width: 600px) {
+      font-size: 36px;
+    }
   `,
   h4: css`
     font-family: NeueMontrealRegular;
@@ -46,6 +53,9 @@ theme.textStyles = {
     line-height: 140.62%;
     /* or 53px */
     letter-spacing: 0.01em;
+    @media (max-width: 600px) {
+      font-size: 28px;
+    }
   `,
   h5: css`
     font-family: NeueMontrealRegular;
@@ -82,6 +92,9 @@ theme.textStyles = {
     line-height: 140.62%;
     /* identical to box height, or 20px */
     letter-spacing: 0.01em;
+    @media (max-width: 600px) {
+      font-size: 14px;
+    }
   `,
   button: css`
     background: #ebdcd4;

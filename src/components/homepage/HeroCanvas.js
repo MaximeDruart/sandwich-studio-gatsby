@@ -101,7 +101,7 @@ function Environment({ background = false }) {
 const Blob = () => {
   const sphere = useRef()
   const [wobbleFactor, setWobbleFactor] = useState(0)
-  const mousePos = useRef([0, 0])
+  const mousePos = useRef({ x: 0, y: 0 })
 
   // intro animation
   useEffect(() => {
@@ -123,17 +123,18 @@ const Blob = () => {
     )
   }, [])
 
-  const clickHandler = async () => {
+  const clickHandler = () => {
     if (sphere.current.material.factor === 0) {
-      await gsap.fromTo(sphere.current.material, { factor: 0 }, { factor: 0.5 })
-      await gsap.to(sphere.current.material, { factor: 0, delay: 0.8 })
+      const tl = gsap.timeline()
+      tl.fromTo(sphere.current.material, { factor: 0 }, { factor: 0.3 })
+      tl.to(sphere.current.material, { factor: 0, delay: 0.8 })
     }
   }
 
   const mousemoveHandler = event => {
     const x = -1.0 + (2.0 * event.x) / window.innerWidth
     const y = 1.0 - (2.0 * event.y) / window.innerHeight
-    mousePos.current = [x, y]
+    mousePos.current = { x, y }
   }
 
   useEffect(() => {
@@ -149,7 +150,12 @@ const Blob = () => {
       const p = sphere.current.geometry.vertices[i]
       p.normalize().multiplyScalar(
         sphere.current.geometry.parameters.radius +
-          0.6 * simplex.noise3D(p.x * k + time, p.y * k + time, p.z * k + time)
+          gsap.utils.clamp(
+            0.2,
+            0.7,
+            0.4 / (Math.abs(mousePos.current.x) + Math.abs(mousePos.current.y))
+          ) *
+            simplex.noise3D(p.x * k + time, p.y * k + time, p.z * k + time)
       )
     }
     sphere.current.geometry.computeVertexNormals()
@@ -160,12 +166,7 @@ const Blob = () => {
   return (
     <mesh onClick={clickHandler} position-y={0} ref={sphere}>
       <sphereGeometry attach="geometry" args={[2.5, 64, 64]} />
-      {/* <meshStandardMaterial
-        roughness={0}
-        metalness={0.5}
-        color={"#3cc1c2"}
-        attach="material"
-      /> */}
+
       <MeshWobbleMaterial
         roughness={0}
         metalness={0.5}

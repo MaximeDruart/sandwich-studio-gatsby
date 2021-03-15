@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 const StyledAbout = styled.div`
   width: 100vw;
 
-  padding: 5vh max(5vw, 50px) 0 max(5vw, 50px);
+  padding: 5vh max(5vw, 10px) 0 max(5vw, 10px);
 
   * {
     font-family: NeueMontrealRegular;

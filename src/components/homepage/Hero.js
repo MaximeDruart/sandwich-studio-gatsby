@@ -10,7 +10,7 @@ import useStore from "../../../store"
 const StyledHero = styled.div`
   width: 100vw;
   height: 100vh;
-  padding: 12vh max(5vw, 50px) 5vh max(5vw, 50px);
+  padding: 12vh max(5vw, 10px) 5vh max(5vw, 10px);
 
   * {
     font-family: NeueMontrealRegular;
@@ -38,6 +38,8 @@ const StyledHero = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
+    user-select: none;
+    pointer-events: none;
 
     .top-line,
     .bottom-line {
@@ -99,6 +101,21 @@ const StyledHero = styled.div`
       .right {
         margin-left: 30px;
         text-transform: lowercase;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-line,
+      .bottom-line {
+        p {
+          width: 100%;
+        }
+      }
+      .we-are {
+        left: 0%;
+        .right {
+          margin-left: 12px;
+        }
       }
     }
   }
@@ -175,6 +192,7 @@ const Hero = () => {
           globalTimeline.play()
         })
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canvasLoadStatus])
 
