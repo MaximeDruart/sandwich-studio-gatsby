@@ -3,6 +3,7 @@ import React, { useRef } from "react"
 import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg"
+import { useMediaQuery } from "react-responsive"
 
 const StyledSelectedWorks = styled.div`
   border: 1px solid yellow;
@@ -29,6 +30,7 @@ const StyledSelectedWorks = styled.div`
       width: fit-content;
       display: flex;
       flex-flow: row nowrap;
+      align-items: center;
 
       .work {
         margin-right: 62px;
@@ -66,6 +68,17 @@ const StyledSelectedWorks = styled.div`
         }
       }
     }
+
+    @media (max-width: 600px) {
+      .works {
+        flex-flow: column;
+
+        .work {
+          margin-right: 0;
+          margin-bottom: 60px;
+        }
+      }
+    }
   }
 `
 
@@ -79,6 +92,8 @@ const hoverTextVariants = {
 const SelectedWorks = () => {
   const worksRef = useRef(null)
   const { t, ready } = useTranslation()
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+
   return (
     <StyledSelectedWorks data-scroll-section>
       <div
@@ -104,7 +119,7 @@ const SelectedWorks = () => {
                 -500,
             right: 0,
           }}
-          drag="x"
+          drag={isMobile ? "" : "x"}
           layout
           className="works"
         >

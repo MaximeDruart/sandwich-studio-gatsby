@@ -120,6 +120,10 @@ const tlWebsite = gsap.timeline({
   paused: true,
   defaults: { ease: "Power2.easeInOut" },
 })
+const tlFinal = gsap.timeline({
+  paused: true,
+  defaults: { ease: "Power2.easeInOut", duration: 1 },
+})
 
 const Content = () => {
   const { camera } = useThree()
@@ -235,13 +239,16 @@ const Content = () => {
 
       /////////// TL WEBSITE
       {
-        tlWebsite.set(screens.current, { visible: true })
+        // tlWebsite.set(screens.current, { visible: true })
         tlWebsite.addLabel("sync")
         tlWebsite.to(
           brandedCan.current,
           {
             three: { positionX: 2.8 },
             duration: 1,
+            onStart: () => gsap.set(screens.current, { visible: true }),
+            onReverseComplete: () =>
+              gsap.set(screens.current, { visible: true }),
           },
           "sync"
         )
@@ -257,6 +264,18 @@ const Content = () => {
           },
           "sync"
         )
+      }
+
+      {
+        tlFinal.addLabel("sync")
+        tlFinal.to(brandedCan.current, { three: { positionY: 1.3 } }, "sync")
+        tlFinal.to(brandedCan.current.material, { opacity: 0 }, "sync")
+        tlFinal.addLabel("sync2", "-=0.8")
+        tlFinal.to(pcScreen.current, { three: { positionY: 1.3 } }, "sync2")
+        tlFinal.to(pcScreen.current.material, { opacity: 0 }, "sync2")
+        tlFinal.addLabel("sync3", "-=0.8")
+        tlFinal.to(mobileScreen.current, { three: { positionY: 1.3 } }, "sync3")
+        tlFinal.to(mobileScreen.current.material, { opacity: 0 }, "sync3")
       }
     }
   }, [])
@@ -276,7 +295,7 @@ const Content = () => {
           rotation-y={-Math.PI / 2.5}
         >
           <planeBufferGeometry args={[2.207, 1.387]} attach="geometry" />
-          <meshStandardMaterial map={pcTexture} attach="material" />
+          <meshStandardMaterial transparent map={pcTexture} attach="material" />
           <mesh
             ref={mobileScreen}
             castShadow
@@ -308,14 +327,14 @@ const Content = () => {
       <mesh geometry={nodes.can_2.geometry} ref={brandedCan}>
         {/* <meshStandardMaterial roughness={1} color={"grey"} attach="material" /> */}
         <meshNormalMaterial transparent opacity={0} />
-        <Shadow
+        {/* <Shadow
           scale={[0.57, 0.57, 0.57]}
           colorStop={0.5}
           opacity={0.05}
           position={[0, -0.02, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
           color="white"
-        />
+        /> */}
       </mesh>
     </>
   )
@@ -347,7 +366,12 @@ const CanCanvas = ({ scroll }) => {
           tlBranding.progress(_scroll.currentElements["tl-branding"].progress)
         typeof _scroll.currentElements["tl-website"] === "object" &&
           tlWebsite.progress(_scroll.currentElements["tl-website"].progress)
+        typeof _scroll.currentElements["tl-final"] === "object" &&
+          tlFinal.progress(_scroll.currentElements["tl-final"].progress)
       })
+    }
+    return () => {
+      if (scroll) scroll.destroy()
     }
   }, [scroll])
 

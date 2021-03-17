@@ -5,6 +5,7 @@ import { ReactComponent as Logo } from "../../assets/icons/header-logo.svg"
 import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import useStore from "../../store"
+import { useMediaQuery } from "react-responsive"
 
 const StyledHeader = styled(motion.div)`
   * {
@@ -156,6 +157,8 @@ const Header = () => {
 
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
 
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+
   return (
     <StyledHeader
       initial={{ opacity: 0 }}
@@ -171,7 +174,7 @@ const Header = () => {
         </div>
       </Link>
       <div className="right">
-        {window.innerWidth < 700 ? (
+        {isMobile ? (
           <motion.div animate={hamIsOpen ? "open" : ""} className="sandwich">
             <motion.div
               onClick={() => setHamIsOpen(!hamIsOpen)}

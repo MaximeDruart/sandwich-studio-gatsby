@@ -68,7 +68,7 @@ export default function Home() {
         <CanCanvas scroll={scroll} />
         <Hero />
         <About />
-        <Services />
+        <Services scroll={scroll} />
         <SelectedWorks />
         <Forms />
       </main>

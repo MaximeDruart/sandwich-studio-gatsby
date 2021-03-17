@@ -32,6 +32,9 @@ theme.textStyles = {
     line-height: 110%;
     /* identical to box height, or 79px */
     letter-spacing: 0.0125em;
+    @media (max-width: 600px) {
+      font-size: 56px;
+    }
   `,
   h3: css`
     font-family: NeueMontrealRegular;
