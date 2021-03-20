@@ -72,7 +72,7 @@ export default function Home() {
         <SelectedWorks />
         <Forms /> */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
