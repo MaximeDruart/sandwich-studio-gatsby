@@ -10,8 +10,8 @@ import { useMediaQuery } from "react-responsive"
 const StyledHeader = styled(motion.div)`
   * {
     font-family: NeueMontrealRegular;
-    /* color: ${({ theme }) => theme.colors.text}; */
-    /* ${({ theme }) => theme.textStyles.h6}; */
+    color: ${({ theme }) => theme.colors.text};
+    ${({ theme }) => theme.textStyles.h6};
   }
   z-index: 5;
   width: 100vw;
@@ -78,7 +78,7 @@ const StyledHeader = styled(motion.div)`
         position: fixed;
         height: 100vh;
         width: 80vw;
-        /* background: ${({ theme }) => theme.colors.grey}; */
+        background: ${({ theme }) => theme.colors.grey};
         top: 0;
         right: -80%;
         z-index: 20;
@@ -90,7 +90,7 @@ const StyledHeader = styled(motion.div)`
           li {
             margin-bottom: 2vh;
             a {
-              /* ${({ theme }) => theme.textStyles.h3}; */
+              ${({ theme }) => theme.textStyles.h3};
             }
           }
         }
@@ -100,7 +100,7 @@ const StyledHeader = styled(motion.div)`
           justify-content: space-between;
           .left {
             span {
-              /* ${({ theme }) => theme.textStyles.text}; */
+              ${({ theme }) => theme.textStyles.text};
             }
           }
 
