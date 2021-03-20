@@ -64,10 +64,11 @@ export default function Home() {
       {/* <Header /> */}
 
       <main data-scroll-container ref={mainContainerRef}>
+        hey
         {/* <ContactSpinner />
         <CanCanvas scroll={scroll} />
         <Hero /> */}
-        <About />
+        {/* <About /> */}
         {/* <Services scroll={scroll} />
         <SelectedWorks />
         <Forms /> */}
