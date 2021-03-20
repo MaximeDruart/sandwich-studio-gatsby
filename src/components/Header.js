@@ -18,7 +18,7 @@ const StyledHeader = styled(motion.div)`
   height: 10vh;
   position: fixed;
   top: 0;
-  padding: 0 max(5vw, 10px);
+  padding: 0 max(5vw, 20px);
 
   display: flex;
   flex-flow: row nowrap;
@@ -143,7 +143,7 @@ const hamburgerVariantsBot = {
   open: { y: -9, rotate: 45 },
 }
 const hamburgerContentVariants = {
-  open: { right: 0 },
+  open: { right: 0, transition: { ease: "easeInOut" } },
 }
 const hamburgerFilterVariants = {
   open: { opacity: 0.6 },

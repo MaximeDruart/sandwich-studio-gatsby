@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive"
 const StyledAbout = styled.div`
   width: 100vw;
 
-  padding: 5vh max(5vw, 10px) 0 max(5vw, 10px);
+  padding: 5vh max(5vw, 20px) 0 max(5vw, 20px);
 
   * {
     font-family: NeueMontrealRegular;

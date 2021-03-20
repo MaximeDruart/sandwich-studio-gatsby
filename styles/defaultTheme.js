@@ -115,7 +115,11 @@ theme.textStyles = {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
     margin-top: 20px;
+    @media (max-width: 600px) {
+      font-size: 14px;
+    }
 
     .text-content {
       color: black;

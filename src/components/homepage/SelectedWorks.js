@@ -6,12 +6,11 @@ import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg
 import { useMediaQuery } from "react-responsive"
 
 const StyledSelectedWorks = styled.div`
-  border: 1px solid yellow;
   width: 100vw;
   margin-top: 30vh;
   /* overflow: hidden; */
 
-  padding: 5vh max(5vw, 10px) 0 max(5vw, 10px);
+  padding: 5vh max(5vw, 20px) 0 max(5vw, 20px);
 
   * {
     font-family: NeueMontrealRegular;
@@ -26,6 +25,9 @@ const StyledSelectedWorks = styled.div`
   }
 
   .works-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .works {
       width: fit-content;
       display: flex;

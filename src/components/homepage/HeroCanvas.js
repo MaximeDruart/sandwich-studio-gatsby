@@ -1,28 +1,22 @@
-import React, { useState, useRef, useEffect, Suspense } from "react"
+import React, { useRef, useEffect, Suspense } from "react"
 import styled from "styled-components"
-import {
-  Canvas,
-  useFrame,
-  useThree,
-  extend,
-  useLoader,
-} from "react-three-fiber"
+import { Canvas, useFrame, useThree, useLoader } from "react-three-fiber"
 import * as THREE from "three"
 import SimplexNoise from "simplex-noise"
 import gsap from "gsap"
 import useStore from "../../../store"
 
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
-import { MeshWobbleMaterial, OrbitControls, useProgress } from "drei"
+import { MeshWobbleMaterial, useProgress } from "drei"
 import { HDRCubeTextureLoader } from "three/examples/jsm/loaders/HDRCubeTextureLoader"
+import {
+  EffectComposer,
+  Vignette,
+  Noise,
+  SSAO,
+} from "@react-three/postprocessing"
+import { useMediaQuery } from "react-responsive"
 
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer"
-import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
-import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass"
-import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader"
-
-extend({ EffectComposer, ShaderPass, RenderPass, SSAOPass })
 gsap.registerPlugin(ThreePlugin)
 const simplex = new SimplexNoise()
 
@@ -34,31 +28,19 @@ const StyledHeroCanvas = styled.div`
 `
 
 const Effects = () => {
-  const composer = useRef(null)
-  const { scene, gl, size, camera } = useThree()
-
-  useEffect(
-    () =>
-      void composer.current &&
-      composer.current.setSize(size.width, size.height),
-    [size, composer]
-  )
-  useFrame(() => composer.current && composer.current.render(), 1)
   return (
-    <effectComposer ref={composer} args={[gl]}>
-      <renderPass attachArray="passes" scene={scene} camera={camera} />
-      <sSAOPass
-        attachArray="passes"
-        args={[scene, camera, 1024, 1024]}
-        kernelRadius={0.8}
-        maxDistance={0.4}
-      />
-      <shaderPass
-        attachArray="passes"
-        args={[FXAAShader]}
-        material-uniforms-resolution-value={[1 / size.width, 1 / size.height]}
-      />
-    </effectComposer>
+    <EffectComposer>
+      {/* <DepthOfField
+        focusDistance={0}
+        focalLength={0.02}
+        bokehScale={2}
+        height={480}
+      /> */}
+
+      <SSAO />
+      <Noise opacity={0.01} />
+      <Vignette eskil={false} offset={0.1} darkness={0.7} />
+    </EffectComposer>
   )
 }
 
@@ -67,9 +49,10 @@ const Lights = () => {
   // useFrame(() => (ref.current.rotation.y = ref.current.rotation.z += 0.01))
   return (
     <group ref={ref}>
-      <ambientLight intensity={0.45} />
-      <directionalLight intensity={1.3} position={[30, 30, 50]} />
+      {/* <ambientLight intensity={0.45} /> */}
+      <directionalLight intensity={0.8} position={[30, 30, 50]} />
       {/* <pointLight intensity={5} position={[0, 0, 0]} /> */}
+      <hemisphereLight args={["#FFB23E", "#4d330e", 1]} />
     </group>
   )
 }
@@ -98,10 +81,11 @@ function Environment({ background = false }) {
   return null
 }
 
+let scalar = 0.6
 const Blob = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+
   const sphere = useRef()
-  const [wobbleFactor, setWobbleFactor] = useState(0)
-  const mousePos = useRef({ x: 0, y: 0 })
 
   // intro animation
   useEffect(() => {
@@ -131,30 +115,23 @@ const Blob = () => {
     }
   }
 
-  const mousemoveHandler = event => {
-    const x = -1.0 + (2.0 * event.x) / window.innerWidth
-    const y = 1.0 - (2.0 * event.y) / window.innerHeight
-    mousePos.current = { x, y }
-  }
-
-  useEffect(() => {
-    window.addEventListener("mousemove", mousemoveHandler)
-    return () => window.removeEventListener("mousemove", mousemoveHandler)
-  }, [])
-
-  useFrame(({ clock }) => {
+  useFrame(({ clock, mouse }) => {
     let time = clock.getElapsedTime() / 5
     const k = 0.8
+
+    // 'lerping' from last scalar value to the next one to create a smooth animation if mousepos changes violently
+
+    scalar = THREE.MathUtils.lerp(
+      scalar,
+      gsap.utils.clamp(0.2, 0.7, 0.4 / (Math.abs(mouse.x) + Math.abs(mouse.y))),
+      0.1
+    )
 
     for (let i = 0; i < sphere.current.geometry.vertices.length; i++) {
       const p = sphere.current.geometry.vertices[i]
       p.normalize().multiplyScalar(
         sphere.current.geometry.parameters.radius +
-          gsap.utils.clamp(
-            0.2,
-            0.7,
-            0.4 / (Math.abs(mousePos.current.x) + Math.abs(mousePos.current.y))
-          ) *
+          (isMobile ? 0.4 : scalar) *
             simplex.noise3D(p.x * k + time, p.y * k + time, p.z * k + time)
       )
     }
@@ -165,12 +142,13 @@ const Blob = () => {
 
   return (
     <mesh onClick={clickHandler} position-y={0} ref={sphere}>
-      <sphereGeometry attach="geometry" args={[2.5, 64, 64]} />
+      <sphereGeometry attach="geometry" args={[isMobile ? 1.4 : 2.5, 64, 64]} />
 
       <MeshWobbleMaterial
         roughness={0}
         metalness={0.5}
-        color={"#3cc1c2"}
+        // color={"#3cc1c2"}
+        color={"#ffdead"}
         attach="material"
         factor={0}
         speed={10}
@@ -200,7 +178,8 @@ const HeroCanvas = () => {
         colorManagement
         camera={{ position: [0, 0, 6], far: 15 }}
         onCreated={({ gl }) => {
-          gl.setClearColor("#32a899")
+          // gl.setClearColor("#32a899")
+          gl.setClearColor("#0b0b0b")
           gl.toneMapping = THREE.ACESFilmicToneMapping
           gl.outputEncoding = THREE.sRGBEncoding
         }}

@@ -1,35 +1,16 @@
-import React, { useState, useRef, useEffect, Suspense, useMemo } from "react"
+import React, { useRef, useEffect, Suspense } from "react"
 import styled from "styled-components"
-import {
-  Canvas,
-  useFrame,
-  useThree,
-  extend,
-  useLoader,
-} from "react-three-fiber"
+import { Canvas, useThree } from "react-three-fiber"
 import * as THREE from "three"
 import gsap from "gsap"
 import useStore from "../../../store"
 
+import { EffectComposer, SSAO } from "@react-three/postprocessing"
+
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
-import {
-  Box,
-  OrbitControls,
-  RoundedBox,
-  Shadow,
-  useGLTF,
-  useProgress,
-  useTexture,
-} from "drei"
-import { HDRCubeTextureLoader } from "three/examples/jsm/loaders/HDRCubeTextureLoader"
+import { Shadow, useProgress, useTexture, useFBX } from "drei"
+import { useMediaQuery } from "react-responsive"
 
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer"
-import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
-import { SSAOPass } from "three/examples/jsm/postprocessing/SSAOPass"
-import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader"
-
-extend({ EffectComposer, ShaderPass, RenderPass, SSAOPass })
 gsap.registerPlugin(ThreePlugin)
 
 const StyledCanCanvas = styled.div`
@@ -43,31 +24,10 @@ const StyledCanCanvas = styled.div`
 `
 
 const Effects = () => {
-  const composer = useRef(null)
-  const { scene, gl, size, camera } = useThree()
-
-  useEffect(
-    () =>
-      void composer.current &&
-      composer.current.setSize(size.width, size.height),
-    [size, composer]
-  )
-  useFrame(() => composer.current && composer.current.render(), 1)
   return (
-    <effectComposer ref={composer} args={[gl]}>
-      <renderPass attachArray="passes" scene={scene} camera={camera} />
-      <sSAOPass
-        attachArray="passes"
-        args={[scene, camera, 1024, 1024]}
-        kernelRadius={0.8}
-        maxDistance={0.4}
-      />
-      <shaderPass
-        attachArray="passes"
-        args={[FXAAShader]}
-        material-uniforms-resolution-value={[1 / size.width, 1 / size.height]}
-      />
-    </effectComposer>
+    <EffectComposer>
+      <SSAO />
+    </EffectComposer>
   )
 }
 
@@ -77,39 +37,14 @@ const Lights = () => {
   return (
     <group ref={ref}>
       <ambientLight intensity={2} />
-      {/* <directionalLight intensity={1.3} position={[30, 30, 50]} /> */}
+      <directionalLight intensity={1.3} position={[30, 30, 50]} />
       {/* <pointLight intensity={5} position={[0, 0, 0]} /> */}
     </group>
   )
 }
 
-function Environment({ background = false }) {
-  const { gl, scene } = useThree()
-  const [cubeMap] = useLoader(
-    HDRCubeTextureLoader,
-    [["px.hdr", "nx.hdr", "py.hdr", "ny.hdr", "pz.hdr", "nz.hdr"]],
-    loader => {
-      loader.setDataType(THREE.UnsignedByteType)
-      loader.setPath("/hdr/studio/")
-    }
-  )
-  useEffect(() => {
-    const gen = new THREE.PMREMGenerator(gl)
-    gen.compileEquirectangularShader()
-    const hdrCubeRenderTarget = gen.fromCubemap(cubeMap)
-    cubeMap.dispose()
-    gen.dispose()
-    if (background) scene.background = hdrCubeRenderTarget.texture
-    scene.environment = hdrCubeRenderTarget.texture
-    return () => (scene.environment = scene.background = null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cubeMap])
-  return null
-}
-
 const tlTopToSide = gsap.timeline({
   paused: true,
-  // onStart: () => console.log("starting tl top to side"),
   defaults: { ease: "Power2.easeInOut" },
 })
 const tlBranding = gsap.timeline({
@@ -130,9 +65,22 @@ const Content = () => {
 
   const can = useRef()
   const brandedCan = useRef()
-  const { nodes } = useGLTF("/models/can2.glb")
+  const cans = useRef()
+  const shadow = useRef()
 
-  const [pcTexture, mobileTexture, alphaMobileTexture] = useTexture([
+  const doy = useFBX("/models/doy.fbx")
+
+  const [
+    doyDiffuse,
+    doyBrandedDiffuse,
+    doyNormal,
+    pcTexture,
+    mobileTexture,
+    alphaMobileTexture,
+  ] = useTexture([
+    "/models/doy-diffuse.png",
+    "/models/doy-branded-diffuse.png",
+    "/models/doy-normal.png",
     "/images/pc-mockup.jpg",
     "/images/mobile-mockup.png",
     "/images/mobile-mockup-alpha.png",
@@ -141,143 +89,185 @@ const Content = () => {
   const mobileScreen = useRef()
   const pcScreen = useRef()
 
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+
   useEffect(() => {
     if (can.current) {
       /////////// TL TOPTOSIDE
-      {
-        // move from top view to center focus
-        tlTopToSide.addLabel("sync0")
-        tlTopToSide.fromTo(
-          [can.current],
-          {
-            three: { scaleX: 0.0001, scaleY: 0.0001, scaleZ: 0.0001 },
+
+      // move from top view to center focus
+      tlTopToSide.addLabel("sync0")
+      tlTopToSide.fromTo(
+        cans.current,
+        {
+          three: { scaleX: 0.0001, scaleY: 0.0001, scaleZ: 0.0001 },
+        },
+        { three: { scaleX: 1, scaleY: 1, scaleZ: 1 }, duration: 1.9 },
+        "sync0"
+      )
+      tlTopToSide.fromTo(
+        [can.current.material],
+        { opacity: 0 },
+        { opacity: 1, duration: 1.9 },
+        "sync0"
+      )
+      tlTopToSide.to(
+        camera,
+        {
+          three: {
+            positionY: 0.5,
+            positionZ: 0.7,
           },
-          { three: { scaleX: 1, scaleY: 1, scaleZ: 1 }, duration: 1.9 },
-          "sync0"
-        )
-        tlTopToSide.fromTo(
-          [can.current.material],
-          { opacity: 0 },
-          { opacity: 1, duration: 1.9 },
-          "sync0"
-        )
-        tlTopToSide.to(
-          camera,
-          {
-            three: {
-              positionY: 0.5,
-              positionZ: 0.7,
-            },
-            onUpdate: () => camera.lookAt(0, 0.2, 0),
-            duration: 3.6,
+          onUpdate: () => camera.lookAt(0, 0.28, 0),
+          duration: 3.6,
+        },
+        "sync0"
+      )
+      tlTopToSide.fromTo(
+        shadow.current,
+        {
+          three: {
+            scaleX: 0,
+            scaleY: 0,
+            scaleZ: 0,
           },
-          "sync0"
-        )
-        // move can aside for text
-        tlTopToSide.to(
-          [can.current, brandedCan.current],
-          {
-            three: { positionX: 0.3 },
-            duration: 1.8,
+        },
+        {
+          three: {
+            scaleX: 0.4,
+            scaleY: 0.4,
+            scaleZ: 0.4,
           },
-          "-=0.9"
-        )
-      }
+          duration: 3.6,
+        },
+        "-=2.5"
+      )
+      // move can aside for text
+      tlTopToSide.to(
+        cans.current,
+        {
+          three: { positionX: isMobile ? 0 : 0.3 },
+          duration: 1.8,
+        },
+        "-=0.9"
+      )
 
       /////////// TL BRANDING
 
-      {
-        tlBranding.addLabel("sync")
-        tlBranding.to(
-          [can.current, brandedCan.current],
-          {
-            three: {
-              positionX: -0.2,
-            },
-            duration: 2,
+      tlBranding.addLabel("sync")
+      tlBranding.to(
+        cans.current,
+        {
+          three: {
+            positionX: isMobile ? 0 : -0.2,
           },
-          "sync"
-        )
-        tlBranding.to(
-          camera,
-          {
-            three: {
-              positionY: 0.25,
-              positionZ: 0.7,
-              rotationX: 0,
-            },
-
-            duration: 2,
-          },
-          "sync"
-        )
-
-        tlBranding.to([can.current, brandedCan.current], {
-          three: { rotationY: 180, rotationZ: 30, rotationX: 30 },
           duration: 2,
-        })
-        tlBranding.addLabel("sync2", "-=0.8")
-        tlBranding.to(
-          can.current.material,
-          { opacity: 0, duration: 2 },
-          "sync2"
-        )
-        tlBranding.to(
-          brandedCan.current.material,
-          { opacity: 1, duration: 2 },
-          "sync2"
-        )
-        tlBranding.to(
-          [can.current, brandedCan.current],
-          {
-            three: { rotationX: 0, rotationY: 0, rotationZ: 0 },
-            duration: 2,
+        },
+        "sync"
+      )
+      tlBranding.to(
+        camera,
+        {
+          three: {
+            positionY: 0.25,
+            positionZ: 0.7,
+            rotationX: 0,
           },
-          "-=0.7"
-        )
-      }
+
+          duration: 2,
+        },
+        "sync"
+      )
+
+      // tlBranding.to(cans.current, {
+      //   three: { rotationY: 180, rotationZ: 30, rotationX: 30 },
+      //   duration: 2,
+      // })
+      tlBranding.addLabel("sync2", "-=0.8")
+      tlBranding.to(can.current.material, { opacity: 0, duration: 1 }, "sync2")
+      tlBranding.to(
+        can.current,
+        { three: { positionY: -1 }, duration: 2 },
+        "sync2"
+      )
+      tlBranding.to(
+        shadow.current,
+        { three: { scaleX: 0, scaleY: 0, scaleZ: 0 }, duration: 1 },
+        "sync2"
+      )
+      tlBranding.addLabel("sync3", "-=1")
+
+      tlBranding.to(
+        brandedCan.current.material,
+        { opacity: 1, duration: 2 },
+        "sync3"
+      )
+      tlBranding.fromTo(
+        brandedCan.current,
+        { three: { positionY: -1 } },
+        { three: { positionY: 0 }, duration: 1 },
+        "sync3"
+      )
+      tlBranding.to(
+        shadow.current,
+        {
+          three: { scaleX: 0.4, scaleY: 0.4, scaleZ: 0.4 },
+          duration: 1,
+          onUpdate: () => {
+            if (screens.current.visible)
+              gsap.set(screens.current, { visible: false })
+          },
+        },
+        "-=0.2"
+      )
 
       /////////// TL WEBSITE
-      {
-        // tlWebsite.set(screens.current, { visible: true })
-        tlWebsite.addLabel("sync")
-        tlWebsite.to(
-          brandedCan.current,
-          {
-            three: { positionX: 2.8 },
-            duration: 1,
-            onStart: () => gsap.set(screens.current, { visible: true }),
-            onReverseComplete: () =>
-              gsap.set(screens.current, { visible: true }),
-          },
-          "sync"
-        )
-        tlWebsite.to(
-          camera,
-          {
-            three: {
-              positionZ: 0.6,
-              positionX: 2.05,
-              rotationY: -45,
-            },
-            duration: 1,
-          },
-          "sync"
-        )
-      }
 
-      {
-        tlFinal.addLabel("sync")
-        tlFinal.to(brandedCan.current, { three: { positionY: 1.3 } }, "sync")
-        tlFinal.to(brandedCan.current.material, { opacity: 0 }, "sync")
-        tlFinal.addLabel("sync2", "-=0.8")
-        tlFinal.to(pcScreen.current, { three: { positionY: 1.3 } }, "sync2")
-        tlFinal.to(pcScreen.current.material, { opacity: 0 }, "sync2")
-        tlFinal.addLabel("sync3", "-=0.8")
-        tlFinal.to(mobileScreen.current, { three: { positionY: 1.3 } }, "sync3")
-        tlFinal.to(mobileScreen.current.material, { opacity: 0 }, "sync3")
-      }
+      // tlWebsite.set(screens.current, { visible: true })
+      tlWebsite.addLabel("sync")
+      tlWebsite.to(
+        brandedCan.current,
+        {
+          three: { positionX: 2.8, rotationZ: -90 },
+          duration: 1,
+          onUpdate: () => {
+            if (!screens.current.visible)
+              gsap.set(screens.current, { visible: true })
+          },
+        },
+        "sync"
+      )
+      tlWebsite.to(
+        shadow.current.material,
+        { opacity: 0, duration: 0.6 },
+        "sync"
+      )
+      tlWebsite.to(
+        camera,
+        {
+          three: {
+            positionZ: 0.6,
+            positionX: 2.05,
+            rotationY: -45,
+          },
+          duration: 1,
+        },
+        "sync"
+      )
+
+      /////////// TL FINAL
+
+      tlFinal.addLabel("sync")
+      tlFinal.to(brandedCan.current, { three: { positionY: 1.3 } }, "sync")
+      tlFinal.to(brandedCan.current.material, { opacity: 0 }, "sync")
+      tlFinal.addLabel("sync2", "-=0.8")
+      tlFinal.to(pcScreen.current, { three: { positionY: 1.3 } }, "sync2")
+      tlFinal.to(pcScreen.current.material, { opacity: 0 }, "sync2")
+      tlFinal.addLabel("sync3", "-=0.8")
+      tlFinal.to(mobileScreen.current, { three: { positionY: 1.3 } }, "sync3")
+      tlFinal.to(mobileScreen.current.material, { opacity: 0 }, "sync3")
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -313,29 +303,47 @@ const Content = () => {
         </mesh>
       </group>
       {/* normal doy */}
-      <mesh geometry={nodes.can_2.geometry} ref={can}>
-        {/* <meshStandardMaterial roughness={1} color={"grey"} attach="material" /> */}
-        <meshStandardMaterial
-          transparent
-          roughness={0.6}
-          metalness={0.5}
-          color={new THREE.Color("#1a1a1a")}
-          attach="material"
+      <group ref={cans}>
+        <mesh
+          {...doy.children[0]}
+          ref={can}
+          scale={[2.4, 2.4, 2.4]}
+          material={
+            new THREE.MeshStandardMaterial({
+              roughness: 0.6,
+              metalness: 0.6,
+              transparent: true,
+              color: "#1f1f1f",
+              map: doyDiffuse,
+              normalMap: doyNormal,
+              normalScale: new THREE.Vector2(1, 1),
+            })
+          }
         />
-      </mesh>
-      {/* branded doy */}
-      <mesh geometry={nodes.can_2.geometry} ref={brandedCan}>
-        {/* <meshStandardMaterial roughness={1} color={"grey"} attach="material" /> */}
-        <meshNormalMaterial transparent opacity={0} />
-        {/* <Shadow
-          scale={[0.57, 0.57, 0.57]}
+        <mesh
+          {...doy.children[0]}
+          ref={brandedCan}
+          scale={[2.4, 2.4, 2.4]}
+          material={
+            new THREE.MeshStandardMaterial({
+              transparent: true,
+              opacity: 0,
+              map: doyBrandedDiffuse,
+            })
+          }
+          material-transparent
+          material-opacity={0}
+        />
+        <Shadow
+          ref={shadow}
+          scale={[0.4, 0.4, 0.4]}
           colorStop={0.5}
-          opacity={0.05}
+          opacity={0.01}
           position={[0, -0.02, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
-          color="white"
-        /> */}
-      </mesh>
+          color="#fafafa"
+        />
+      </group>
     </>
   )
 }
@@ -388,13 +396,12 @@ const CanCanvas = ({ scroll }) => {
         }}
       >
         <Suspense fallback={<Loader />}>
-          <Environment />
           <Lights />
 
           <Content />
           {/* <OrbitControls /> */}
           {/* <gridHelper /> */}
-          {/* <Effects /> */}
+          <Effects />
         </Suspense>
       </Canvas>
     </StyledCanCanvas>

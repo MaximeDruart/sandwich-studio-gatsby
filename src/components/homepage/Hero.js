@@ -10,7 +10,7 @@ import useStore from "../../../store"
 const StyledHero = styled.div`
   width: 100vw;
   height: 100vh;
-  padding: 12vh max(5vw, 10px) 5vh max(5vw, 10px);
+  padding: 12vh max(5vw, 20px) 5vh max(5vw, 20px);
 
   * {
     font-family: NeueMontrealRegular;

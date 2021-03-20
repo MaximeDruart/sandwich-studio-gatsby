@@ -7,7 +7,7 @@ const StyledFooter = styled.div`
   background: #151515;
   width: 100vw;
   height: 10vh;
-  padding: 0 max(5vw, 10px) 0 max(5vw, 10px);
+  padding: 0 max(5vw, 20px) 0 max(5vw, 20px);
 
   display: flex;
   flex-flow: row nowrap;

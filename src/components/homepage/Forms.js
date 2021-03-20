@@ -1,15 +1,15 @@
 import React from "react"
 import { useTranslation } from "react-i18next"
 import styled from "styled-components"
+import FormCallback from "./FormCallback"
 import FormContact from "./FormContact"
 
 const StyledForms = styled.div`
-  border: 1px solid yellow;
   width: 100vw;
   margin-top: 30vh;
   /* overflow: hidden; */
 
-  padding: 5vh max(5vw, 10px) 0 max(5vw, 10px);
+  padding: 5vh max(5vw, 20px) 0 max(5vw, 20px);
 
   * {
     font-family: NeueMontrealRegular;
@@ -29,6 +29,17 @@ const StyledForms = styled.div`
     justify-content: space-between;
     align-items: flex-start;
   }
+
+  @media (max-width: 1200px) {
+    .forms {
+      flex-flow: column nowrap;
+      align-items: center;
+    }
+  }
+  @media (max-width: 600px) {
+    .forms {
+    }
+  }
 `
 
 const Forms = () => {
@@ -45,7 +56,7 @@ const Forms = () => {
       </div>
       <div className="forms">
         <FormContact />
-        <FormContact />
+        <FormCallback />
       </div>
     </StyledForms>
   )

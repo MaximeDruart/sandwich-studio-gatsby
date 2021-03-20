@@ -5,13 +5,13 @@ import { motion } from "framer-motion"
 
 import { ReactComponent as Arrow } from "../../../assets/icons/arrow.svg"
 import { Link } from "gatsby"
+import { useMediaQuery } from "react-responsive"
 
 const StyledServices = styled.div`
-  border: 1px solid yellow;
   width: 100vw;
   /* overflow: hidden; */
 
-  /* padding: 5vh max(5vw, 10px) 0 max(5vw, 10px); */
+  /* padding: 5vh max(5vw, 20px) 0 max(5vw, 20px); */
 
   * {
     font-family: NeueMontrealRegular;
@@ -29,20 +29,17 @@ const StyledServices = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    padding: 5vh max(5vw, 10px) 0 max(5vw, 10px);
+    padding: 5vh max(5vw, 20px) 0 max(5vw, 20px);
 
     &.tl-section {
       &.tl-section-1 {
         padding-top: 130vh;
-        border: 5px solid red;
       }
       &.tl-section-2 {
         padding-top: 200vh;
-        border: 5px solid blue;
       }
       &.tl-section-3 {
         padding-top: 170vh;
-        border: 5px solid green;
       }
       &.tl-section-4 {
         padding-top: 80vh;
@@ -67,6 +64,23 @@ const StyledServices = styled.div`
           &.merch-img-1 {
             top: 30%;
             right: 20%;
+          }
+        }
+        @media (max-width: 600px) {
+          width: 100%;
+          height: 330px;
+          .merch-img {
+            &.merch-img-1 {
+              top: 40%;
+              right: 0;
+            }
+            &.merch-img-2 {
+              top: -40%;
+              left: 20%;
+            }
+            &.merch-img-3 {
+              left: -35%;
+            }
           }
         }
       }
@@ -98,6 +112,7 @@ const StyledServices = styled.div`
     @media (max-width: 600px) {
       flex-flow: column;
       align-items: center;
+      margin-top: 5vh;
       * {
         text-align: left;
       }
@@ -107,9 +122,11 @@ const StyledServices = styled.div`
         flex-flow: center;
         justify-content: center;
       }
-      .text {
+      .text,
+      .text.align-right {
         margin-top: 5vh;
         width: 100%;
+        align-items: baseline;
       }
     }
   }
@@ -138,6 +155,8 @@ const Services = ({ scroll }) => {
       if (scroll) scroll.destroy()
     }
   }, [scroll])
+
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledServices data-scroll-section>
@@ -234,10 +253,12 @@ const Services = ({ scroll }) => {
         <div className="text">
           <div className="title">{t("services-1-title")} </div>
           <div className="body">{t("services-1-body")} </div>
-          <button className="cta">
-            <span className="text-content">{t("services-1-cta")}</span>
-            <Arrow className="arrow" />
-          </button>
+          <Link to="/services">
+            <button className="cta">
+              <span className="text-content">{t("services-1-cta")}</span>
+              <Arrow className="arrow" />
+            </button>
+          </Link>
         </div>
         <div className="decoration"></div>
       </div>
@@ -253,10 +274,12 @@ const Services = ({ scroll }) => {
         <div className="text align-right">
           <div className="title">{t("services-1-title")} </div>
           <div className="body">{t("services-1-body")} </div>
-          <button className="cta">
-            <span className="text-content">{t("services-1-cta")}</span>
-            <Arrow className="arrow" />
-          </button>
+          <Link to="/services">
+            <button className="cta">
+              <span className="text-content">{t("services-1-cta")}</span>
+              <Arrow className="arrow" />
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -270,10 +293,12 @@ const Services = ({ scroll }) => {
         <div className="text">
           <div className="title">{t("services-1-title")} </div>
           <div className="body">{t("services-1-body")} </div>
-          <button className="cta">
-            <span className="text-content">{t("services-1-cta")}</span>
-            <Arrow className="arrow" />
-          </button>
+          <Link to="/services">
+            <button className="cta">
+              <span className="text-content">{t("services-1-cta")}</span>
+              <Arrow className="arrow" />
+            </button>
+          </Link>
         </div>
         <div className="decoration"></div>
       </div>
@@ -288,11 +313,12 @@ const Services = ({ scroll }) => {
         <div className="decoration">
           <motion.img
             className="merch-img merch-img-1"
+            initial={{ scale: isMobile ? 0.4 : 1 }}
             animate={{
               y: 20,
               transition: {
                 ease: "easeInOut",
-                repeat: Infinity,
+                repeat: 1,
                 repeatType: "reverse",
                 duration: 3,
                 delay: 0,
@@ -303,11 +329,12 @@ const Services = ({ scroll }) => {
           />
           <motion.img
             className="merch-img merch-img-2"
+            initial={{ scale: isMobile ? 0.8 : 1 }}
             animate={{
               y: 20,
               transition: {
                 ease: "easeInOut",
-                repeat: Infinity,
+                repeat: 1,
                 repeatType: "reverse",
                 duration: 3.2,
                 delay: 0.5,
@@ -318,11 +345,12 @@ const Services = ({ scroll }) => {
           />
           <motion.img
             className="merch-img merch-img-3"
+            initial={{ scale: isMobile ? 0.4 : 1 }}
             animate={{
               y: 20,
               transition: {
                 ease: "easeInOut",
-                repeat: Infinity,
+                repeat: 1,
                 repeatType: "reverse",
                 duration: 2.8,
                 delay: 1,
@@ -335,10 +363,12 @@ const Services = ({ scroll }) => {
         <div className="text align-right">
           <div className="title">{t("services-1-title")} </div>
           <div className="body">{t("services-1-body")} </div>
-          <button className="cta">
-            <span className="text-content">{t("services-1-cta")}</span>
-            <Arrow className="arrow" />
-          </button>
+          <Link to="/services">
+            <button className="cta">
+              <span className="text-content">{t("services-1-cta")}</span>
+              <Arrow className="arrow" />
+            </button>
+          </Link>
         </div>
       </div>
     </StyledServices>
