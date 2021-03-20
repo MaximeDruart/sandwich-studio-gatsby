@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
-import { useTranslation } from "react-i18next"
+import { graphql } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
 
 const StyledFooter = styled.div`
@@ -75,3 +76,17 @@ const Footer = () => {
 }
 
 export default Footer
+
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

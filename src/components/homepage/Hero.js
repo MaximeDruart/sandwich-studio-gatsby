@@ -4,7 +4,8 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react"
 import { gsap } from "gsap"
 
 import HeroCanvas from "./HeroCanvas"
-import { useTranslation } from "react-i18next"
+import { graphql } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import useStore from "../../../store"
 
 const StyledHero = styled.div`
@@ -238,3 +239,17 @@ const Hero = () => {
 }
 
 export default Hero
+
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

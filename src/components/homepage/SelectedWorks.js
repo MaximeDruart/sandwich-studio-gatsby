@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import React, { useRef } from "react"
 import { motion } from "framer-motion"
-import { useTranslation } from "react-i18next"
+import { graphql } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg"
 import { useMediaQuery } from "react-responsive"
 
@@ -159,3 +160,17 @@ const SelectedWorks = () => {
 }
 
 export default SelectedWorks
+
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

@@ -1,5 +1,6 @@
 import React from "react"
-import { useTranslation } from "react-i18next"
+import { graphql } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
 import FormCallback from "./FormCallback"
 import FormContact from "./FormContact"
@@ -63,3 +64,17 @@ const Forms = () => {
 }
 
 export default Forms
+
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

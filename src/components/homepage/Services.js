@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { useTranslation } from "react-i18next"
+import { graphql } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import { motion } from "framer-motion"
 
 import { ReactComponent as Arrow } from "../../../assets/icons/arrow.svg"
@@ -376,3 +377,17 @@ const Services = ({ scroll }) => {
 }
 
 export default Services
+
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`
