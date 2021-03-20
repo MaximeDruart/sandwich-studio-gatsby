@@ -27,26 +27,26 @@ export default function Home() {
     }
   }, [canvasLoadStatus])
 
-  useEffect(() => {
-    if (mainContainerRef.current) {
-      import("locomotive-scroll").then(LocomotiveScroll => {
-        let s = new LocomotiveScroll.default()
-        // s.el = mainContainerRef.current
-        // s.scrollbarContainer = mainContainerRef.current
-        s.smooth = true
-        s.tablet = {
-          smooth: true,
-        }
-        s.smartphone = {
-          smooth: true,
-        }
-        s.init()
-        setScroll(s)
-      })
-    }
-    return () => scroll && scroll.destroy()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mainContainerRef])
+  // useEffect(() => {
+  //   if (mainContainerRef.current) {
+  //     import("locomotive-scroll").then(LocomotiveScroll => {
+  //       let s = new LocomotiveScroll.default()
+  //       // s.el = mainContainerRef.current
+  //       // s.scrollbarContainer = mainContainerRef.current
+  //       s.smooth = true
+  //       s.tablet = {
+  //         smooth: true,
+  //       }
+  //       s.smartphone = {
+  //         smooth: true,
+  //       }
+  //       s.init()
+  //       setScroll(s)
+  //     })
+  //   }
+  //   return () => scroll && scroll.destroy()
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [mainContainerRef])
 
   return (
     <>
@@ -64,13 +64,13 @@ export default function Home() {
       <Header />
 
       <main data-scroll-container ref={mainContainerRef}>
-        <ContactSpinner />
+        {/* <ContactSpinner />
         <CanCanvas scroll={scroll} />
-        <Hero />
+        <Hero /> */}
         <About />
-        <Services scroll={scroll} />
+        {/* <Services scroll={scroll} />
         <SelectedWorks />
-        <Forms />
+        <Forms /> */}
       </main>
       <Footer />
     </>
