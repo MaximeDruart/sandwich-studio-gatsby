@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <>
-      {/* <Helmet>
+      <Helmet>
         <title>Sandwich Studio</title>
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -60,21 +60,21 @@ export default function Home() {
           as="font"
           crossOrigin=""
         />
-      </Helmet> */}
+      </Helmet>
 
-      {/* <Header /> */}
+      <Header />
 
       <main data-scroll-container ref={mainContainerRef}>
         hey
         <ContactSpinner />
-        {/* <CanCanvas scroll={scroll} /> */}
+        <CanCanvas scroll={scroll} />
         <Hero />
-        {/* <About /> */}
-        {/* <Services scroll={scroll} />
+        <About />
+        <Services scroll={scroll} />
         <SelectedWorks />
-        <Forms /> */}
+        <Forms />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }
