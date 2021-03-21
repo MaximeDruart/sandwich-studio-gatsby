@@ -108,7 +108,7 @@ const FormCallback = () => {
         <div className="form-headline">{t("form-callback-headline")}</div>
         <div className="form-bottom-line">{t("form-callback-bottom-line")}</div>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form netlify onSubmit={handleSubmit}>
         <div className="fields">
           {Object.entries(logs)
             .slice(0, 5)

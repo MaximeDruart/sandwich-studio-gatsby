@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { graphql } from "gatsby"
 import { useTranslation } from "gatsby-plugin-react-i18next"
-// import { useMediaQuery } from "react-responsive"
+import { useMediaQuery } from "react-responsive"
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -137,7 +137,7 @@ const StyledAbout = styled.div`
 const About = () => {
   const { t } = useTranslation()
 
-  // const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledAbout data-scroll-section>

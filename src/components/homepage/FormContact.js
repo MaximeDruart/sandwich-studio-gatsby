@@ -131,7 +131,7 @@ const FormContact = () => {
         <div className="form-headline">{t("form-contact-headline")}</div>
         <div className="form-bottom-line">{t("form-contact-bottom-line")}</div>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form netlify onSubmit={handleSubmit}>
         <div className="fields">
           {/* easier to do the last two fields manually */}
           {Object.entries(logs)
