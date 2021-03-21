@@ -23,13 +23,13 @@ const StyledCanCanvas = styled.div`
   /* z-index: 10000; */
 `
 
-const Effects = () => {
-  return (
-    <EffectComposer>
-      <SSAO />
-    </EffectComposer>
-  )
-}
+// const Effects = () => {
+//   return (
+//     <EffectComposer>
+//       <SSAO />
+//     </EffectComposer>
+//   )
+// }
 
 const Lights = () => {
   const ref = useRef()
@@ -401,7 +401,7 @@ const CanCanvas = ({ scroll }) => {
           <Content />
           {/* <OrbitControls /> */}
           {/* <gridHelper /> */}
-          <Effects />
+          {/* <Effects /> */}
         </Suspense>
       </Canvas>
     </StyledCanCanvas>

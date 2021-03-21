@@ -65,9 +65,9 @@ export default function Home() {
 
       <main data-scroll-container ref={mainContainerRef}>
         hey
-        {/* <ContactSpinner />
-        <CanCanvas scroll={scroll} />
-        <Hero /> */}
+        <ContactSpinner />
+        {/* <CanCanvas scroll={scroll} /> */}
+        <Hero />
         {/* <About /> */}
         {/* <Services scroll={scroll} />
         <SelectedWorks />
