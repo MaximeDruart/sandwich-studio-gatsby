@@ -11,11 +11,11 @@ const StyledAbout = styled.div`
 
   * {
     font-family: NeueMontrealRegular;
-    /* color: ${({ theme }) => theme.colors.text}; */
+    color: ${({ theme }) => theme.colors.text};
   }
 
   .headline {
-    /* ${({ theme }) => theme.textStyles.headline}; */
+    ${({ theme }) => theme.textStyles.headline};
     white-space: nowrap;
     width: 100%;
   }
@@ -45,10 +45,10 @@ const StyledAbout = styled.div`
       width: max(40%, 400px);
       text-align: right;
       .title {
-        /* ${({ theme }) => theme.textStyles.h2}; */
+        ${({ theme }) => theme.textStyles.h2};
       }
       .desc {
-        /* ${({ theme }) => theme.textStyles.text}; */
+        ${({ theme }) => theme.textStyles.text};
       }
     }
 

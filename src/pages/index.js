@@ -65,7 +65,6 @@ export default function Home() {
       <Header />
 
       <main data-scroll-container ref={mainContainerRef}>
-        hey
         <ContactSpinner />
         <CanCanvas scroll={scroll} />
         <Hero />
@@ -73,8 +72,8 @@ export default function Home() {
         <Services scroll={scroll} />
         <SelectedWorks />
         <Forms />
+        <Footer />
       </main>
-      <Footer />
     </>
   )
 }

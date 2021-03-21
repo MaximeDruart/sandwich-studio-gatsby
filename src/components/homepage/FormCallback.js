@@ -3,6 +3,13 @@ import { graphql } from "gatsby"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
 
+const encode = data =>
+  Object.keys(data)
+    .map(
+      key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key].value)
+    )
+    .join("&")
+
 const StyledFormCallback = styled.div`
   width: min(500px, 100%);
 
@@ -92,8 +99,21 @@ const FormCallback = () => {
     },
   })
 
-  const handleSubmit = event => {
-    event.preventDefault()
+  const handleSubmit = e => {
+    e.preventDefault()
+    const form = e.target
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": { value: form.getAttribute("name") },
+        ...logs,
+      }),
+    })
+      .then(() => {
+        console.log("done !")
+      })
+      .catch(error => alert(error))
   }
 
   const handleChange = ({ target }) => {
@@ -108,8 +128,15 @@ const FormCallback = () => {
         <div className="form-headline">{t("form-callback-headline")}</div>
         <div className="form-bottom-line">{t("form-callback-bottom-line")}</div>
       </div>
-      <form netlify onSubmit={handleSubmit}>
+      <form
+        name="callback"
+        method="post"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onSubmit={handleSubmit}
+      >
         <div className="fields">
+          <input type="hidden" name="form-name" value="callback" />
           {Object.entries(logs)
             .slice(0, 5)
             .map(([key, props]) => (

@@ -1,8 +1,14 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React, { useState } from "react"
-import { graphql } from "gatsby"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
+
+const encode = data =>
+  Object.keys(data)
+    .map(
+      key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key].value)
+    )
+    .join("&")
 
 const StyledFormContact = styled.div`
   width: 100%;
@@ -114,8 +120,21 @@ const FormContact = () => {
     },
   })
 
-  const handleSubmit = event => {
-    event.preventDefault()
+  const handleSubmit = e => {
+    e.preventDefault()
+    const form = e.target
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": { value: form.getAttribute("name") },
+        ...logs,
+      }),
+    })
+      .then(() => {
+        console.log("done !")
+      })
+      .catch(error => alert(error))
   }
 
   const handleChange = ({ target }) => {
@@ -131,8 +150,15 @@ const FormContact = () => {
         <div className="form-headline">{t("form-contact-headline")}</div>
         <div className="form-bottom-line">{t("form-contact-bottom-line")}</div>
       </div>
-      <form netlify onSubmit={handleSubmit}>
+      <form
+        name="contact"
+        method="post"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onSubmit={handleSubmit}
+      >
         <div className="fields">
+          <input type="hidden" name="form-name" value="contact" />
           {/* easier to do the last two fields manually */}
           {Object.entries(logs)
             .slice(0, 5)
