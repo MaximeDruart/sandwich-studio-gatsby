@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Helmet } from "react-helmet"
+import { graphql } from "gatsby"
 
 import Header from "../components/Header"
 import Hero from "../components/homepage/Hero"
