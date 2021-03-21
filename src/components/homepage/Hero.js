@@ -139,13 +139,10 @@ const Hero = () => {
       }),
     []
   )
-  const { t, ready } = useTranslation()
+  const { t } = useTranslation()
   const possibleWords = useMemo(
-    () =>
-      ready
-        ? t("weAre", { returnObjects: true }).map(word => word + ".")
-        : null,
-    [t, ready]
+    () => t("weAre", { returnObjects: true }).map(word => word + "."),
+    [t]
   )
   const activeWordRef = useRef(null)
   const caretRef = useRef(null)
@@ -239,17 +236,3 @@ const Hero = () => {
 }
 
 export default Hero
-
-export const query = graphql`
-  query($language: String!) {
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      edges {
-        node {
-          ns
-          data
-          language
-        }
-      }
-    }
-  }
-`

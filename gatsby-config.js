@@ -12,6 +12,7 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-styled-components",
+    "gatsby-plugin-svgr",
     "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-source-filesystem`,

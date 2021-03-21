@@ -9,12 +9,12 @@ import useStore from "../../../store"
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
 import { MeshWobbleMaterial, useProgress } from "drei"
 import { HDRCubeTextureLoader } from "three/examples/jsm/loaders/HDRCubeTextureLoader"
-import {
-  EffectComposer,
-  Vignette,
-  Noise,
-  SSAO,
-} from "@react-three/postprocessing"
+// import {
+//   EffectComposer,
+//   Vignette,
+//   Noise,
+//   SSAO,
+// } from "@react-three/postprocessing"
 import { useMediaQuery } from "react-responsive"
 
 gsap.registerPlugin(ThreePlugin)
@@ -27,22 +27,22 @@ const StyledHeroCanvas = styled.div`
   /* z-index: 10000; */
 `
 
-const Effects = () => {
-  return (
-    <EffectComposer>
-      {/* <DepthOfField
-        focusDistance={0}
-        focalLength={0.02}
-        bokehScale={2}
-        height={480}
-      /> */}
+// const Effects = () => {
+//   return (
+//     <EffectComposer>
+//       {/* <DepthOfField
+//         focusDistance={0}
+//         focalLength={0.02}
+//         bokehScale={2}
+//         height={480}
+//       /> */}
 
-      <SSAO />
-      <Noise opacity={0.01} />
-      <Vignette eskil={false} offset={0.1} darkness={0.7} />
-    </EffectComposer>
-  )
-}
+//       <SSAO />
+//       <Noise opacity={0.01} />
+//       <Vignette eskil={false} offset={0.1} darkness={0.7} />
+//     </EffectComposer>
+//   )
+// }
 
 const Lights = () => {
   const ref = useRef()
@@ -190,7 +190,7 @@ const HeroCanvas = () => {
           <Blob />
           {/* <OrbitControls /> */}
           {/* <gridHelper /> */}
-          <Effects />
+          {/* <Effects /> */}
         </Suspense>
       </Canvas>
     </StyledHeroCanvas>
