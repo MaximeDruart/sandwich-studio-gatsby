@@ -117,6 +117,7 @@ theme.textStyles = {
     justify-content: space-between;
     cursor: pointer;
     margin-top: 20px;
+
     @media (max-width: 600px) {
       font-size: 14px;
     }
@@ -131,6 +132,29 @@ theme.textStyles = {
     &:focus {
       border: none;
       outline: none;
+    }
+
+    &.submit-button {
+      position: relative;
+      overflow: hidden;
+      span {
+        color: black;
+      }
+      .overlay {
+        width: 100%;
+        height: 100%;
+        background: rgb(55 55 55);
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .loader {
+          width: 30px;
+          height: 30px;
+        }
+      }
     }
   `,
 }

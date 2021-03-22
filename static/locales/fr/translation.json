@@ -33,6 +33,10 @@
     "Service",
     "Your message (optional)"
   ],
+  "form-callback-headline": "Callback Request",
+  "form-callback-bottom-line": "Our team is always available",
+  "form-callback-display-names": ["Name", "Phone"],
+  "form-submit-success-message": "Form sent !",
   "form-submit-text": "Send Form",
   "footer-privacy-policy": "Privacy Policy",
   "footer-creator-tag": "Developped & Designed by sandwich.studio"

@@ -1,7 +1,14 @@
 /* eslint-disable jsx-a11y/no-onchange */
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
+import {
+  validateCallback,
+  validateContact,
+} from "../../../assets/utils/formValidator"
+import { AnimatePresence, motion } from "framer-motion"
+import isEmpty from "is-empty"
+import { ReactComponent as Loader } from "../../../assets/icons/loader.svg"
 
 const encode = data =>
   Object.keys(data)
@@ -32,6 +39,11 @@ const StyledFormContact = styled.div`
           margin-bottom: 5px;
           label {
             ${({ theme }) => theme.textStyles.h6};
+          }
+          .error-message {
+            margin: 10px 0px;
+            color: #ff6565;
+            ${({ theme }) => theme.textStyles.text};
           }
         }
         input,
@@ -73,7 +85,28 @@ const StyledFormContact = styled.div`
   }
 `
 
+const buttonVariants = {}
+
+const overlayVariants = {
+  loading: {
+    x: 0,
+    transition: { ease: "easeInOut", duration: 0.6 },
+  },
+  success: {
+    background: "rgb(83 141 90)",
+  },
+}
+const loaderVariants = {
+  loading: {
+    rotate: 360,
+    transition: { ease: "linear", duration: 2.5, repeat: Infinity },
+  },
+}
+
 const FormContact = () => {
+  const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
   const { t } = useTranslation()
   const [logs, setLogs] = useState({
     name: {
@@ -121,28 +154,72 @@ const FormContact = () => {
   })
 
   const handleSubmit = e => {
+    setErrors({})
     e.preventDefault()
-    const form = e.target
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": { value: form.getAttribute("name") },
-        ...logs,
-      }),
-    })
-      .then(() => {
-        console.log("done !")
-      })
-      .catch(error => alert(error))
-  }
+    const { errors, isValid } = validateContact(logs)
 
+    console.log(errors, isValid)
+
+    if (isValid) {
+      setLoading(true)
+      const form = e.target
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": { value: form.getAttribute("name") },
+          ...logs,
+        }),
+      })
+        .then(() => {
+          setSuccess(true)
+          setLoading(false)
+        })
+        .catch(error => {
+          setErrors({ server: error })
+          setLoading(false)
+        })
+    } else {
+      setErrors(errors)
+    }
+  }
   const handleChange = ({ target }) => {
     let { name, value } = target
     const copy = { ...logs }
     copy[name].value = value
     setLogs(copy)
   }
+
+  const formFields = useMemo(
+    () =>
+      Object.entries(logs)
+        .slice(0, 5)
+        .map(([key, prop]) => (
+          <div key={key} className="form-group">
+            <div className="label-group">
+              <label htmlFor={key}>{prop.displayName}</label>
+              {errors[key] && (
+                <div className="error-message">{errors[key]}</div>
+              )}
+            </div>
+            <motion.input
+              animate={{
+                borderColor: errors[key]
+                  ? "rgb(255, 101, 101)"
+                  : "rgb(255,255,255)",
+              }}
+              autoCorrect="off"
+              placeholder={prop.placeholder}
+              type={prop.type}
+              name={key}
+              id={key}
+              value={prop.value}
+              onChange={handleChange}
+            />
+          </div>
+        )),
+    [logs, errors]
+  )
 
   return (
     <StyledFormContact>
@@ -158,34 +235,15 @@ const FormContact = () => {
         onSubmit={handleSubmit}
       >
         <div className="fields">
+          <span>{errors.server}</span>
           <input type="hidden" name="form-name" value="contact" />
+          {formFields}
           {/* easier to do the last two fields manually */}
-          {Object.entries(logs)
-            .slice(0, 5)
-            .map(([key, props]) => (
-              <div key={key} className="form-group">
-                <div className="label-group">
-                  <label htmlFor={key}>{props.displayName}</label>
-                  {props.error && (
-                    <div className="error-message">{props.error}</div>
-                  )}
-                </div>
-                <input
-                  autoCorrect="off"
-                  placeholder={props.placeholder}
-                  type={props.type}
-                  name={key}
-                  id={key}
-                  value={props.value}
-                  onChange={handleChange}
-                />
-              </div>
-            ))}
           <div key="service" className="form-group">
             <div className="label-group">
               <label htmlFor="service">{logs.service.displayName}</label>
-              {logs.service.error && (
-                <div className="error-message">{logs.service.error}</div>
+              {errors.service && (
+                <div className="error-message">{errors.service}</div>
               )}
             </div>
 
@@ -194,7 +252,12 @@ const FormContact = () => {
               id="service"
               value={logs.service.value}
               onChange={handleChange}
-              style={{ color: logs.service.value === "" ? "#a9a9a9" : "white" }}
+              style={{
+                color: logs.service.value === "" ? "#a9a9a9" : "white",
+                borderColor: errors.service
+                  ? "rgb(255, 101, 101)"
+                  : "rgb(255,255,255)",
+              }}
             >
               <option value="" disabled>
                 Select your option
@@ -209,8 +272,8 @@ const FormContact = () => {
           <div key="message" className="form-group">
             <div className="label-group">
               <label htmlFor="message">{logs.message.displayName}</label>
-              {logs.message.error && (
-                <div className="error-message">{logs.message.error}</div>
+              {errors.message && (
+                <div className="error-message">{errors.message}</div>
               )}
             </div>
             <textarea
@@ -224,7 +287,42 @@ const FormContact = () => {
             />
           </div>
         </div>
-        <button size="large">Send form</button>
+        <motion.button
+          style={{ cursor: success ? "auto" : "pointer" }}
+          className="submit-button"
+          animate={
+            success
+              ? "success"
+              : loading
+              ? "loading"
+              : !isEmpty(errors) && "error"
+          }
+          variants={buttonVariants}
+          disabled={success}
+        >
+          <motion.div
+            initial={{ x: "-100%" }}
+            variants={overlayVariants}
+            className="overlay"
+          >
+            <AnimatePresence exitBeforeEnter>
+              {success ? (
+                <motion.span animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
+                  {t("form-submit-success-message")}
+                </motion.span>
+              ) : (
+                <motion.div
+                  variants={loaderVariants}
+                  className="loader-wrapper"
+                  exit={{ opacity: 0 }}
+                >
+                  <Loader className="loader" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+          <span>Send form</span>
+        </motion.button>
       </form>
     </StyledFormContact>
   )
