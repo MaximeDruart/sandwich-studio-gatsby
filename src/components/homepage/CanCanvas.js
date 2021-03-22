@@ -5,8 +5,6 @@ import * as THREE from "three"
 import gsap from "gsap"
 import useStore from "../../../store"
 
-import { EffectComposer, SSAO } from "@react-three/postprocessing"
-
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
 import { Shadow, useProgress, useTexture, useFBX } from "drei"
 import { useMediaQuery } from "react-responsive"
@@ -23,22 +21,12 @@ const StyledCanCanvas = styled.div`
   /* z-index: 10000; */
 `
 
-// const Effects = () => {
-//   return (
-//     <EffectComposer>
-//       <SSAO />
-//     </EffectComposer>
-//   )
-// }
-
 const Lights = () => {
   const ref = useRef()
-  // useFrame(() => (ref.current.rotation.y = ref.current.rotation.z += 0.01))
   return (
     <group ref={ref}>
       <ambientLight intensity={2} />
       <directionalLight intensity={1.3} position={[30, 30, 50]} />
-      {/* <pointLight intensity={5} position={[0, 0, 0]} /> */}
     </group>
   )
 }
@@ -68,7 +56,7 @@ const Content = () => {
   const cans = useRef()
   const shadow = useRef()
 
-  const doy = useFBX("/models/doy.fbx")
+  const doy = useFBX("/3d/models/doy.fbx")
 
   const [
     doyDiffuse,
@@ -78,9 +66,9 @@ const Content = () => {
     mobileTexture,
     alphaMobileTexture,
   ] = useTexture([
-    "/models/doy-diffuse.png",
-    "/models/doy-branded-diffuse.png",
-    "/models/doy-normal.png",
+    "/3d/maps/doy-diffuse.png",
+    "/3d/maps/doy-branded-diffuse.png",
+    "/3d/maps/doy-normal.png",
     "/images/pc-mockup.jpg",
     "/images/mobile-mockup.png",
     "/images/mobile-mockup-alpha.png",

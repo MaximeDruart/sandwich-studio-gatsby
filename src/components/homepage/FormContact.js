@@ -1,11 +1,8 @@
 /* eslint-disable jsx-a11y/no-onchange */
-import React, { useMemo, useState } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
-import {
-  validateCallback,
-  validateContact,
-} from "../../../assets/utils/formValidator"
+import { validateContact } from "../../../assets/utils/formValidator"
 import { AnimatePresence, motion } from "framer-motion"
 import isEmpty from "is-empty"
 import { ReactComponent as Loader } from "../../../assets/icons/loader.svg"
@@ -183,12 +180,15 @@ const FormContact = () => {
       setErrors(errors)
     }
   }
-  const handleChange = ({ target }) => {
-    let { name, value } = target
-    const copy = { ...logs }
-    copy[name].value = value
-    setLogs(copy)
-  }
+  const handleChange = useCallback(
+    ({ target }) => {
+      let { name, value } = target
+      const copy = { ...logs }
+      copy[name].value = value
+      setLogs(copy)
+    },
+    [logs, setLogs]
+  )
 
   const formFields = useMemo(
     () =>
@@ -218,7 +218,7 @@ const FormContact = () => {
             />
           </div>
         )),
-    [logs, errors]
+    [logs, errors, handleChange]
   )
 
   return (

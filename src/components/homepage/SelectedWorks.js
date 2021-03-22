@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import React, { useRef } from "react"
 import { motion } from "framer-motion"
-import { graphql } from "gatsby"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg"
 import { useMediaQuery } from "react-responsive"

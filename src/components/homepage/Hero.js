@@ -4,7 +4,6 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react"
 import { gsap } from "gsap"
 
 import HeroCanvas from "./HeroCanvas"
-import { graphql } from "gatsby"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import useStore from "../../../store"
 

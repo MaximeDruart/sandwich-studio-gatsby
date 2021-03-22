@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { graphql } from "gatsby"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
 

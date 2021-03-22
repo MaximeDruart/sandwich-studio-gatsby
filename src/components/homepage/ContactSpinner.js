@@ -3,7 +3,8 @@ import { motion } from "framer-motion"
 import styled from "styled-components"
 import useStore from "../../../store"
 
-const StyledContactSpinner = styled(motion.div)`
+const StyledContactSpinner = styled(motion.a)`
+  display: block;
   position: fixed;
   right: max(5vw, 20px);
   z-index: 2;
@@ -21,6 +22,7 @@ const ContactSpinner = () => {
   const canvasLoadStatus = useStore(store => store.canvasLoadStatus)
   return (
     <StyledContactSpinner
+      href="mailto:someone@yoursite.com"
       initial={{ opacity: 0 }}
       animate={{
         opacity: canvasLoadStatus.progress < 100 ? 0 : 1,

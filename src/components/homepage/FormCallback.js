@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
 import { validateCallback } from "../../../assets/utils/formValidator"
@@ -157,12 +157,15 @@ const FormCallback = () => {
     }
   }
 
-  const handleChange = ({ target }) => {
-    let { name, value } = target
-    const copy = { ...logs }
-    copy[name].value = value
-    setLogs(copy)
-  }
+  const handleChange = useCallback(
+    ({ target }) => {
+      let { name, value } = target
+      const copy = { ...logs }
+      copy[name].value = value
+      setLogs(copy)
+    },
+    [logs, setLogs]
+  )
 
   const formFields = useMemo(
     () =>
@@ -192,7 +195,7 @@ const FormCallback = () => {
             />
           </div>
         )),
-    [logs, errors]
+    [logs, errors, handleChange]
   )
 
   return (

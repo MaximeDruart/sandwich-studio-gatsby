@@ -1,20 +1,13 @@
 import React, { useRef, useEffect, Suspense } from "react"
 import styled from "styled-components"
-import { Canvas, useFrame, useThree, useLoader } from "react-three-fiber"
+import { Canvas, useFrame, useThree } from "react-three-fiber"
 import * as THREE from "three"
 import SimplexNoise from "simplex-noise"
 import gsap from "gsap"
 import useStore from "../../../store"
 
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
-import { MeshWobbleMaterial, useProgress } from "drei"
-import { HDRCubeTextureLoader } from "three/examples/jsm/loaders/HDRCubeTextureLoader"
-// import {
-//   EffectComposer,
-//   Vignette,
-//   Noise,
-//   SSAO,
-// } from "@react-three/postprocessing"
+import { MeshWobbleMaterial, useCubeTexture, useProgress } from "drei"
 import { useMediaQuery } from "react-responsive"
 
 gsap.registerPlugin(ThreePlugin)
@@ -59,14 +52,12 @@ const Lights = () => {
 
 function Environment({ background = false }) {
   const { gl, scene } = useThree()
-  const [cubeMap] = useLoader(
-    HDRCubeTextureLoader,
-    [["px.hdr", "nx.hdr", "py.hdr", "ny.hdr", "pz.hdr", "nz.hdr"]],
-    loader => {
-      loader.setDataType(THREE.UnsignedByteType)
-      loader.setPath("/hdr/studio/")
-    }
+
+  const cubeMap = useCubeTexture(
+    ["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"],
+    { path: "/3d/environment/" }
   )
+
   useEffect(() => {
     const gen = new THREE.PMREMGenerator(gl)
     gen.compileEquirectangularShader()
