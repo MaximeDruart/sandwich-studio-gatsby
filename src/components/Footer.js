@@ -8,6 +8,7 @@ const StyledFooter = styled.div`
   width: 100vw;
   height: 10vh;
   padding: 0 max(5vw, 20px) 0 max(5vw, 20px);
+  margin-top: 30vh;
 
   display: flex;
   flex-flow: row nowrap;
@@ -52,7 +53,7 @@ const StyledFooter = styled.div`
 const Footer = () => {
   const { t } = useTranslation()
   return (
-    <StyledFooter>
+    <StyledFooter data-scroll-section>
       <div className="left">
         <span className="at">@sandwich.studio 2021</span>
         <div className="contact">

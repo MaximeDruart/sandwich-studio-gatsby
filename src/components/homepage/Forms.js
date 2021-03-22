@@ -45,7 +45,7 @@ const StyledForms = styled.div`
 const Forms = () => {
   const { t } = useTranslation()
   return (
-    <StyledForms data-scroll data-scroll-section>
+    <StyledForms data-scroll-section>
       <div
         data-scroll
         data-scroll-direction="horizontal"

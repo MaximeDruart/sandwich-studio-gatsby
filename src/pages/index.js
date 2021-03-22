@@ -25,23 +25,21 @@ export default function Home() {
       document.body.style.position = "fixed"
     } else {
       document.body.style.position = "static"
+      if (scroll) scroll.update()
     }
-  }, [canvasLoadStatus])
+  }, [scroll, canvasLoadStatus])
 
   useEffect(() => {
     if (mainContainerRef.current) {
       import("locomotive-scroll").then(LocomotiveScroll => {
-        let s = new LocomotiveScroll.default()
-        // s.el = mainContainerRef.current
-        // s.scrollbarContainer = mainContainerRef.current
-        s.smooth = true
-        s.tablet = {
+        const Loco = LocomotiveScroll.default
+        const s = new Loco({
           smooth: true,
-        }
-        s.smartphone = {
-          smooth: true,
-        }
-        s.init()
+          el: mainContainerRef.current,
+          tablet: { smooth: true },
+          smartphone: { smooth: true },
+        })
+
         setScroll(s)
       })
     }

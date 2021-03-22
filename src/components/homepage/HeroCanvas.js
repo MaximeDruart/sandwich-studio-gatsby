@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, Suspense } from "react"
+import React, { useRef, useEffect, Suspense, useMemo } from "react"
 import styled from "styled-components"
-import { Canvas, useFrame, useThree } from "react-three-fiber"
+import { Canvas, useFrame, useThree, extend } from "react-three-fiber"
 import * as THREE from "three"
 import SimplexNoise from "simplex-noise"
 import gsap from "gsap"
@@ -9,6 +9,22 @@ import useStore from "../../../store"
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
 import { MeshWobbleMaterial, useCubeTexture, useProgress } from "drei"
 import { useMediaQuery } from "react-responsive"
+
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer"
+import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass"
+import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader"
+import { VignetteShader } from "three/examples/jsm/shaders/VignetteShader"
+import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader"
+import { FilmShader } from "three/examples/jsm/shaders/FilmShader"
+
+extend({
+  EffectComposer,
+  ShaderPass,
+  RenderPass,
+  UnrealBloomPass,
+})
 
 gsap.registerPlugin(ThreePlugin)
 const simplex = new SimplexNoise()
@@ -20,22 +36,40 @@ const StyledHeroCanvas = styled.div`
   /* z-index: 10000; */
 `
 
-// const Effects = () => {
-//   return (
-//     <EffectComposer>
-//       {/* <DepthOfField
-//         focusDistance={0}
-//         focalLength={0.02}
-//         bokehScale={2}
-//         height={480}
-//       /> */}
-
-//       <SSAO />
-//       <Noise opacity={0.01} />
-//       <Vignette eskil={false} offset={0.1} darkness={0.7} />
-//     </EffectComposer>
-//   )
-// }
+const Effects = () => {
+  const composer = useRef()
+  const { scene, gl, size, camera } = useThree()
+  const aspect = useMemo(() => new THREE.Vector2(400, 400), [])
+  useEffect(() => void composer.current.setSize(size.width, size.height), [
+    size,
+  ])
+  useFrame(() => composer.current.render(), 1)
+  return (
+    <effectComposer ref={composer} args={[gl]}>
+      <renderPass attachArray="passes" scene={scene} camera={camera} />
+      <unrealBloomPass attachArray="passes" args={[aspect, 0.5, 1, 0.8]} />
+      <shaderPass
+        attachArray="passes"
+        args={[FXAAShader]}
+        material-uniforms-resolution-value={[1 / size.width, 1 / size.height]}
+      />
+      <shaderPass attachArray="passes" args={[GammaCorrectionShader]} />
+      <shaderPass
+        material-uniforms-grayscale={0}
+        material-uniforms-sIntensity={0}
+        material-uniforms-nIntensity={0.05}
+        attachArray="passes"
+        args={[FilmShader]}
+      />
+      <shaderPass
+        material-uniforms-darkness-value={1}
+        material-uniforms-offset-value={1}
+        attachArray="passes"
+        args={[VignetteShader]}
+      />
+    </effectComposer>
+  )
+}
 
 const Lights = () => {
   const ref = useRef()
@@ -43,9 +77,8 @@ const Lights = () => {
   return (
     <group ref={ref}>
       {/* <ambientLight intensity={0.45} /> */}
-      <directionalLight intensity={0.8} position={[30, 30, 50]} />
-      {/* <pointLight intensity={5} position={[0, 0, 0]} /> */}
-      <hemisphereLight args={["#FFB23E", "#4d330e", 1]} />
+      <directionalLight intensity={0.3} position={[30, 30, 50]} />
+      <hemisphereLight args={["#FFB23E", "#4d330e", 0.2]} />
     </group>
   )
 }
@@ -137,8 +170,7 @@ const Blob = () => {
 
       <MeshWobbleMaterial
         roughness={0}
-        metalness={0.5}
-        // color={"#3cc1c2"}
+        metalness={0.4}
         color={"#ffdead"}
         attach="material"
         factor={0}
@@ -169,7 +201,6 @@ const HeroCanvas = () => {
         colorManagement
         camera={{ position: [0, 0, 6], far: 15 }}
         onCreated={({ gl }) => {
-          // gl.setClearColor("#32a899")
           gl.setClearColor("#0b0b0b")
           gl.toneMapping = THREE.ACESFilmicToneMapping
           gl.outputEncoding = THREE.sRGBEncoding
@@ -179,9 +210,7 @@ const HeroCanvas = () => {
           <Environment />
           <Lights />
           <Blob />
-          {/* <OrbitControls /> */}
-          {/* <gridHelper /> */}
-          {/* <Effects /> */}
+          <Effects />
         </Suspense>
       </Canvas>
     </StyledHeroCanvas>
