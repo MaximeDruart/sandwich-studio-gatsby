@@ -12,18 +12,18 @@ import SelectedWorks from "../components/homepage/SelectedWorks"
 import useStore from "../../store"
 import CanCanvas from "../components/homepage/CanCanvas"
 import Forms from "../components/homepage/Forms"
+import { useMediaQuery } from "react-responsive"
 
 export default function Home() {
   const mainContainerRef = useRef(null)
   const [scroll, setScroll] = useState(null)
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
+  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" })
 
   useEffect(() => {
     // sadly this is kind of the best solution to stop the user from scrolling on load time AND hide scrollbar during the time
     // where locomotivescroll isnt dynamically loaded yet
-    if (canvasLoadStatus.progress < 100) {
-      document.body.style.position = "fixed"
-    } else {
+    if (canvasLoadStatus.progress === 100) {
       document.body.style.position = "static"
       if (scroll) scroll.update()
     }
@@ -36,8 +36,10 @@ export default function Home() {
         const s = new Loco({
           smooth: true,
           el: mainContainerRef.current,
-          tablet: { smooth: false },
-          smartphone: { smooth: false },
+          tablet: { smooth: true },
+          smartphone: { smooth: true },
+          reloadOnContextChange: true,
+          lerp: isTablet ? 0.2 : 0.1,
         })
 
         setScroll(s)

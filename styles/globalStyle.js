@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components"
 export default createGlobalStyle`
     @font-face {
       font-family: "NeueMontrealRegular";
-      font-display : fallback ;
+      font-display : block ;
       src: url("/fonts/neueRegular.otf");
     }
     @font-face {
@@ -241,8 +241,7 @@ export default createGlobalStyle`
     }
 
     html {
-      /* overflow : hidden; */
-
+      overflow-x : hidden;
     }
     body {
       position : fixed;

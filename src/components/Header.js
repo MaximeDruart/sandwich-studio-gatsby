@@ -13,7 +13,7 @@ const StyledHeader = styled(motion.div)`
     color: ${({ theme }) => theme.colors.text};
     ${({ theme }) => theme.textStyles.h6};
   }
-  z-index: 5;
+  z-index: 10000;
   width: 100vw;
   height: 10vh;
   position: fixed;
@@ -65,7 +65,7 @@ const StyledHeader = styled(motion.div)`
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-between;
-        z-index: 100;
+        z-index: 1000;
         position: relative;
         .bar {
           width: 100%;
