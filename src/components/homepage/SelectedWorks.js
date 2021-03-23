@@ -26,7 +26,7 @@ const StyledSelectedWorks = styled.div`
 
   .works-wrapper {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     .works {
       width: fit-content;
@@ -72,6 +72,7 @@ const StyledSelectedWorks = styled.div`
     }
 
     @media (max-width: 600px) {
+      justify-content: center;
       .works {
         flex-flow: column;
 
@@ -118,11 +119,10 @@ const SelectedWorks = () => {
                   Math.max(50, 0.05 * window.innerWidth)
                 )
               : // this value doesn't matter
-                -500,
+                -1000,
             right: 0,
           }}
           drag={isMobile ? "" : "x"}
-          layout
           className="works"
         >
           {ready &&
