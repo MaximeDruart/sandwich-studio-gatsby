@@ -36,8 +36,8 @@ export default function Home() {
         const s = new Loco({
           smooth: true,
           el: mainContainerRef.current,
-          tablet: { smooth: true },
-          smartphone: { smooth: true },
+          tablet: { smooth: false },
+          smartphone: { smooth: false },
         })
 
         setScroll(s)

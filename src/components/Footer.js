@@ -21,12 +21,13 @@ const StyledFooter = styled.div`
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-    width: 23vw;
     .at {
     }
     .contact {
+      margin-left: 30px;
+      display: flex;
       .email {
-        margin-right: max(2.5vw, 25px);
+        margin-right: max(1.5vw, 15px);
       }
     }
   }
@@ -48,6 +49,26 @@ const StyledFooter = styled.div`
       }
     }
   }
+  @media (max-width: 600px) {
+    height: 20vh;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    .left {
+    }
+    .right {
+      display: flex;
+      text-align: left;
+      .privacy {
+        width: 35%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .creator-tag {
+        width: 65%;
+      }
+    }
+  }
 `
 
 const Footer = () => {
@@ -60,7 +81,7 @@ const Footer = () => {
           <a className="email" href="mailto:someone@yoursite.com">
             <img src="/images/email-icon.png" alt="link to email" />
           </a>
-          <a className="insta" href="instagram.com">
+          <a className="insta" href="https://instagram.com/">
             <img src="/images/insta-icon.png" alt="link to email" />
           </a>
         </div>
