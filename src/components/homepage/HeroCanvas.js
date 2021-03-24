@@ -176,7 +176,6 @@ const Blob = () => {
         factor={0}
         speed={10}
       />
-      {/* <meshNormalMaterial /> */}
     </mesh>
   )
 }

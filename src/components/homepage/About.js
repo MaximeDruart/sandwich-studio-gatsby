@@ -139,11 +139,11 @@ const About = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
-    <StyledAbout data-scroll-section>
+    <StyledAbout id="about" data-scroll-section>
       <div
         data-scroll
         data-scroll-direction="horizontal"
-        data-scroll-speed="9"
+        data-scroll-speed="7"
         className="headline"
       >
         {t("about-headline")}

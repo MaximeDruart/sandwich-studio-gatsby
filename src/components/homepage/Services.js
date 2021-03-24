@@ -159,7 +159,7 @@ const Services = ({ scroll }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
-    <StyledServices data-scroll-section>
+    <StyledServices id="services" data-scroll-section>
       <div
         data-scroll
         data-scroll-direction="horizontal"

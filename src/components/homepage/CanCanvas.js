@@ -218,9 +218,8 @@ const Content = () => {
         {
           three: { positionX: 2.8, rotationZ: -90 },
           duration: 1,
-          onUpdate: () => {
-            if (!screens.current.visible)
-              gsap.set(screens.current, { visible: true })
+          onStart: () => {
+            gsap.set(screens.current, { visible: true })
           },
         },
         "sync"

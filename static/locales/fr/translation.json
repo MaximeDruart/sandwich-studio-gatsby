@@ -1,5 +1,10 @@
 {
-  "headerLinks": ["About", "Services", "Projects"],
+  "headerLinks": [
+    { "category": "about", "translation": "About" },
+    { "category": "services", "translation": "Services" },
+    { "category": "projects", "translation": "Projects" },
+    { "category": "contact", "translation": "Contact" }
+  ],
   "topLine": "the 1st french CBD specialized agency",
   "bottomLine": "based in paris & specialized in branding",
   "weAre": ["branding", "design", "packaging", "marketing", "etc1", "etc2"],

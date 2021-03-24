@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useCallback, useState } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { ReactComponent as Logo } from "../../assets/icons/header-logo.svg"
@@ -29,6 +29,7 @@ const StyledHeader = styled(motion.div)`
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    cursor: pointer;
     .logo {
       margin-right: 10px;
     }
@@ -149,7 +150,7 @@ const hamburgerFilterVariants = {
   open: { opacity: 0.6 },
 }
 
-const Header = () => {
+const Header = ({ scroll }) => {
   const [hamIsOpen, setHamIsOpen] = useState(false)
   const all = useTranslation()
   // const { t, i18n } = all
@@ -159,6 +160,16 @@ const Header = () => {
 
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
+  const internalLinkHandler = useCallback(
+    category => {
+      if (scroll) scroll.scrollTo(`#${category}`)
+    },
+    [scroll]
+  )
+  const scrollToTop = useCallback(() => {
+    if (scroll) scroll.scrollTo(`top`)
+  }, [scroll])
+
   return (
     <StyledHeader
       initial={{ opacity: 0 }}
@@ -167,12 +178,12 @@ const Header = () => {
         transition: { delay: 1.5 },
       }}
     >
-      <Link to="/">
+      <a onClick={scrollToTop}>
         <div className="left">
           <Logo className="logo" />
           <div className="logo-text">Sandwich.Studio</div>
         </div>
-      </Link>
+      </a>
       <div className="right">
         {isMobile ? (
           <motion.div animate={hamIsOpen ? "open" : ""} className="sandwich">
@@ -199,8 +210,10 @@ const Header = () => {
               <ul className="mobile-links">
                 {ready &&
                   t("headerLinks", { returnObjects: true }).map(link => (
-                    <li key={link}>
-                      <Link to={`/${link.toLowerCase()}`}>{link}</Link>
+                    <li key={link.category}>
+                      <a onClick={() => internalLinkHandler(link.category)}>
+                        {link.translation}
+                      </a>
                     </li>
                   ))}
               </ul>
@@ -223,15 +236,19 @@ const Header = () => {
           <ul className="desk">
             {ready &&
               t("headerLinks", { returnObjects: true }).map(link => (
-                <li key={link}>
-                  <Link to={`/${link.toLowerCase()}`}>
+                <li key={link.category}>
+                  <a onClick={() => internalLinkHandler(link.category)}>
                     <motion.span whileHover="hovering">
                       <motion.div variants={variants}>
-                        <div className="anim-link top-link">{link}</div>
-                        <div className="anim-link bottom-link">{link}</div>
+                        <div className="anim-link top-link">
+                          {link.translation}
+                        </div>
+                        <div className="anim-link bottom-link">
+                          {link.translation}
+                        </div>
                       </motion.div>
                     </motion.span>
-                  </Link>
+                  </a>
                 </li>
               ))}
             {/* functional language switch */}

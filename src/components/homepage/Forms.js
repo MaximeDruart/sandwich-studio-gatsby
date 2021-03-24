@@ -9,7 +9,7 @@ const StyledForms = styled.div`
   margin-top: 30vh;
   /* overflow: hidden; */
 
-  padding: 5vh max(5vw, 20px) 0 max(5vw, 20px);
+  padding: 5vh max(10vw, 30px) 0 max(10vw, 30px);
 
   * {
     font-family: NeueMontrealRegular;
@@ -45,7 +45,7 @@ const StyledForms = styled.div`
 const Forms = () => {
   const { t } = useTranslation()
   return (
-    <StyledForms data-scroll-section>
+    <StyledForms id="contact" data-scroll-section>
       <div
         data-scroll
         data-scroll-direction="horizontal"
