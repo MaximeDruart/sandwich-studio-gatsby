@@ -13,6 +13,7 @@ import useStore from "../../store"
 import CanCanvas from "../components/homepage/CanCanvas"
 import Forms from "../components/homepage/Forms"
 import { useMediaQuery } from "react-responsive"
+import SelectedPopup from "../components/homepage/SelectedPopup"
 
 export default function Home() {
   const mainContainerRef = useRef(null)
@@ -68,9 +69,10 @@ export default function Home() {
         <ContactSpinner />
         {/* <CanCanvas scroll={scroll} /> */}
         <Hero />
-        <About />
-        <Services scroll={scroll} />
+        {/* <About /> */}
+        {/* <Services scroll={scroll} /> */}
         <SelectedWorks />
+        <SelectedPopup />
         <Forms />
         <Footer />
       </main>

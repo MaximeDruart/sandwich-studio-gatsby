@@ -36,11 +36,17 @@
     "Phone",
     "Deadline",
     "Service",
-    "Your message (optional)"
+    "Your message (optional)",
+    "Recevoir la brochure par mail"
   ],
   "form-callback-headline": "Callback Request",
   "form-callback-bottom-line": "Our team is always available",
-  "form-callback-display-names": ["Name", "Phone"],
+  "form-callback-display-names": [
+    "Name",
+    "Phone",
+    "Email",
+    "Recevoir la brochure par mail"
+  ],
   "form-submit-success-message": "Form sent !",
   "form-submit-text": "Send Form",
   "footer-privacy-policy": "Privacy Policy",

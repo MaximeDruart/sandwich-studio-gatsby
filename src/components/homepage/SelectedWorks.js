@@ -1,9 +1,10 @@
 import styled from "styled-components"
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg"
 import { useMediaQuery } from "react-responsive"
+import useStore from "../../../store"
 
 const StyledSelectedWorks = styled.div`
   width: 100vw;
@@ -96,6 +97,9 @@ const SelectedWorks = () => {
   const worksRef = useRef(null)
   const { t, ready } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+  const [isDragging, setIsDragging] = useState(false)
+
+  const setSelectedWork = useStore(state => state.setSelectedWork)
 
   return (
     <StyledSelectedWorks id="projects" data-scroll-section>
@@ -122,6 +126,8 @@ const SelectedWorks = () => {
                 -1000,
             right: 0,
           }}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={() => setTimeout(() => setIsDragging(false), 300)}
           drag={isMobile ? "" : "x"}
           className="works"
         >
@@ -133,6 +139,10 @@ const SelectedWorks = () => {
                     variants={{ hover: { scale: 0.985 } }}
                     whileHover="hover"
                     className="image-container"
+                    onClick={() =>
+                      !isDragging &&
+                      setSelectedWork({ isOpen: true, workNumber: index })
+                    }
                   >
                     <motion.img
                       variants={hoverVariants}

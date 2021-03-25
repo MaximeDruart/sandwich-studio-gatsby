@@ -126,6 +126,12 @@ const FormCallback = () => {
       displayName: t("form-callback-display-names", { returnObjects: true })[1],
       type: "tel",
     },
+    email: {
+      value: "",
+      placeholder: "a.b@gmail.com",
+      displayName: t("form-callback-display-names", { returnObjects: true })[2],
+      type: "email",
+    },
   })
 
   const handleSubmit = e => {

@@ -68,6 +68,16 @@ const StyledFormContact = styled.div`
             color: #a9a9a9;
           }
         }
+        &.brochure {
+          display: flex;
+          flex-flow: row-reverse nowrap;
+          align-items: center;
+          justify-content: flex-end;
+          input {
+            width: 30px;
+            margin-right: 15px;
+          }
+        }
       }
     }
     button {
@@ -147,6 +157,12 @@ const FormContact = () => {
       placeholder: "",
       displayName: t("form-contact-display-names", { returnObjects: true })[6],
       type: "text",
+    },
+    brochure: {
+      value: "",
+      placeholder: "",
+      displayName: t("form-contact-display-names", { returnObjects: true })[7],
+      type: "checkbox",
     },
   })
 
@@ -239,7 +255,7 @@ const FormContact = () => {
           <input type="hidden" name="form-name" value="contact" />
           {formFields}
           {/* easier to do the last two fields manually */}
-          <div key="service" className="form-group">
+          <div className="form-group">
             <div className="label-group">
               <label htmlFor="service">{logs.service.displayName}</label>
               {errors.service && (
@@ -269,7 +285,7 @@ const FormContact = () => {
               <option value="choice-5">choice-5</option>
             </select>
           </div>
-          <div key="message" className="form-group">
+          <div className="form-group">
             <div className="label-group">
               <label htmlFor="message">{logs.message.displayName}</label>
               {errors.message && (
@@ -283,6 +299,23 @@ const FormContact = () => {
               name="message"
               id="message"
               value={logs.message.value}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group brochure">
+            <div className="label-group">
+              <label htmlFor="brochure">{logs.brochure.displayName}</label>
+              {errors.brochure && (
+                <div className="error-brochure">{errors.brochure}</div>
+              )}
+            </div>
+            <input
+              maxLength="300"
+              placeholder={logs.brochure.placeholder}
+              type={logs.brochure.type}
+              name="brochure"
+              id="brochure"
+              value={logs.brochure.value}
               onChange={handleChange}
             />
           </div>

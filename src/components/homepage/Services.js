@@ -87,6 +87,10 @@ const StyledServices = styled.div`
     }
 
     .decoration {
+      width: 50%;
+      display: flex;
+      flex-flow: center;
+      justify-content: center;
     }
 
     .text {
@@ -118,9 +122,6 @@ const StyledServices = styled.div`
       }
       .decoration {
         width: 100%;
-        display: flex;
-        flex-flow: center;
-        justify-content: center;
       }
       .text,
       .text.align-right {
@@ -312,50 +313,36 @@ const Services = ({ scroll }) => {
       >
         <div className="decoration">
           <motion.img
+            data-scroll
+            data-scroll-speed="1"
             className="merch-img merch-img-1"
             initial={{ scale: isMobile ? 0.4 : 1 }}
-            animate={{
-              y: 20,
-              transition: {
-                ease: "easeInOut",
-                repeat: 1,
-                repeatType: "reverse",
-                duration: 3,
-                delay: 0,
-              },
-            }}
             src="/images/merch-1.png"
             alt=""
           />
           <motion.img
+            data-scroll
+            data-scroll-speed="2"
             className="merch-img merch-img-2"
             initial={{ scale: isMobile ? 0.8 : 1 }}
-            animate={{
-              y: 20,
-              transition: {
-                ease: "easeInOut",
-                repeat: 1,
-                repeatType: "reverse",
-                duration: 3.2,
-                delay: 0.5,
-              },
-            }}
             src="/images/merch-2.png"
             alt=""
           />
           <motion.img
+            data-scroll
+            data-scroll-speed="1.4"
             className="merch-img merch-img-3"
             initial={{ scale: isMobile ? 0.4 : 1 }}
-            animate={{
-              y: 20,
-              transition: {
-                ease: "easeInOut",
-                repeat: 1,
-                repeatType: "reverse",
-                duration: 2.8,
-                delay: 1,
-              },
-            }}
+            // animate={{
+            //   y: 20,
+            //   transition: {
+            //     ease: "easeInOut",
+            //     repeat: 100,
+            //     repeatType: "reverse",
+            //     duration: 2.8,
+            //     delay: 1,
+            //   },
+            // }}
             src="/images/merch-3.png"
             alt=""
           />

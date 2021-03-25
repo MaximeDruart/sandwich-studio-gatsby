@@ -42,7 +42,7 @@ const StyledHeader = styled(motion.div)`
     ul.desk {
       display: flex;
       flex-flow: row nowrap;
-      width: max(20vw, 250px);
+      width: max(31vw, 300px);
       justify-content: space-between;
       li {
         position: relative;
@@ -162,7 +162,10 @@ const Header = ({ scroll }) => {
 
   const internalLinkHandler = useCallback(
     category => {
-      if (scroll) scroll.scrollTo(`#${category}`)
+      if (scroll)
+        scroll.scrollTo(`#${category}`, {
+          callback: () => isMobile && setHamIsOpen(false),
+        })
     },
     [scroll]
   )
