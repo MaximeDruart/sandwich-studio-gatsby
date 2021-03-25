@@ -167,6 +167,7 @@ const Services = ({ scroll }) => {
         data-scroll-speed="9"
         className="headline"
       >
+        {t("services-headline")} • {t("services-headline")} •{" "}
         {t("services-headline")}
       </div>
 

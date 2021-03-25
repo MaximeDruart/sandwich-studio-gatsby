@@ -230,6 +230,21 @@ export default createGlobalStyle`
       box-shadow: none;
       outline : none;
     }
+
+    .link-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline;
+      margin: 0;
+      padding: 0;
+    }
+
+    .link-button:hover,
+    .link-button:focus {
+      text-decoration: none;
+    } 
     /* CUSTOM CSS */
     * {
       box-sizing: border-box;

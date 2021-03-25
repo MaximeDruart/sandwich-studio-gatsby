@@ -109,6 +109,7 @@ const SelectedWorks = () => {
         data-scroll-speed="7"
         className="headline"
       >
+        {t("selected-works-headline")} • {t("selected-works-headline")} •{" "}
         {t("selected-works-headline")}
       </div>
 

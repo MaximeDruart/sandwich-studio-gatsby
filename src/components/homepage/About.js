@@ -146,7 +146,7 @@ const About = () => {
         data-scroll-speed="7"
         className="headline"
       >
-        {t("about-headline")}
+        {t("about-headline")} • {t("about-headline")} • {t("about-headline")}
       </div>
       <div className="our-mission about-section">
         <div

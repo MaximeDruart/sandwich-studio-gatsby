@@ -52,7 +52,7 @@ const Forms = () => {
         data-scroll-speed="9"
         className="headline"
       >
-        {t("forms-headline")}
+        {t("forms-headline")} • {t("forms-headline")} • {t("forms-headline")}
       </div>
       <div className="forms">
         <FormContact />

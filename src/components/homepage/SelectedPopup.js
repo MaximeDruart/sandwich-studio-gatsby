@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import useStore from "../../../store"
@@ -129,7 +129,7 @@ const SelectedPopup = () => {
   useEffect(() => {
     window.addEventListener("keydown", escapeHandler)
     return () => window.removeEventListener("keydown", escapeHandler)
-  }, [])
+  }, [escapeHandler])
 
   const switchImage = dir =>
     setFocusedImage(focusedImage => clamper(focusedImage + dir))

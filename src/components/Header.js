@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import { ReactComponent as Logo } from "../../assets/icons/header-logo.svg"
 import { motion } from "framer-motion"
 import { useTranslation } from "gatsby-plugin-react-i18next"
@@ -47,7 +46,7 @@ const StyledHeader = styled(motion.div)`
       li {
         position: relative;
         overflow: hidden;
-        a {
+        .link-button {
           display: block;
           cursor: pointer;
           .anim-link {
@@ -167,7 +166,7 @@ const Header = ({ scroll }) => {
           callback: () => isMobile && setHamIsOpen(false),
         })
     },
-    [scroll]
+    [isMobile, scroll]
   )
   const scrollToTop = useCallback(() => {
     if (scroll) scroll.scrollTo(`top`)
@@ -181,12 +180,12 @@ const Header = ({ scroll }) => {
         transition: { delay: 1.5 },
       }}
     >
-      <a onClick={scrollToTop}>
+      <button className="link-button" onClick={scrollToTop}>
         <div className="left">
           <Logo className="logo" />
           <div className="logo-text">Sandwich.Studio</div>
         </div>
-      </a>
+      </button>
       <div className="right">
         {isMobile ? (
           <motion.div animate={hamIsOpen ? "open" : ""} className="sandwich">
@@ -214,9 +213,11 @@ const Header = ({ scroll }) => {
                 {ready &&
                   t("headerLinks", { returnObjects: true }).map(link => (
                     <li key={link.category}>
-                      <a onClick={() => internalLinkHandler(link.category)}>
+                      <button
+                        onClick={() => internalLinkHandler(link.category)}
+                      >
                         {link.translation}
-                      </a>
+                      </button>
                     </li>
                   ))}
               </ul>
@@ -240,7 +241,10 @@ const Header = ({ scroll }) => {
             {ready &&
               t("headerLinks", { returnObjects: true }).map(link => (
                 <li key={link.category}>
-                  <a onClick={() => internalLinkHandler(link.category)}>
+                  <button
+                    className="link-button"
+                    onClick={() => internalLinkHandler(link.category)}
+                  >
                     <motion.span whileHover="hovering">
                       <motion.div variants={variants}>
                         <div className="anim-link top-link">
@@ -251,7 +255,7 @@ const Header = ({ scroll }) => {
                         </div>
                       </motion.div>
                     </motion.span>
-                  </a>
+                  </button>
                 </li>
               ))}
             {/* functional language switch */}
