@@ -11,7 +11,7 @@ const StyledSelectedWorks = styled.div`
   margin-top: 30vh;
   /* overflow: hidden; */
 
-  padding: 5vh max(5vw, 20px) 0 max(5vw, 20px);
+  padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);
 
   * {
     font-family: NeueMontrealRegular;

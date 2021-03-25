@@ -18,12 +18,11 @@ const StyledPopup = styled(motion.div)`
   .close {
     cursor: pointer;
     position: absolute;
-    right: max(5vw, 20px);
+    right: max(5vw, 40px);
     top: 5vh;
   }
 
   .filter {
-    pointer-events: none;
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -39,20 +38,23 @@ const StyledPopup = styled(motion.div)`
       z-index: 10;
       cursor: pointer;
       position: absolute;
-      left: 5vw;
+      left: 0;
       top: 50%;
       transform: translateY(-50%);
+      height: 80vh;
+      width: 15vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &.move-right {
         left: unset;
-        right: 5vw;
+        right: 0;
       }
       &.move-left {
-        transform: rotate(180deg);
-      }
-
-      svg {
-        width: 40px;
-        height: 40px;
+        svg {
+          transform: rotate(180deg);
+          transform-origin: center;
+        }
       }
     }
   }
@@ -123,16 +125,19 @@ const SelectedPopup = () => {
 
   const [focusedImage, setFocusedImage] = useState(0)
 
-  const escapeHandler = ({ key }) =>
-    key === "Escape" && setSelectedWork({ isOpen: false })
-
   useEffect(() => {
+    const escapeHandler = ({ key }) =>
+      key === "Escape" && setSelectedWork({ isOpen: false })
+
     window.addEventListener("keydown", escapeHandler)
+
     return () => window.removeEventListener("keydown", escapeHandler)
-  }, [escapeHandler])
+  }, [setSelectedWork])
 
   const switchImage = dir =>
     setFocusedImage(focusedImage => clamper(focusedImage + dir))
+
+  useEffect(() => selectedWork.isOpen && setFocusedImage(0), [selectedWork])
 
   return (
     <StyledPopup
@@ -143,7 +148,10 @@ const SelectedPopup = () => {
       variants={containerVariants}
       animate={selectedWork.isOpen ? "open" : "closed"}
     >
-      <motion.div className="filter"></motion.div>
+      <motion.div
+        onClick={() => setSelectedWork({ isOpen: false })}
+        className="filter"
+      ></motion.div>
       <motion.div
         onClick={() => setSelectedWork({ isOpen: false })}
         className="close"

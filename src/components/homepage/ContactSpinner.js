@@ -3,10 +3,10 @@ import { motion } from "framer-motion"
 import styled from "styled-components"
 import useStore from "../../../store"
 
-const StyledContactSpinner = styled(motion.a)`
+const StyledContactSpinner = styled(motion.button)`
   display: block;
   position: fixed;
-  right: max(5vw, 20px);
+  right: max(5vw, 40px);
   z-index: 2;
   bottom: 5vh;
   width: 135px;
@@ -16,13 +16,20 @@ const StyledContactSpinner = styled(motion.a)`
     height: 100%;
     cursor: pointer;
   }
+
+  @media (max-width: 600px) {
+    transform: scale(0.7);
+  }
 `
 
-const ContactSpinner = () => {
+const ContactSpinner = ({ scroll }) => {
   const canvasLoadStatus = useStore(store => store.canvasLoadStatus)
   return (
     <StyledContactSpinner
-      href="mailto:someone@yoursite.com"
+      className="link-button"
+      onClick={() => {
+        if (scroll) scroll.scrollTo("#contact")
+      }}
       initial={{ opacity: 0 }}
       animate={{
         opacity: canvasLoadStatus.progress < 100 ? 0 : 1,

@@ -17,7 +17,7 @@ const StyledHeader = styled(motion.div)`
   height: 10vh;
   position: fixed;
   top: 0;
-  padding: 0 max(5vw, 20px);
+  padding: 0 max(5vw, 40px);
 
   display: flex;
   flex-flow: row nowrap;
@@ -214,6 +214,7 @@ const Header = ({ scroll }) => {
                   t("headerLinks", { returnObjects: true }).map(link => (
                     <li key={link.category}>
                       <button
+                        className="link-button"
                         onClick={() => internalLinkHandler(link.category)}
                       >
                         {link.translation}
@@ -229,7 +230,10 @@ const Header = ({ scroll }) => {
                   <a className="email" href="mailto:someone@yoursite.com">
                     <img src="/images/email-icon.png" alt="link to email" />
                   </a>
-                  <a className="insta" href="instagram.com">
+                  <a
+                    className="insta"
+                    href="https://www.instagram.com/sandwich.std"
+                  >
                     <img src="/images/insta-icon.png" alt="link to email" />
                   </a>
                 </div>

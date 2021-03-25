@@ -7,7 +7,7 @@ const StyledFooter = styled.div`
   background: #151515;
   width: 100vw;
   height: 10vh;
-  padding: 0 max(5vw, 20px) 0 max(5vw, 20px);
+  padding: 0 max(5vw, 40px) 0 max(5vw, 40px);
   margin-top: 30vh;
 
   display: flex;
@@ -81,7 +81,7 @@ const Footer = () => {
           <a className="email" href="mailto:someone@yoursite.com">
             <img src="/images/email-icon.png" alt="link to email" />
           </a>
-          <a className="insta" href="https://instagram.com/">
+          <a className="insta" href="https://www.instagram.com/sandwich.std">
             <img src="/images/insta-icon.png" alt="link to email" />
           </a>
         </div>

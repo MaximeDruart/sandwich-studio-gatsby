@@ -16,7 +16,11 @@ const encode = data =>
 
 const StyledFormContact = styled.div`
   width: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
   .title {
+    width: min(400px, 100%);
     .form-headline {
       ${({ theme }) => theme.textStyles.h4};
     }
@@ -293,7 +297,7 @@ const FormContact = () => {
               )}
             </div>
             <textarea
-              maxLength="300"
+              maxLength="900"
               placeholder={logs.message.placeholder}
               type={logs.message.type}
               name="message"
@@ -310,7 +314,6 @@ const FormContact = () => {
               )}
             </div>
             <input
-              maxLength="300"
               placeholder={logs.brochure.placeholder}
               type={logs.brochure.type}
               name="brochure"

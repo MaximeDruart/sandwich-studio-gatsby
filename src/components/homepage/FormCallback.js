@@ -79,6 +79,16 @@ const StyledFormCallback = styled.div`
             color: #a9a9a9;
           }
         }
+        &.brochure {
+          display: flex;
+          flex-flow: row-reverse nowrap;
+          align-items: center;
+          justify-content: flex-end;
+          input {
+            width: 30px;
+            margin-right: 15px;
+          }
+        }
       }
     }
     button {
@@ -132,6 +142,12 @@ const FormCallback = () => {
       displayName: t("form-callback-display-names", { returnObjects: true })[2],
       type: "email",
     },
+    brochure: {
+      value: "",
+      placeholder: "",
+      displayName: t("form-callback-display-names", { returnObjects: true })[3],
+      type: "checkbox",
+    },
   })
 
   const handleSubmit = e => {
@@ -176,7 +192,7 @@ const FormCallback = () => {
   const formFields = useMemo(
     () =>
       Object.entries(logs)
-        .slice(0, 5)
+        .slice(0, 3)
         .map(([key, prop]) => (
           <div key={key} className="form-group">
             <div className="label-group">
@@ -221,6 +237,22 @@ const FormCallback = () => {
           <span>{errors.server}</span>
           <input type="hidden" name="form-name" value="callback" />
           {formFields}
+          <div className="form-group brochure">
+            <div className="label-group">
+              <label htmlFor="brochure2">{logs.brochure.displayName}</label>
+              {errors.brochure && (
+                <div className="error-brochure">{errors.brochure}</div>
+              )}
+            </div>
+            <input
+              placeholder={logs.brochure.placeholder}
+              type={logs.brochure.type}
+              name="brochure"
+              id="brochure2"
+              value={logs.brochure.value}
+              onChange={handleChange}
+            />
+          </div>
         </div>
         <motion.button
           style={{ cursor: success ? "auto" : "pointer" }}

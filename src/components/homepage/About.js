@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive"
 const StyledAbout = styled.div`
   width: 100vw;
 
-  padding: 5vh max(5vw, 20px) 0 max(5vw, 20px);
+  padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);
 
   * {
     font-family: NeueMontrealRegular;
@@ -86,9 +86,10 @@ const StyledAbout = styled.div`
     }
     @media (max-width: 600px) {
       * {
-        text-align: left;
+        text-align: center;
       }
       flex-flow: column;
+
       /* align-items: center; */
       .photos {
         width: 240px;
@@ -100,6 +101,7 @@ const StyledAbout = styled.div`
       }
       .text {
         width: 100%;
+        text-align: center;
       }
       &.our-mission {
         .text {

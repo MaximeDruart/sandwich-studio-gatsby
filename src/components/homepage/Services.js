@@ -11,7 +11,7 @@ const StyledServices = styled.div`
   width: 100vw;
   /* overflow: hidden; */
 
-  /* padding: 5vh max(5vw, 20px) 0 max(5vw, 20px); */
+  /* padding: 5vh max(5vw, 40px) 0 max(5vw, 40px); */
 
   * {
     font-family: NeueMontrealRegular;
@@ -29,7 +29,7 @@ const StyledServices = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    padding: 5vh max(5vw, 20px) 0 max(5vw, 20px);
+    padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);
 
     &.tl-section {
       &.tl-section-1 {
@@ -118,7 +118,7 @@ const StyledServices = styled.div`
       align-items: center;
       margin-top: 5vh;
       * {
-        text-align: left;
+        text-align: center;
       }
       .decoration {
         width: 100%;
@@ -128,6 +128,10 @@ const StyledServices = styled.div`
         margin-top: 5vh;
         width: 100%;
         align-items: baseline;
+        text-align: center;
+        .title {
+          margin-bottom: 10px;
+        }
       }
     }
   }
