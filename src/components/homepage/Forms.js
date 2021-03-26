@@ -44,6 +44,7 @@ const StyledForms = styled.div`
 
 const Forms = () => {
   const { t } = useTranslation()
+
   return (
     <StyledForms id="contact" data-scroll-section>
       <div

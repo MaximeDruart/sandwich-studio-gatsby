@@ -210,6 +210,16 @@ const FormContact = () => {
     [logs, setLogs]
   )
 
+  // const kbHandler = e => {
+  //   e.preventDefault()
+  // }
+
+  // const toggleKbScroll = bool => {
+  //   bool
+  //     ? window.addEventListener("keydown", kbHandler)
+  //     : window.removeEventListener("keydown", kbHandler)
+  // }
+
   const formFields = useMemo(
     () =>
       Object.entries(logs)
@@ -231,6 +241,8 @@ const FormContact = () => {
               autoCorrect="off"
               placeholder={prop.placeholder}
               type={prop.type}
+              // onFocus={e => prop.type === "date" && toggleKbScroll(e)}
+              // onBlur={e => prop.type === "date" && toggleKbScroll(e)}
               name={key}
               id={key}
               value={prop.value}

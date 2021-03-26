@@ -257,8 +257,8 @@ const Services = ({ scroll }) => {
         className="section second tl-section tl-section-1"
       >
         <div className="text">
-          <div className="title">{t("services-1-title")} </div>
-          <div className="body">{t("services-1-body")} </div>
+          <div className="title">{t("services-2-title")} </div>
+          <div className="body">{t("services-2-body")} </div>
           <Link to="/services">
             <button className="cta">
               <span className="text-content">{t("services-1-cta")}</span>
@@ -278,8 +278,8 @@ const Services = ({ scroll }) => {
       >
         <div className="decoration"></div>
         <div className="text align-right">
-          <div className="title">{t("services-1-title")} </div>
-          <div className="body">{t("services-1-body")} </div>
+          <div className="title">{t("services-3-title")} </div>
+          <div className="body">{t("services-3-body")} </div>
           <Link to="/services">
             <button className="cta">
               <span className="text-content">{t("services-1-cta")}</span>
@@ -297,8 +297,8 @@ const Services = ({ scroll }) => {
         className="section second tl-section tl-section-3"
       >
         <div className="text">
-          <div className="title">{t("services-1-title")} </div>
-          <div className="body">{t("services-1-body")} </div>
+          <div className="title">{t("services-4-title")} </div>
+          <div className="body">{t("services-4-body")} </div>
           <Link to="/services">
             <button className="cta">
               <span className="text-content">{t("services-1-cta")}</span>
@@ -353,8 +353,8 @@ const Services = ({ scroll }) => {
           />
         </div>
         <div className="text align-right">
-          <div className="title">{t("services-1-title")} </div>
-          <div className="body">{t("services-1-body")} </div>
+          <div className="title">{t("services-5-title")} </div>
+          <div className="body">{t("services-5-body")} </div>
           <Link to="/services">
             <button className="cta">
               <span className="text-content">{t("services-1-cta")}</span>
