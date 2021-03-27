@@ -127,7 +127,7 @@ const StyledServices = styled.div`
       .text.align-right {
         margin-top: 5vh;
         width: 100%;
-        align-items: baseline;
+        align-items: center;
         text-align: center;
         .title {
           margin-bottom: 10px;

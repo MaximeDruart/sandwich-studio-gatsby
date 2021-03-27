@@ -114,7 +114,7 @@ const loaderVariants = {
   },
 }
 
-const FormContact = () => {
+const FormContact = ({ scroll }) => {
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -210,15 +210,11 @@ const FormContact = () => {
     [logs, setLogs]
   )
 
-  // const kbHandler = e => {
-  //   e.preventDefault()
-  // }
-
-  // const toggleKbScroll = bool => {
-  //   bool
-  //     ? window.addEventListener("keydown", kbHandler)
-  //     : window.removeEventListener("keydown", kbHandler)
-  // }
+  const toggleKbScroll = bool => {
+    if (scroll) {
+      bool ? scroll.start() : scroll.stop()
+    }
+  }
 
   const formFields = useMemo(
     () =>
@@ -241,8 +237,8 @@ const FormContact = () => {
               autoCorrect="off"
               placeholder={prop.placeholder}
               type={prop.type}
-              // onFocus={e => prop.type === "date" && toggleKbScroll(e)}
-              // onBlur={e => prop.type === "date" && toggleKbScroll(e)}
+              onFocus={e => prop.type === "date" && toggleKbScroll(false)}
+              onBlur={e => prop.type === "date" && toggleKbScroll(true)}
               name={key}
               id={key}
               value={prop.value}
@@ -294,11 +290,11 @@ const FormContact = () => {
               <option value="" disabled>
                 Select your option
               </option>
-              <option value="choice-1">choice-1</option>
-              <option value="choice-2">choice-2</option>
-              <option value="choice-3">choice-3</option>
-              <option value="choice-4">choice-4</option>
-              <option value="choice-5">choice-5</option>
+              <option value="choice-1">Design</option>
+              <option value="choice-2">Conception / Développement web</option>
+              <option value="choice-3">Packaging</option>
+              <option value="choice-4">Marketing digital</option>
+              <option value="choice-5">Goodies & Merchandising</option>
             </select>
           </div>
           <div className="form-group">

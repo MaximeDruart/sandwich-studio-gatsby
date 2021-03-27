@@ -67,13 +67,13 @@ export default function Home() {
 
       <main data-scroll-container ref={mainContainerRef}>
         <ContactSpinner scroll={scroll} />
-        {/* <CanCanvas scroll={scroll} /> */}
+        <CanCanvas scroll={scroll} />
         <Hero />
         <About />
         <Services scroll={scroll} />
         <SelectedWorks />
         <SelectedPopup />
-        <Forms />
+        <Forms scroll={scroll} />
         <Footer />
       </main>
     </>

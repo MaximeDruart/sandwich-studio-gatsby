@@ -42,7 +42,7 @@ const StyledForms = styled.div`
   }
 `
 
-const Forms = () => {
+const Forms = ({ scroll }) => {
   const { t } = useTranslation()
 
   return (
@@ -56,7 +56,7 @@ const Forms = () => {
         {t("forms-headline")} • {t("forms-headline")} • {t("forms-headline")}
       </div>
       <div className="forms">
-        <FormContact />
+        <FormContact scroll={scroll} />
         <FormCallback />
       </div>
     </StyledForms>
