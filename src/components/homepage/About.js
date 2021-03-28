@@ -35,7 +35,7 @@ const StyledAbout = styled.div`
         position: absolute;
         width: max(30vw, 400px);
         height: max(30vw, 400px);
-        background: center / cover url("/images/mission.jpg");
+        background: center / cover url("/images/mission.png");
         bottom: -30%;
         right: -30%;
       }

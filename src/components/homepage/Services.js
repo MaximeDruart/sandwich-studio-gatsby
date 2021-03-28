@@ -4,7 +4,6 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 import { motion } from "framer-motion"
 
 import { ReactComponent as Arrow } from "../../../assets/icons/arrow.svg"
-import { Link } from "gatsby"
 import { useMediaQuery } from "react-responsive"
 
 const StyledServices = styled.div`
@@ -33,7 +32,7 @@ const StyledServices = styled.div`
 
     &.tl-section {
       &.tl-section-1 {
-        padding-top: 130vh;
+        padding-top: 220vh;
       }
       &.tl-section-2 {
         padding-top: 200vh;
@@ -144,6 +143,23 @@ const fillVariants = {
   drawn: { opacity: 1, transition: { delay: 1.4 } },
 }
 
+const ctaVariants = {
+  hover: {
+    x: 10,
+  },
+}
+
+const CallToActionButton = ({ text }) => {
+  return (
+    <motion.button whileHover="hover" className="cta">
+      <span className="text-content">{text}</span>
+      <motion.div variants={ctaVariants}>
+        <Arrow className="arrow" />
+      </motion.div>
+    </motion.button>
+  )
+}
+
 const Services = ({ scroll }) => {
   const { t } = useTranslation()
   const [isOnScreen, setIsOnScreen] = useState(false)
@@ -240,12 +256,8 @@ const Services = ({ scroll }) => {
         <div className="text align-right">
           <div className="title">{t("services-1-title")} </div>
           <div className="body">{t("services-1-body")} </div>
-          <Link to="/services">
-            <button className="cta">
-              <span className="text-content">{t("services-1-cta")}</span>
-              <Arrow className="arrow" />
-            </button>
-          </Link>
+
+          <CallToActionButton text={t("services-1-cta")} />
         </div>
       </div>
 
@@ -259,34 +271,10 @@ const Services = ({ scroll }) => {
         <div className="text">
           <div className="title">{t("services-2-title")} </div>
           <div className="body">{t("services-2-body")} </div>
-          <Link to="/services">
-            <button className="cta">
-              <span className="text-content">{t("services-1-cta")}</span>
-              <Arrow className="arrow" />
-            </button>
-          </Link>
-        </div>
-        <div className="decoration"></div>
-      </div>
 
-      <div
-        data-scroll
-        data-scroll-id="tl-branding"
-        data-scroll-offset="35%,77%"
-        data-scroll-position="top"
-        className="section tl-section tl-section-2"
-      >
-        <div className="decoration"></div>
-        <div className="text align-right">
-          <div className="title">{t("services-3-title")} </div>
-          <div className="body">{t("services-3-body")} </div>
-          <Link to="/services">
-            <button className="cta">
-              <span className="text-content">{t("services-1-cta")}</span>
-              <Arrow className="arrow" />
-            </button>
-          </Link>
+          <CallToActionButton text={t("services-2-cta")} />
         </div>
+        <div className="decoration"></div>
       </div>
 
       <div
@@ -297,14 +285,10 @@ const Services = ({ scroll }) => {
         className="section second tl-section tl-section-3"
       >
         <div className="text">
-          <div className="title">{t("services-4-title")} </div>
-          <div className="body">{t("services-4-body")} </div>
-          <Link to="/services">
-            <button className="cta">
-              <span className="text-content">{t("services-1-cta")}</span>
-              <Arrow className="arrow" />
-            </button>
-          </Link>
+          <div className="title">{t("services-3-title")} </div>
+          <div className="body">{t("services-3-body")} </div>
+
+          <CallToActionButton text={t("services-3-cta")} />
         </div>
         <div className="decoration"></div>
       </div>
@@ -355,12 +339,8 @@ const Services = ({ scroll }) => {
         <div className="text align-right">
           <div className="title">{t("services-5-title")} </div>
           <div className="body">{t("services-5-body")} </div>
-          <Link to="/services">
-            <button className="cta">
-              <span className="text-content">{t("services-1-cta")}</span>
-              <Arrow className="arrow" />
-            </button>
-          </Link>
+
+          <CallToActionButton text={t("services-5-cta")} />
         </div>
       </div>
     </StyledServices>

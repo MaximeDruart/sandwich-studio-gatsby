@@ -15,8 +15,8 @@ import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass"
 import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader"
-import { VignetteShader } from "three/examples/jsm/shaders/VignetteShader"
 import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader"
+import { VignetteShader } from "three/examples/jsm/shaders/VignetteShader"
 import { FilmShader } from "three/examples/jsm/shaders/FilmShader"
 
 extend({

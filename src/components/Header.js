@@ -41,7 +41,7 @@ const StyledHeader = styled(motion.div)`
     ul.desk {
       display: flex;
       flex-flow: row nowrap;
-      width: max(31vw, 300px);
+      width: max(31vw, 360px);
       justify-content: space-between;
       li {
         position: relative;

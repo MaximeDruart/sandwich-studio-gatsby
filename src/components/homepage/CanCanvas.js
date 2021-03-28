@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, Suspense } from "react"
 import styled from "styled-components"
-import { Canvas, useThree } from "react-three-fiber"
+import { Canvas, useThree, useFrame, extend } from "react-three-fiber"
 import * as THREE from "three"
 import gsap from "gsap"
 import useStore from "../../../store"
@@ -8,6 +8,20 @@ import useStore from "../../../store"
 import ThreePlugin from "../../../assets/utils/GSAPTHREE"
 import { Shadow, useProgress, useTexture, useFBX } from "drei"
 import { useMediaQuery } from "react-responsive"
+
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer"
+import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass"
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass"
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass"
+import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader"
+import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader"
+
+extend({
+  EffectComposer,
+  ShaderPass,
+  RenderPass,
+  UnrealBloomPass,
+})
 
 gsap.registerPlugin(ThreePlugin)
 
@@ -21,12 +35,32 @@ const StyledCanCanvas = styled.div`
   /* z-index: 10000; */
 `
 
+const Effects = () => {
+  const composer = useRef()
+  const { scene, gl, size, camera } = useThree()
+  useEffect(() => void composer.current.setSize(size.width, size.height), [
+    size,
+  ])
+  useFrame(() => composer.current.render(), 1)
+  return (
+    <effectComposer ref={composer} args={[gl]}>
+      <renderPass attachArray="passes" scene={scene} camera={camera} />
+      <shaderPass
+        attachArray="passes"
+        args={[FXAAShader]}
+        material-uniforms-resolution-value={[1 / size.width, 1 / size.height]}
+      />
+      <shaderPass attachArray="passes" args={[GammaCorrectionShader]} />
+    </effectComposer>
+  )
+}
+
 const Lights = () => {
   const ref = useRef()
   return (
     <group ref={ref}>
-      <ambientLight intensity={2} />
-      <directionalLight intensity={1.3} position={[30, 30, 50]} />
+      <ambientLight intensity={1.4} />
+      <directionalLight intensity={0.7} position={[30, 30, 50]} />
     </group>
   )
 }
@@ -35,10 +69,7 @@ const tlTopToSide = gsap.timeline({
   paused: true,
   defaults: { ease: "Power2.easeInOut" },
 })
-const tlBranding = gsap.timeline({
-  paused: true,
-  defaults: { ease: "Power2.easeInOut" },
-})
+
 const tlWebsite = gsap.timeline({
   paused: true,
   defaults: { ease: "Power2.easeInOut" },
@@ -59,20 +90,25 @@ const Content = () => {
   const doy = useFBX("/3d/models/doy.fbx")
 
   const [
-    doyDiffuse,
     doyBrandedDiffuse,
     doyNormal,
     pcTexture,
     mobileTexture,
     alphaMobileTexture,
   ] = useTexture([
-    "/3d/maps/doy-diffuse.png",
     "/3d/maps/doy-branded-diffuse.png",
-    "/3d/maps/doy-normal.png",
+    "/3d/maps/doy-normal.jpg",
     "/images/pc-mockup.jpg",
     "/images/mobile-mockup.png",
     "/images/mobile-mockup-alpha.png",
   ])
+
+  doyBrandedDiffuse.magFilter = THREE.LinearFilter
+  doyBrandedDiffuse.minFilter = THREE.LinearFilter
+  mobileTexture.magFilter = THREE.LinearFilter
+  mobileTexture.minFilter = THREE.LinearFilter
+  pcTexture.magFilter = THREE.LinearFilter
+  pcTexture.minFilter = THREE.LinearFilter
   const screens = useRef()
   const mobileScreen = useRef()
   const pcScreen = useRef()
@@ -131,29 +167,18 @@ const Content = () => {
         "-=2.5"
       )
       // move can aside for text
+      tlTopToSide.addLabel("sync", "-=1.7")
+
       tlTopToSide.to(
         cans.current,
         {
           three: { positionX: isMobile ? 0 : 0.3 },
-          duration: 1.8,
-        },
-        "-=0.9"
-      )
-
-      /////////// TL BRANDING
-
-      tlBranding.addLabel("sync")
-      tlBranding.to(
-        cans.current,
-        {
-          three: {
-            positionX: isMobile ? 0 : -0.2,
-          },
-          duration: 2,
+          duration: 2.8,
         },
         "sync"
       )
-      tlBranding.to(
+
+      tlTopToSide.to(
         camera,
         {
           three: {
@@ -162,41 +187,24 @@ const Content = () => {
             rotationX: 0,
           },
 
-          duration: 2,
+          duration: 3,
         },
         "sync"
       )
 
-      // tlBranding.to(cans.current, {
-      //   three: { rotationY: 180, rotationZ: 30, rotationX: 30 },
-      //   duration: 2,
-      // })
-      tlBranding.addLabel("sync2", "-=0.8")
-      tlBranding.to(can.current.material, { opacity: 0, duration: 1 }, "sync2")
-      tlBranding.to(
-        can.current,
-        { three: { positionY: -1 }, duration: 2 },
-        "sync2"
-      )
-      tlBranding.to(
-        shadow.current,
-        { three: { scaleX: 0, scaleY: 0, scaleZ: 0 }, duration: 1 },
-        "sync2"
-      )
-      tlBranding.addLabel("sync3", "-=1")
+      tlTopToSide.to(cans.current, {
+        three: { rotationY: 360 },
+        duration: 4,
+      })
 
-      tlBranding.to(
+      tlTopToSide.to(
         brandedCan.current.material,
         { opacity: 1, duration: 2 },
-        "sync3"
+        "-=3.2"
       )
-      tlBranding.fromTo(
-        brandedCan.current,
-        { three: { positionY: -1 } },
-        { three: { positionY: 0 }, duration: 1 },
-        "sync3"
-      )
-      tlBranding.to(
+      tlTopToSide.set(can.current.material, { opacity: 0 })
+
+      tlTopToSide.to(
         shadow.current,
         {
           three: { scaleX: 0.4, scaleY: 0.4, scaleZ: 0.4 },
@@ -216,7 +224,7 @@ const Content = () => {
       tlWebsite.to(
         brandedCan.current,
         {
-          three: { positionX: 2.8, rotationZ: -90 },
+          three: { positionX: 2.4, rotationZ: -90 },
           duration: 1,
           onStart: () => {
             gsap.set(screens.current, { visible: true })
@@ -297,11 +305,10 @@ const Content = () => {
           scale={[2.4, 2.4, 2.4]}
           material={
             new THREE.MeshStandardMaterial({
-              roughness: 0.6,
+              roughness: 0.3,
               metalness: 0.6,
               transparent: true,
               color: "#1f1f1f",
-              map: doyDiffuse,
               normalMap: doyNormal,
               normalScale: new THREE.Vector2(1, 1),
             })
@@ -313,11 +320,17 @@ const Content = () => {
           scale={[2.4, 2.4, 2.4]}
           material={
             new THREE.MeshStandardMaterial({
+              roughness: 0.45,
+              metalness: 0.6,
               transparent: true,
               opacity: 0,
               map: doyBrandedDiffuse,
+              normalMap: doyNormal,
+              normalScale: new THREE.Vector2(1, 1),
             })
           }
+          // https://stackoverflow.com/questions/45761324/animate-between-two-materials-on-a-mesh-three-js
+          onBeforeRender={gl => gl.clearDepth()}
           material-transparent
           material-opacity={0}
         />
@@ -357,8 +370,6 @@ const CanCanvas = ({ scroll }) => {
           tlTopToSide.progress(
             _scroll.currentElements["tl-top-to-side"].progress
           )
-        typeof _scroll.currentElements["tl-branding"] === "object" &&
-          tlBranding.progress(_scroll.currentElements["tl-branding"].progress)
         typeof _scroll.currentElements["tl-website"] === "object" &&
           tlWebsite.progress(_scroll.currentElements["tl-website"].progress)
         typeof _scroll.currentElements["tl-final"] === "object" &&
@@ -388,7 +399,7 @@ const CanCanvas = ({ scroll }) => {
           <Content />
           {/* <OrbitControls /> */}
           {/* <gridHelper /> */}
-          {/* <Effects /> */}
+          <Effects />
         </Suspense>
       </Canvas>
     </StyledCanCanvas>
