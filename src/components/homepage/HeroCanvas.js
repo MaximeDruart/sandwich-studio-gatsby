@@ -47,7 +47,7 @@ const Effects = () => {
   return (
     <effectComposer ref={composer} args={[gl]}>
       <renderPass attachArray="passes" scene={scene} camera={camera} />
-      <unrealBloomPass attachArray="passes" args={[aspect, 0.5, 1, 0.8]} />
+      <unrealBloomPass attachArray="passes" args={[aspect, 0.7, 1, 0.8]} />
       <shaderPass
         attachArray="passes"
         args={[FXAAShader]}
@@ -77,7 +77,7 @@ const Lights = () => {
   return (
     <group ref={ref}>
       {/* <ambientLight intensity={0.45} /> */}
-      <directionalLight intensity={0.3} position={[30, 30, 50]} />
+      <directionalLight intensity={0.8} position={[30, 30, 50]} />
       <hemisphereLight args={["#FFB23E", "#4d330e", 0.2]} />
     </group>
   )
@@ -165,13 +165,20 @@ const Blob = () => {
   })
 
   return (
-    <mesh onClick={clickHandler} position-y={0} ref={sphere}>
+    <mesh
+      onPointerOver={() => (document.body.style.cursor = "pointer")}
+      onPointerOut={() => (document.body.style.cursor = "auto")}
+      onClick={clickHandler}
+      position-y={0}
+      ref={sphere}
+    >
       <sphereGeometry attach="geometry" args={[isMobile ? 1.4 : 2.5, 64, 64]} />
 
       <MeshWobbleMaterial
         roughness={0}
         metalness={0.3}
-        color={"#FFB23E"}
+        // color="#ff8c00"
+        color="#FFB23E"
         attach="material"
         factor={0}
         speed={10}

@@ -21,7 +21,7 @@ theme.textStyles = {
     /* or 101px */
     letter-spacing: 0.01em;
     @media (max-width: 600px) {
-      font-size: 43px;
+      font-size: 35px;
     }
   `,
   h2: css`
@@ -86,6 +86,9 @@ theme.textStyles = {
     line-height: 140.62%;
     /* identical to box height, or 22px */
     letter-spacing: 0.03em;
+    @media (max-width: 600px) {
+      font-size: 16px;
+    }
   `,
   smallText: css`
     font-family: NeueMontrealRegular;

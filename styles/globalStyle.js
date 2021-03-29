@@ -244,6 +244,7 @@ export default createGlobalStyle`
     .link-button:hover,
     .link-button:focus {
       text-decoration: none;
+      outline : none;
     } 
     /* CUSTOM CSS */
     * {

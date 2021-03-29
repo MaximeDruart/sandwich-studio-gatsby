@@ -89,7 +89,7 @@ const StyledHeader = styled(motion.div)`
         ul.mobile-links {
           li {
             margin-bottom: 2vh;
-            a {
+            .link-button {
               ${({ theme }) => theme.textStyles.h3};
             }
           }
@@ -108,6 +108,9 @@ const StyledHeader = styled(motion.div)`
             width: 25%;
             display: flex;
             justify-content: space-between;
+            .email {
+              margin-right: 4px;
+            }
           }
         }
       }

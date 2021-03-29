@@ -70,15 +70,16 @@ const StyledServices = styled.div`
           height: 330px;
           .merch-img {
             &.merch-img-1 {
-              top: 40%;
-              right: 0;
+              top: 47%;
+              right: 13%;
             }
             &.merch-img-2 {
-              top: -40%;
-              left: 20%;
+              top: 11%;
+              left: 36%;
             }
             &.merch-img-3 {
-              left: -35%;
+              left: 5%;
+              bottom: 13%;
             }
           }
         }
@@ -137,10 +138,10 @@ const StyledServices = styled.div`
 `
 
 const variants = {
-  drawn: { strokeDashoffset: 0, transition: { duration: 1.2 } },
+  drawn: { strokeDashoffset: 0, transition: { duration: 0.6 } },
 }
 const fillVariants = {
-  drawn: { opacity: 1, transition: { delay: 1.4 } },
+  drawn: { opacity: 1, transition: { delay: 0.8 } },
 }
 
 const ctaVariants = {
@@ -305,34 +306,21 @@ const Services = ({ scroll }) => {
             data-scroll
             data-scroll-speed="1"
             className="merch-img merch-img-1"
-            initial={{ scale: isMobile ? 0.4 : 1 }}
-            src="/images/merch-1.png"
+            src={isMobile ? "/images/merch-1-sm.png" : "/images/merch-1.png"}
             alt=""
           />
           <motion.img
             data-scroll
             data-scroll-speed="2"
             className="merch-img merch-img-2"
-            initial={{ scale: isMobile ? 0.8 : 1 }}
-            src="/images/merch-2.png"
+            src={isMobile ? "/images/merch-2-sm.png" : "/images/merch-2.png"}
             alt=""
           />
           <motion.img
             data-scroll
             data-scroll-speed="1.4"
             className="merch-img merch-img-3"
-            initial={{ scale: isMobile ? 0.4 : 1 }}
-            // animate={{
-            //   y: 20,
-            //   transition: {
-            //     ease: "easeInOut",
-            //     repeat: 100,
-            //     repeatType: "reverse",
-            //     duration: 2.8,
-            //     delay: 1,
-            //   },
-            // }}
-            src="/images/merch-3.png"
+            src={isMobile ? "/images/merch-3-sm.png" : "/images/merch-3.png"}
             alt=""
           />
         </div>

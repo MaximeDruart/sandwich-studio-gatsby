@@ -63,6 +63,7 @@ const StyledAbout = styled.div`
       margin-bottom: 55vh;
 
       .photos {
+        background: center / cover url("/images/whoweare-3.jpg");
         .photo-bm {
           position: absolute;
           width: max(30vw, 400px);

@@ -96,10 +96,10 @@ const Content = () => {
     mobileTexture,
     alphaMobileTexture,
   ] = useTexture([
-    "/3d/maps/doy-branded-diffuse.png",
+    "/3d/maps/doy-branded-diffuse.jpg",
     "/3d/maps/doy-normal.jpg",
     "/images/pc-mockup.jpg",
-    "/images/mobile-mockup.png",
+    "/images/mobile-mockup.jpg",
     "/images/mobile-mockup-alpha.png",
   ])
 
@@ -219,15 +219,15 @@ const Content = () => {
 
       /////////// TL WEBSITE
 
-      // tlWebsite.set(screens.current, { visible: true })
       tlWebsite.addLabel("sync")
       tlWebsite.to(
         brandedCan.current,
         {
-          three: { positionX: 2.4, rotationZ: -90 },
+          three: { positionX: isMobile ? 2.7 : 2.4, rotationZ: -90 },
           duration: 1,
-          onStart: () => {
-            gsap.set(screens.current, { visible: true })
+          onUpdate: () => {
+            if (!screens.current.visible)
+              gsap.set(screens.current, { visible: true })
           },
         },
         "sync"

@@ -19,6 +19,8 @@ const StyledContactSpinner = styled(motion.button)`
 
   @media (max-width: 600px) {
     transform: scale(0.7);
+    right: 0;
+    bottom: 0;
   }
 `
 
