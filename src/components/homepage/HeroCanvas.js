@@ -177,8 +177,7 @@ const Blob = () => {
       <MeshWobbleMaterial
         roughness={0}
         metalness={0.3}
-        // color="#ff8c00"
-        color="#FFB23E"
+        color="#ff8c00"
         attach="material"
         factor={0}
         speed={10}
