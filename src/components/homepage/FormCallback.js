@@ -288,7 +288,7 @@ const FormCallback = () => {
               )}
             </AnimatePresence>
           </motion.div>
-          <span>Send form</span>
+          <span>{t("form-submit-text")}</span>
         </motion.button>
       </form>
     </StyledFormCallback>

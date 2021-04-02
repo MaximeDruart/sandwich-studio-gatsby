@@ -134,8 +134,8 @@ const SelectedWorks = () => {
         >
           {ready &&
             t("selected-works-categories", { returnObjects: true }).map(
-              (category, index) => (
-                <div key={category + index} className="work">
+              (work, index) => (
+                <div key={work.title + index} className="work">
                   <motion.div
                     variants={{ hover: { scale: 0.985 } }}
                     whileHover="hover"
@@ -159,7 +159,7 @@ const SelectedWorks = () => {
                       <Arrow />
                     </motion.div>
                   </motion.div>
-                  <motion.div className="title">{category}</motion.div>
+                  <motion.div className="title">{work.title}</motion.div>
                 </div>
               )
             )}

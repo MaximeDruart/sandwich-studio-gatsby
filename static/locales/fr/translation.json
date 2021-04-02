@@ -36,11 +36,11 @@
   "services-5-cta": "Visualiser la brochure",
   "selected-works-headline": "Nos projets",
   "selected-works-categories": [
-    "Canabur & burrings  branding",
-    "Canabur & burrings  branding",
-    "Canabur & burrings  branding",
-    "Canabur & burrings  branding",
-    "Canabur & burrings  branding"
+    { "title": "Canabur & burrings  branding", "desc": "" },
+    { "title": "Canabur & burrings  branding", "desc": "" },
+    { "title": "Canabur & burrings  branding", "desc": "" },
+    { "title": "Canabur & burrings  branding", "desc": "" },
+    { "title": "Canabur & burrings  branding", "desc": "" }
   ],
   "selected-works-hover-text": "Découvrir",
   "forms-headline": "Contact",
