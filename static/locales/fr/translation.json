@@ -17,9 +17,9 @@
     "sandwich"
   ],
   "about-headline": "A propos",
-  "about-1-title": "Notre mission",
-  "about-1-body": "Sandwich Studio est une agence à échelle humaine composée de 5 créatifs avec chacun un domaine d’expertise : web, design, marketing, packaging, gestion de projet.Sandwich Studio vous accompagne dans vos communications multi-support et vous aide à tirer profit des derniers outils numériques.",
-  "about-2-title": "Qui sommes-nous ?",
+  "about-1-title": "Qui sommes-nous ?",
+  "about-1-body": "Sandwich Studio est une agence à échelle humaine composée de 5 créatifs avec chacun un domaine d’expertise : web, design, marketing, packaging, gestion de projet. Sandwich Studio vous accompagne dans vos communications multi-support et vous aide à tirer profit des derniers outils numériques.",
+  "about-2-title": "Notre mission",
   "about-2-body": "Notre expertise dans le digital vous accompagnera pour renforcer votre présence sur le web et transmettre votre message efficacement. Notre atelier de production et notre réseau de prestataires seront votre allié pour développer packaging et objets publicitaires adaptés à vos besoins.",
   "services-headline": "Services",
   "services-1-title": "Communication visuelle",
@@ -36,11 +36,11 @@
   "services-5-cta": "Visualiser la brochure",
   "selected-works-headline": "Nos projets",
   "selected-works-categories": [
-    { "title": "Canabur & burrings  branding", "desc": "" },
-    { "title": "Canabur & burrings  branding", "desc": "" },
-    { "title": "Canabur & burrings  branding", "desc": "" },
-    { "title": "Canabur & burrings  branding", "desc": "" },
-    { "title": "Canabur & burrings  branding", "desc": "" }
+    { "title": "Kuch CBD", "desc": "Illustration & Packaging" },
+    { "title": "CBD420", "desc": "Illustration & Packaging" },
+    { "title": "MonGrinder", "desc": "Web" },
+    { "title": "Weed House", "desc": "Identité visuelle" },
+    { "title": "Galactic Grinder", "desc": "Web" }
   ],
   "selected-works-hover-text": "Découvrir",
   "forms-headline": "Contact",
