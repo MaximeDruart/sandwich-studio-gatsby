@@ -11,44 +11,41 @@ import ContactSpinner from "../components/homepage/ContactSpinner"
 import SelectedWorks from "../components/homepage/SelectedWorks"
 import useStore from "../../store"
 import CanCanvas from "../components/homepage/CanCanvas"
-import Forms from "../components/homepage/Forms"
 import { useMediaQuery } from "react-responsive"
 import SelectedPopup from "../components/homepage/SelectedPopup"
+import LeadMagnet from "../components/homepage/LeadMagnet"
 
-export default function Home() {
+export default function Home({ location }) {
   const mainContainerRef = useRef(null)
   const [scroll, setScroll] = useState(null)
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" })
 
   useEffect(() => {
-    // sadly this is kind of the best solution to stop the user from scrolling on load time AND hide scrollbar during the time
-    // where locomotivescroll isnt dynamically loaded yet
-    if (canvasLoadStatus.progress === 100) {
-      document.body.style.position = "static"
-      if (scroll) scroll.update()
-    }
-  }, [scroll, canvasLoadStatus])
-
-  useEffect(() => {
+    document.body.style.position = "fixed"
     if (mainContainerRef.current) {
-      import("locomotive-scroll").then(LocomotiveScroll => {
-        const Loco = LocomotiveScroll.default
-        const s = new Loco({
-          smooth: true,
-          el: mainContainerRef.current,
-          tablet: { smooth: true },
-          smartphone: { smooth: true },
-          reloadOnContextChange: true,
-          lerp: isTablet ? 0.2 : 0.1,
-        })
+      if (canvasLoadStatus.progress === 100) {
+        import("locomotive-scroll").then(LocomotiveScroll => {
+          const Loco = LocomotiveScroll.default
+          // waiting for the animation to be done
+          setTimeout(() => {
+            const s = new Loco({
+              smooth: true,
+              el: mainContainerRef.current,
+              tablet: { smooth: true },
+              smartphone: { smooth: true },
+              reloadOnContextChange: true,
+              lerp: isTablet ? 0.2 : 0.1,
+            })
 
-        setScroll(s)
-      })
+            setScroll(s)
+          }, 1600)
+        })
+      }
     }
     return () => scroll && scroll.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mainContainerRef])
+  }, [canvasLoadStatus, mainContainerRef])
 
   return (
     <>
@@ -63,7 +60,7 @@ export default function Home() {
         />
       </Helmet>
 
-      <Header scroll={scroll} />
+      <Header location={location} isHomepage={true} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
         <ContactSpinner scroll={scroll} />
@@ -73,7 +70,7 @@ export default function Home() {
         <Services scroll={scroll} />
         <SelectedWorks />
         <SelectedPopup />
-        <Forms scroll={scroll} />
+        <LeadMagnet />
         <Footer />
       </main>
     </>

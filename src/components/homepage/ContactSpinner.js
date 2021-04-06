@@ -2,6 +2,7 @@ import React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
 import useStore from "../../../store"
+import { navigate } from "gatsby-link"
 
 const StyledContactSpinner = styled(motion.button)`
   display: block;
@@ -30,7 +31,7 @@ const ContactSpinner = ({ scroll }) => {
     <StyledContactSpinner
       className="link-button"
       onClick={() => {
-        if (scroll) scroll.scrollTo("#contact")
+        navigate("/contact")
       }}
       initial={{ opacity: 0 }}
       animate={{

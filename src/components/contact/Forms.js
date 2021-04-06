@@ -6,8 +6,8 @@ import FormContact from "./FormContact"
 
 const StyledForms = styled.div`
   width: 100vw;
-  margin-top: 30vh;
   /* overflow: hidden; */
+  margin-top: 10vh;
 
   padding: 5vh max(10vw, 30px) 0 max(10vw, 30px);
 

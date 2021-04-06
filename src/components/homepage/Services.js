@@ -152,12 +152,17 @@ const ctaVariants = {
 
 const CallToActionButton = ({ text }) => {
   return (
-    <motion.button whileHover="hover" className="cta">
+    <motion.a
+      href="./brochure.pdf"
+      target="blank"
+      whileHover="hover"
+      className="cta"
+    >
       <span className="text-content">{text}</span>
       <motion.div variants={ctaVariants}>
         <Arrow className="arrow" />
       </motion.div>
-    </motion.button>
+    </motion.a>
   )
 }
 

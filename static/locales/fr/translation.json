@@ -43,6 +43,10 @@
     { "title": "Galactic Grinder", "desc": "Web" }
   ],
   "selected-works-hover-text": "Découvrir",
+  "magnet-headline": "Votre Cadeau",
+  "magnet-top-line": "Votre Cadeau",
+  "magnet-bottom-line": "Votre Cadeau",
+  "magnet-submit-text": "Soumettre",
   "forms-headline": "Contact",
   "form-contact-headline": "Assez parlé de nous,",
   "form-contact-bottom-line": "Discutons de vos projets",

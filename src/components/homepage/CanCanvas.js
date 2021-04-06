@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Suspense } from "react"
+import React, { useRef, useEffect, Suspense, useMemo } from "react"
 import styled from "styled-components"
 import { Canvas, useThree, useFrame, extend } from "react-three-fiber"
 import * as THREE from "three"
@@ -114,6 +114,32 @@ const Content = () => {
   const pcScreen = useRef()
 
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+
+  const baseMat = useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        roughness: 0.3,
+        metalness: 0.6,
+        transparent: true,
+        color: "#1f1f1f",
+        normalMap: doyNormal,
+        normalScale: new THREE.Vector2(1, 1),
+      }),
+    [doyNormal]
+  )
+  const brandedMat = useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        roughness: 0.45,
+        metalness: 0.6,
+        transparent: true,
+        opacity: 0,
+        map: doyBrandedDiffuse,
+        normalMap: doyNormal,
+        normalScale: new THREE.Vector2(1, 1),
+      }),
+    [doyBrandedDiffuse, doyNormal]
+  )
 
   useEffect(() => {
     if (can.current) {
@@ -263,6 +289,12 @@ const Content = () => {
       tlFinal.to(mobileScreen.current.material, { opacity: 0 }, "sync3")
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    return () => {
+      tlTopToSide.kill()
+      tlWebsite.kill()
+      tlFinal.kill()
+    }
   }, [])
 
   return (
@@ -303,34 +335,16 @@ const Content = () => {
           {...doy.children[0]}
           ref={can}
           scale={[2.4, 2.4, 2.4]}
-          material={
-            new THREE.MeshStandardMaterial({
-              roughness: 0.3,
-              metalness: 0.6,
-              transparent: true,
-              color: "#1f1f1f",
-              normalMap: doyNormal,
-              normalScale: new THREE.Vector2(1, 1),
-            })
-          }
+          // onBeforeRender={gl => gl.clearDepth()}
+          material={baseMat}
         />
         <mesh
           {...doy.children[0]}
           ref={brandedCan}
           scale={[2.4, 2.4, 2.4]}
-          material={
-            new THREE.MeshStandardMaterial({
-              roughness: 0.45,
-              metalness: 0.6,
-              transparent: true,
-              opacity: 0,
-              map: doyBrandedDiffuse,
-              normalMap: doyNormal,
-              normalScale: new THREE.Vector2(1, 1),
-            })
-          }
+          material={brandedMat}
           // https://stackoverflow.com/questions/45761324/animate-between-two-materials-on-a-mesh-three-js
-          onBeforeRender={gl => gl.clearDepth()}
+          // onBeforeRender={gl => gl.clearDepth()}
           material-transparent
           material-opacity={0}
         />

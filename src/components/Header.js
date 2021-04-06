@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import useStore from "../../store"
 import { useMediaQuery } from "react-responsive"
+import { navigate } from "gatsby"
 
 const StyledHeader = styled(motion.div)`
   * {
@@ -152,7 +153,7 @@ const hamburgerFilterVariants = {
   open: { opacity: 0.6 },
 }
 
-const Header = ({ scroll }) => {
+const Header = ({ location, scroll, isHomepage }) => {
   const [hamIsOpen, setHamIsOpen] = useState(false)
   const all = useTranslation()
   // const { t, i18n } = all
@@ -164,6 +165,15 @@ const Header = ({ scroll }) => {
 
   const internalLinkHandler = useCallback(
     category => {
+      console.log(location)
+      if (category === "contact") {
+        navigate("/contact")
+        return
+      }
+      if (location.pathname !== "/") {
+        navigate("/")
+        return
+      }
       if (scroll)
         scroll.scrollTo(`#${category}`, {
           callback: () => isMobile && setHamIsOpen(false),
@@ -177,13 +187,16 @@ const Header = ({ scroll }) => {
 
   return (
     <StyledHeader
-      initial={{ opacity: 0 }}
+      initial={{ opacity: isHomepage ? 0 : 1 }}
       animate={{
-        opacity: canvasLoadStatus.progress < 100 ? 0 : 1,
+        opacity: isHomepage ? (canvasLoadStatus.progress < 100 ? 0 : 1) : 1,
         transition: { delay: 1.5 },
       }}
     >
-      <button className="link-button" onClick={scrollToTop}>
+      <button
+        className="link-button"
+        onClick={() => (isHomepage ? scrollToTop() : navigate("/"))}
+      >
         <div className="left">
           <Logo className="logo" />
           <div className="logo-text">Sandwich.Studio</div>
