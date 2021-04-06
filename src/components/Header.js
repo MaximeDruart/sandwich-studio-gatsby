@@ -165,7 +165,6 @@ const Header = ({ location, scroll, isHomepage }) => {
 
   const internalLinkHandler = useCallback(
     category => {
-      console.log(location)
       if (category === "contact") {
         navigate("/contact")
         return
@@ -179,7 +178,7 @@ const Header = ({ location, scroll, isHomepage }) => {
           callback: () => isMobile && setHamIsOpen(false),
         })
     },
-    [isMobile, scroll]
+    [location.pathname, isMobile, scroll]
   )
   const scrollToTop = useCallback(() => {
     if (scroll) scroll.scrollTo(`top`)

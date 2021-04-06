@@ -71,6 +71,8 @@ const StyledPopup = styled(motion.div)`
       justify-content: flex-start;
       width: fit-content;
       .image {
+        display: flex;
+        align-items: center;
         user-select: none;
         margin: 0 5vw 0 5vw;
         height: 80vh;
@@ -80,6 +82,15 @@ const StyledPopup = styled(motion.div)`
           width: 100%;
           height: 100%;
           object-fit: cover;
+        }
+      }
+    }
+    @media (max-width: 600px) {
+      .images {
+        .image {
+          img {
+            height: unset;
+          }
         }
       }
     }

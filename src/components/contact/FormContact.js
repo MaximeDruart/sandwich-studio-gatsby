@@ -175,8 +175,6 @@ const FormContact = ({ scroll }) => {
     e.preventDefault()
     const { errors, isValid } = validateContact(logs)
 
-    console.log(errors, isValid)
-
     if (isValid) {
       setLoading(true)
       const form = e.target
@@ -246,6 +244,7 @@ const FormContact = ({ scroll }) => {
             />
           </div>
         )),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [logs, errors, handleChange]
   )
 

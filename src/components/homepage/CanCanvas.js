@@ -288,13 +288,13 @@ const Content = () => {
       tlFinal.to(mobileScreen.current, { three: { positionY: 1.3 } }, "sync3")
       tlFinal.to(mobileScreen.current.material, { opacity: 0 }, "sync3")
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
 
     return () => {
       tlTopToSide.kill()
       tlWebsite.kill()
       tlFinal.kill()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
