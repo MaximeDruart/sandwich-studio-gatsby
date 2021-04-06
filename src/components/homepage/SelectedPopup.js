@@ -5,6 +5,7 @@ import useStore from "../../../store"
 import { ReactComponent as Close } from "../../../assets/icons/close.svg"
 import { ReactComponent as SmallArrow } from "../../../assets/icons/small-arrow.svg"
 import gsap from "gsap/gsap-core"
+import { useMemo } from "react"
 
 const StyledPopup = styled(motion.div)`
   width: 100vw;
@@ -104,14 +105,7 @@ const imgVariants = {
   },
 }
 
-const imageSources = [
-  "/images/sw-1.jpg",
-  "/images/sw-1.jpg",
-  "/images/sw-1.jpg",
-  "/images/sw-1.jpg",
-]
-
-const clamper = gsap.utils.clamp(0, imageSources.length - 1)
+const noOfImagesByWork = [2, 4, 0, 1, 4]
 
 // taken from https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?file=/src/Example.tsx
 const swipeConfidenceThreshold = 12000
@@ -124,6 +118,21 @@ const SelectedPopup = () => {
   const selectedWork = useStore(state => state.selectedWork)
 
   const [focusedImage, setFocusedImage] = useState(0)
+
+  const imageSources = useMemo(
+    () =>
+      new Array(noOfImagesByWork[selectedWork.workNumber])
+        .fill()
+        .map(
+          (_, index) =>
+            `/images/sw-${selectedWork.workNumber + 1}_${index + 1}.jpg`
+        ),
+    [selectedWork]
+  )
+
+  const clamper = useMemo(() => gsap.utils.clamp(0, imageSources.length - 1), [
+    imageSources,
+  ])
 
   useEffect(() => {
     const escapeHandler = ({ key }) =>

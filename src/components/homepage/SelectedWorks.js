@@ -66,8 +66,11 @@ const StyledSelectedWorks = styled.div`
           }
         }
         .title {
-          ${({ theme }) => theme.textStyles.h6};
+          ${({ theme }) => theme.textStyles.h4};
           cursor: pointer;
+        }
+        .desc {
+          ${({ theme }) => theme.textStyles.text};
         }
       }
     }
@@ -160,6 +163,7 @@ const SelectedWorks = () => {
                     </motion.div>
                   </motion.div>
                   <motion.div className="title">{work.title}</motion.div>
+                  <motion.div className="desc">{work.desc}</motion.div>
                 </div>
               )
             )}
