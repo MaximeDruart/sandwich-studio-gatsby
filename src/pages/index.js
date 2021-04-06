@@ -15,6 +15,8 @@ import { useMediaQuery } from "react-responsive"
 import SelectedPopup from "../components/homepage/SelectedPopup"
 import LeadMagnet from "../components/homepage/LeadMagnet"
 
+import "../global.css"
+
 export default function Home({ location }) {
   const mainContainerRef = useRef(null)
   const [scroll, setScroll] = useState(null)
@@ -22,7 +24,6 @@ export default function Home({ location }) {
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" })
 
   useEffect(() => {
-    document.body.style.position = "fixed"
     if (mainContainerRef.current) {
       if (canvasLoadStatus.progress === 100) {
         import("locomotive-scroll").then(LocomotiveScroll => {

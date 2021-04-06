@@ -260,8 +260,8 @@ export default createGlobalStyle`
       overflow-x : hidden;
     }
     body {
-      position : fixed;
-      overflow: hidden;
+      /* position : fixed;
+      overflow: hidden; */
       padding: 0;
       margin: 0;
       background : ${({ theme }) => theme.colors.background};

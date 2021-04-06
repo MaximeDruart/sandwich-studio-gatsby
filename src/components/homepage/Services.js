@@ -169,6 +169,7 @@ const CallToActionButton = ({ text }) => {
 const Services = ({ scroll }) => {
   const { t } = useTranslation()
   const [isOnScreen, setIsOnScreen] = useState(false)
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   useEffect(() => {
     if (scroll) {
@@ -182,8 +183,6 @@ const Services = ({ scroll }) => {
       if (scroll) scroll.destroy()
     }
   }, [scroll])
-
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledServices id="services" data-scroll-section>
