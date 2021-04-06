@@ -310,21 +310,21 @@ const Services = ({ scroll }) => {
             data-scroll
             data-scroll-speed="1"
             className="merch-img merch-img-1"
-            src={isMobile ? "/images/merch-1-sm.png" : "/images/merch-1.png"}
+            src={`/images/merch-1${isMobile ? "-sm" : ""}.png`}
             alt=""
           />
           <motion.img
             data-scroll
             data-scroll-speed="2"
             className="merch-img merch-img-2"
-            src={isMobile ? "/images/merch-2-sm.png" : "/images/merch-2.png"}
+            src={`/images/merch-2${isMobile ? "-sm" : ""}.png`}
             alt=""
           />
           <motion.img
             data-scroll
             data-scroll-speed="1.4"
             className="merch-img merch-img-3"
-            src={isMobile ? "/images/merch-3-sm.png" : "/images/merch-3.png"}
+            src={`/images/merch-3${isMobile ? "-sm" : ""}.png`}
             alt=""
           />
         </div>
