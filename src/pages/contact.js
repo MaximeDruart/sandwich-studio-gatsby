@@ -33,8 +33,10 @@ export default function Home({ location }) {
           tablet: { smooth: true },
           smartphone: { smooth: true },
           reloadOnContextChange: true,
-          lerp: isTablet ? 0.2 : 0.1,
+          lerp: isTablet ? 0.1 : 0.1,
         })
+
+        s.update()
 
         setScroll(s)
       })

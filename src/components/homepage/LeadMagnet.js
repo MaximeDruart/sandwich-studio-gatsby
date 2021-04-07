@@ -236,7 +236,7 @@ const FormCallback = () => {
   )
 
   return (
-    <StyledLeadMagnet id="contact" data-scroll-section>
+    <StyledLeadMagnet id="magnet" data-scroll-section>
       <div
         data-scroll
         data-scroll-direction="horizontal"
@@ -252,7 +252,7 @@ const FormCallback = () => {
             <div className="form-bottom-line">{t("magnet-bottom-line")}</div>
           </div>
           <form
-            name="callback"
+            name="magnet"
             method="post"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
@@ -260,7 +260,7 @@ const FormCallback = () => {
           >
             <div className="fields">
               <span>{errors.server}</span>
-              <input type="hidden" name="form-name" value="callback" />
+              <input type="hidden" name="form-name" value="magnet" />
               {formFields}
             </div>
             <motion.button

@@ -36,8 +36,10 @@ export default function Home({ location }) {
               tablet: { smooth: true },
               smartphone: { smooth: true },
               reloadOnContextChange: true,
-              lerp: isTablet ? 0.2 : 0.1,
+              lerp: isTablet ? 0.1 : 0.1,
             })
+
+            s.update()
 
             setScroll(s)
           }, 1600)
@@ -47,6 +49,14 @@ export default function Home({ location }) {
     return () => scroll && scroll.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canvasLoadStatus, mainContainerRef])
+
+  useEffect(() => {
+    if (scroll) {
+      setTimeout(() => {
+        scroll.update()
+      }, 400)
+    }
+  }, [scroll])
 
   return (
     <>
@@ -59,6 +69,15 @@ export default function Home({ location }) {
           as="font"
           crossOrigin=""
         />
+        {/* <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-PQLE6Z6ZHY%22%3E"
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || []; function gtag()
+          {dataLayer.push(arguments)}
+          gtag('js', new Date()); gtag('config', 'G-PQLE6Z6ZHY');
+        </script> */}
       </Helmet>
 
       <Header location={location} isHomepage={true} scroll={scroll} />

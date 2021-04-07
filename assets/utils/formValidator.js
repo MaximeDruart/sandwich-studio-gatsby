@@ -73,5 +73,30 @@ const validateCallback = fields => {
     isValid: isEmpty(errors),
   }
 }
+const validateMagnet = fields => {
+  const data = { ...fields }
+  for (const key in data) {
+    data[key] = data[key].value
+  }
+  let errors = {}
+  // Convert empty fields to an empty string so we can use validator functions
+  data.name = !isEmpty(data.name) ? data.name : ""
+  data.email = !isEmpty(data.email) ? data.email : ""
 
-export { validateContact, validateCallback }
+  if (validator.isEmpty(data.name)) {
+    errors.name = "Nom requis"
+  }
+
+  if (validator.isEmpty(data.email)) {
+    errors.email = "Mail requis"
+  } else if (!validator.isEmail(data.email)) {
+    errors.email = "Mail invalide"
+  }
+
+  return {
+    errors,
+    isValid: isEmpty(errors),
+  }
+}
+
+export { validateContact, validateCallback, validateMagnet }
