@@ -69,15 +69,6 @@ export default function Home({ location }) {
           as="font"
           crossOrigin=""
         />
-        {/* <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-PQLE6Z6ZHY%22%3E"
-        ></script>
-        <script>
-          window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', 'G-PQLE6Z6ZHY');
-        </script> */}
       </Helmet>
 
       <Header location={location} isHomepage={true} scroll={scroll} />

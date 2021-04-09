@@ -14,6 +14,19 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-svgr",
     "gatsby-plugin-react-helmet",
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `SandwichStudio`,
+    //     short_name: `SandwichStudio`,
+    //     start_url: `/`,
+    //     background_color: `#0D0D0D`,
+    //     theme_color: `#0D0D0D`,
+    //     display: `standalone`,
+    //     icon: "/static/favicon.png",
+    //   },
+    // },
+    "gatsby-plugin-offline",
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -41,8 +54,7 @@ module.exports = {
         localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
         languages: [`fr`],
         defaultLanguage: `fr`,
-        // if you are using Helmet, you must include siteUrl, and make sure you add http:https
-        // siteUrl: `https://example.com/`,
+        siteUrl: `http://sandwichstudio.fr/`,
         // you can pass any i18next options
         // pass following options to allow message content as a key
         i18nextOptions: {
