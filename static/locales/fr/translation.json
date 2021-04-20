@@ -3,6 +3,7 @@
     { "category": "about", "translation": "A propos" },
     { "category": "services", "translation": "Services" },
     { "category": "projects", "translation": "Projects" },
+    { "category": "web", "translation": "Web" },
     { "category": "contact", "translation": "Contact" }
   ],
   "topLine": "Votre agence créative",
@@ -21,6 +22,84 @@
   "about-1-body": "Sandwich Studio est une agence à échelle humaine composée de 5 créatifs avec chacun un domaine d’expertise : web, design, marketing, packaging, gestion de projet. Sandwich Studio vous accompagne dans vos communications multi-support et vous aide à tirer profit des derniers outils numériques.",
   "about-2-title": "Notre mission",
   "about-2-body": "Notre expertise dans le digital vous accompagnera pour renforcer votre présence sur le web et transmettre votre message efficacement. Notre atelier de production et notre réseau de prestataires seront votre allié pour développer packaging et objets publicitaires adaptés à vos besoins.",
+  "web-headline": "Conception web",
+  "web-headline-2": "Nos offres",
+  "web-1-title": "Notre engagement",
+  "web-1-body": "Our speakers are experienced marketers willing to share and let you in on their little secrets that lead to big successes. We prepared an amazing line-up of digital marketers & brand experts from various industries.",
+  "web-cards": [
+    {
+      "title":"Site vitrine",
+      "description":"Idéal pour présenter un point de vente physique ou votre activité.",
+      "features":[
+        "Panel d'administration",
+        "Thème premium customisé",
+        "Optimisé pour mobiles",
+        "Jusqu'à 10 pages",
+        "3 révisions",
+        "Hébergement et nom de domaine pendant 1 an"
+      ],
+      "priceintro":"à partir de",
+      "price":"1400€",
+      "leadtime":"Livré en 2 semaines",
+      "ctatext":"Obtenir un devis"
+    },
+    {
+      "title":"E-commerce starter",
+      "description":"Votre site e-commerce clé en main, pour vendre rapidement et à moindre frais.",
+      "features":[
+        "Panel d'administration",
+        "Thème premium customisé",
+        "Optimisé pour mobiles",
+        "5 catégories de produits et 20 produits",
+        "Page d'accueil / Listing produits / Produit / CGU et CGV / Politique de confidentialité / Contact",
+        "Intégrations du module de paiement : Paypal, Stripe, Cryptomonnaies",
+        "Bandeau RGPD",
+        "Formulaire de contact intégré",
+        "3 révisions",
+        "Hébergement et nom de domaine pendant 1 an"
+      ],
+      "priceintro":"à partir de",
+      "price":"2400€",
+      "leadtime":"Livré en 2 semaines",
+      "ctatext":"Obtenir un devis"
+    },
+    {
+      "title":"E-commerce premium",
+      "description":"Un site web e-commerce qui ne ressemble à aucun autre",
+      "features":[
+        "Panel d'administration",
+        "Thème sur-mesure",
+        "Optimisé pour mobiles",
+        "5 catégories de produits et 20 produits",
+        "Page d'accueil / Listing produits / Produit / CGU et CGV / Politique de confidentialité / Contact",
+        "Intégrations du module de paiement : Paypal, Stripe, Cryptomonnaies",
+        "Bandeau RGPD",
+        "Formulaire de contact intégré",
+        "3 révisions",
+        "Hébergement et nom de domaine pendant 1 an",
+        "Formation vidéo e-commerce"
+      ],
+      "priceintro":"à partir de",
+      "price":"3400€",
+      "leadtime":"Livré en 4 semaines",
+      "ctatext":"Obtenir un devis"
+    },
+    {
+      "title":"Expérience intéractive",
+      "description":"Un site web e-commerce qui ne ressemble à aucun autre",
+      "features":[
+        "Panel d'administration",
+        "Design sur-mesure",
+        "Expérience 3D / Intéractive",
+        "Optimisé pour mobiles",
+        "Hébergement et nom de domaine pendant 1 an"
+      ],
+      "priceintro":"à partir de",
+      "price":"5500€",
+      "leadtime":"Livré en 6 semaines",
+      "ctatext":"Obtenir un devis"
+    }
+  ],
   "services-headline": "Services",
   "services-1-title": "Communication visuelle",
   "services-1-body": "Parce que c’est la première impression qui compte et qu’elle est le reflet des valeurs de votre marque, notre responsabilité est de comprendre qui vous êtes et de développer une identité visuelle qui vous ressemble.",
@@ -36,11 +115,11 @@
   "services-5-cta": "Visualiser la brochure",
   "selected-works-headline": "Nos projets",
   "selected-works-categories": [
-    { "title": "Kuch CBD", "desc": "Illustration & Packaging" },
-    { "title": "CBD420", "desc": "Illustration & Packaging" },
-    { "title": "MonGrinder", "desc": "Web" },
-    { "title": "Weed House", "desc": "Identité visuelle" },
-    { "title": "Galactic Grinder", "desc": "Web" }
+    { "id":1, "title": "Kuch CBD", "desc": "Illustration & Packaging", "tag":"allpackaging"},
+    { "id":2, "title": "CBD420", "desc": "Illustration & Packaging", "tag":"allpackaging"},
+    { "id":3, "title": "MonGrinder", "desc": "Web", "tag":"allweb"},
+    { "id":4, "title": "Weed House", "desc": "Identité visuelle", "tag":"alldesign"},
+    { "id":5, "title": "Galactic Grinder", "desc": "Web", "tag":"allweb"}
   ],
   "selected-works-hover-text": "Découvrir",
   "magnet-headline": "Votre Cadeau",

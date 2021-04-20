@@ -132,11 +132,11 @@ const SelectedPopup = () => {
 
   const imageSources = useMemo(
     () =>
-      new Array(noOfImagesByWork[selectedWork.workNumber])
+      new Array(noOfImagesByWork[selectedWork.workNumber -1])
         .fill()
         .map(
           (_, index) =>
-            `/images/sw-${selectedWork.workNumber + 1}_${index + 1}.jpg`
+            `/images/sw-${selectedWork.workNumber}_${index + 1}.jpg`
         ),
     [selectedWork]
   )

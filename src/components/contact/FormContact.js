@@ -114,7 +114,7 @@ const loaderVariants = {
   },
 }
 
-const FormContact = ({ scroll }) => {
+const FormContact = ({ scroll, location }) => {
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -151,7 +151,7 @@ const FormContact = ({ scroll }) => {
       type: "date",
     },
     service: {
-      value: "",
+      value: location?.pathname==="/web" ? "choice-2" : "",
       placeholder: "Select a service",
       displayName: t("form-contact-display-names", { returnObjects: true })[5],
       type: "dropdown",

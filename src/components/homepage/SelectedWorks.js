@@ -96,7 +96,8 @@ const hoverTextVariants = {
   hover: { opacity: 1 },
 }
 
-const SelectedWorks = () => {
+const SelectedWorks = ({filterby}) => {
+  console.log(filterby)
   const worksRef = useRef(null)
   const { t, ready } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
@@ -136,8 +137,9 @@ const SelectedWorks = () => {
           className="works"
         >
           {ready &&
-            t("selected-works-categories", { returnObjects: true }).map(
-              (work, index) => (
+            t("selected-works-categories", { returnObjects: true }).filter(item => item.tag.includes(filterby)).map(
+              (work, index) =>
+              (
                 <div key={work.title + index} className="work">
                   <motion.div
                     variants={{ hover: { scale: 0.985 } }}
@@ -145,13 +147,13 @@ const SelectedWorks = () => {
                     className="image-container"
                     onClick={() =>
                       !isDragging &&
-                      setSelectedWork({ isOpen: true, workNumber: index })
+                      setSelectedWork({ isOpen: true, workNumber: work.id })
                     }
                   >
                     <motion.img
                       variants={hoverVariants}
                       draggable="false"
-                      src={`/images/sw-${index + 1}.jpg`}
+                      src={`/images/sw-${work.id}.jpg`}
                       alt=""
                     />
                     <motion.div

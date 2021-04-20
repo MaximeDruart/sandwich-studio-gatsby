@@ -79,7 +79,7 @@ export default function Home({ location }) {
         <Hero />
         <About />
         <Services scroll={scroll} />
-        <SelectedWorks />
+        <SelectedWorks filterby="all" />
         <SelectedPopup />
         <LeadMagnet />
         <Footer />
