@@ -103,7 +103,7 @@ theme.textStyles = {
     }
   `,
   button: css`
-    background: #ebdcd4;
+    background: white;
     font-family: NeueMontrealRegular;
     font-style: normal;
     font-weight: normal;

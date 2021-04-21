@@ -18,6 +18,7 @@ const StyledAbout = styled.div`
     white-space: nowrap;
     width: 100%;
   }
+
   .container {
       margin-top:50px;
       display:grid;
@@ -26,6 +27,23 @@ const StyledAbout = styled.div`
   }
   .container .card:nth-child(4){
     grid-column: 1 / 3;
+  }
+
+  @media (max-width: 1200px){
+    .container{
+      grid-template-columns: 1fr 1fr;
+    }
+    .container .card:nth-child(4){
+      grid-column: unset;
+    }
+    .blob{
+      display:none;
+    }
+  }
+  @media (max-width: 700px){
+    .container{
+      grid-template-columns: 1fr;
+    }
   }
 
   .blob {
