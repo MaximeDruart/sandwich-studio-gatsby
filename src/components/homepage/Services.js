@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive"
 
 const StyledServices = styled.div`
   width: 100vw;
+  margin-bottom: 30vh;
   /* overflow: hidden; */
 
   /* padding: 5vh max(5vw, 40px) 0 max(5vw, 40px); */

@@ -8,7 +8,6 @@ import useStore from "../../../store"
 
 const StyledSelectedWorks = styled.div`
   width: 100vw;
-  margin-top: 30vh;
   /* overflow: hidden; */
 
   padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);

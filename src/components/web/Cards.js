@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
+import Card from "../misc/Card"
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -114,25 +115,21 @@ const Cards = () => {
             {
             t("web-cards", { returnObjects: true }).map(
                 (card, index) => (
-                <div key={card.title + index} className="card">
-                    <div>
-                        <div className="card-header">
-                            <h3>{card.title}</h3>
-                            <p>{card.description}</p>
-                        </div>
-                        <ul className="card-features">
-                            {card.features.map((feature,index)=>
-                            <li>{feature}</li>
-                            )}
-                        </ul>
-                    </div>
-                    <div className="card-footer">
-                            <span className="price-intro">{card.priceintro}</span>
-                            <span className="price">{card.price}</span>
-                            <span>{card.leadtime}</span>
-                            <a className="cta-button" href="#">Obtenir un devis</a>
-                    </div>
-                </div>
+                  <Card
+                    index={card.title + index}
+                    title={card.title}
+                    description={card.description}
+                    content={
+                      <ul className="card-features">
+                          {card.features.map((feature,index)=>
+                          <li>{feature}</li>
+                          )}
+                      </ul>}
+                    priceintro={card.priceintro}
+                    price={card.price}
+                    leadtime={card.leadtime}
+                    cta="Obtenir un devis"
+                  ></Card>
                 )
             )}
             <div className="blob">
