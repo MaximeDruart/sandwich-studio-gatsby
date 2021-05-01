@@ -173,6 +173,10 @@ const Header = ({ location, scroll, isHomepage }) => {
         navigate("/web")
         return
       }
+      if (category === "design") {
+        navigate("/design")
+        return
+      }
       if (location.pathname !== "/") {
         navigate("/")
         return

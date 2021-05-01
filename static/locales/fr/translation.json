@@ -1,9 +1,9 @@
 {
   "headerLinks": [
     { "category": "about", "translation": "A propos" },
-    { "category": "services", "translation": "Services" },
     { "category": "projects", "translation": "Projects" },
     { "category": "web", "translation": "Web" },
+    { "category": "design", "translation": "Design" },
     { "category": "contact", "translation": "Contact" }
   ],
   "topLine": "Votre agence créative",
@@ -22,10 +22,58 @@
   "about-1-body": "Sandwich Studio est une agence à échelle humaine composée de 5 créatifs avec chacun un domaine d’expertise : web, design, marketing, packaging, gestion de projet. Sandwich Studio vous accompagne dans vos communications multi-support et vous aide à tirer profit des derniers outils numériques.",
   "about-2-title": "Notre mission",
   "about-2-body": "Notre expertise dans le digital vous accompagnera pour renforcer votre présence sur le web et transmettre votre message efficacement. Notre atelier de production et notre réseau de prestataires seront votre allié pour développer packaging et objets publicitaires adaptés à vos besoins.",
+  "design-headline": "Design & Illustration",
+  "design-headline-2": "Nos offres",
+  "design-1-title": "Notre engagement",
+  "design-1-body": "Il n'est pas chose aisée de trouver un préstataire qui comprend réelement vos besoins. Du site vitrine au site e-commerce jusqu'à l'éxperience interactive, nous concevons des sites web adaptés à votre activité, utilisant les dernières technologies en vogue.",
+  "design-cards": [
+    {
+      "title":"Identité visuelle",
+      "description":"Démarrez ou faites evoluez votre activité avec un visuel cohérent et fort",
+      "features":[
+        "Création de logo",
+        "Palette de couleurs",
+        "Jeu de typographies",
+        "Iconographie",
+        "Mise en situation"
+      ],
+      "priceintro":"à partir de",
+      "price":"300€",
+      "leadtime":"Livré en 2 semaines",
+      "ctatext":"Obtenir un devis"
+    },
+    {
+      "title":"Webdesign",
+      "description":"Concevons un packaging dont vos clients se rappelleront",
+      "features":[
+        "Responsive design : du mobile à au grand écran",
+        "Prototypage interactif",
+        "Le design au service de l'experience utilisateur"
+      ],
+      "priceintro":"à partir de",
+      "price":"450€",
+      "leadtime":"Livré en 2 semaines",
+      "ctatext":"Obtenir un devis"
+    },
+    {
+      "title":"Création de contenus",
+      "description":"Communiquez sur différents supports avec un visuel impactant",
+      "features":[
+        "Communication pour le print : papêterie, flyers, cartes de visite",
+        "Création de posts pour les réseaux sociaux",
+        "Création de campagnes publicitaires",
+        "Conception de packaging"
+      ],
+      "priceintro":"à partir de",
+      "price":"100€",
+      "leadtime":"Livré en 4 semaines",
+      "ctatext":"Obtenir un devis"
+    }
+  ],
   "web-headline": "Conception web",
   "web-headline-2": "Nos offres",
   "web-1-title": "Notre engagement",
-  "web-1-body": "Our speakers are experienced marketers willing to share and let you in on their little secrets that lead to big successes. We prepared an amazing line-up of digital marketers & brand experts from various industries.",
+  "web-1-body": "Il n'est pas chose aisée de trouver un préstataire qui comprend réelement vos besoins. Du site vitrine au site e-commerce jusqu'à l'éxperience interactive, nous concevons des sites web adaptés à votre activité, utilisant les dernières technologies en vogue.",
   "web-cards": [
     {
       "title":"Site vitrine",
@@ -59,7 +107,7 @@
         "Hébergement et nom de domaine pendant 1 an"
       ],
       "priceintro":"à partir de",
-      "price":"2400€",
+      "price":"2500€",
       "leadtime":"Livré en 2 semaines",
       "ctatext":"Obtenir un devis"
     },
@@ -80,7 +128,7 @@
         "Formation vidéo e-commerce"
       ],
       "priceintro":"à partir de",
-      "price":"3400€",
+      "price":"3600€",
       "leadtime":"Livré en 4 semaines",
       "ctatext":"Obtenir un devis"
     },
