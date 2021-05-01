@@ -95,8 +95,7 @@ const hoverTextVariants = {
   hover: { opacity: 1 },
 }
 
-const SelectedWorks = ({filterby}) => {
-  console.log(filterby)
+const SelectedWorks = ({ filterby }) => {
   const worksRef = useRef(null)
   const { t, ready } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
@@ -136,9 +135,9 @@ const SelectedWorks = ({filterby}) => {
           className="works"
         >
           {ready &&
-            t("selected-works-categories", { returnObjects: true }).filter(item => item.tag.includes(filterby)).map(
-              (work, index) =>
-              (
+            t("selected-works-categories", { returnObjects: true })
+              .filter(item => item.tag.includes(filterby))
+              .map((work, index) => (
                 <div key={work.title + index} className="work">
                   <motion.div
                     variants={{ hover: { scale: 0.985 } }}
@@ -166,8 +165,7 @@ const SelectedWorks = ({filterby}) => {
                   <motion.div className="title">{work.title}</motion.div>
                   <motion.div className="desc">{work.desc}</motion.div>
                 </div>
-              )
-            )}
+              ))}
         </motion.div>
       </motion.div>
     </StyledSelectedWorks>
