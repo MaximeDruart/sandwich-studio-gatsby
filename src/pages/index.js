@@ -25,7 +25,7 @@ export default function Home({ location }) {
 
   useEffect(() => {
     if (mainContainerRef.current) {
-      if (canvasLoadStatus.progress === 100) {
+      if (canvasLoadStatus.progress >= 100) {
         import("locomotive-scroll").then(LocomotiveScroll => {
           const Loco = LocomotiveScroll.default
           // waiting for the animation to be done

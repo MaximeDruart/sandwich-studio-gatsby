@@ -181,7 +181,6 @@ const Hero = () => {
   }, [possibleWords])
 
   useEffect(() => {
-    console.log(canvasLoadStatus)
     if (canvasLoadStatus.progress < 100) {
     } else {
       gsap

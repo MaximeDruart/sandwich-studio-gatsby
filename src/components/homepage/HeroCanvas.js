@@ -190,9 +190,9 @@ const selector = state => state.setCanvasLoadStatus
 
 const Loader = () => {
   const setCanvasLoadStatus = useStore(selector)
-  const { loaded, total } = useProgress(state => state)
+  const { loaded, total, errors } = useProgress(state => state)
   useEffect(() => {
-    setCanvasLoadStatus({ loaded, total })
+    setCanvasLoadStatus({ loaded, total, errors })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loaded])
   return null

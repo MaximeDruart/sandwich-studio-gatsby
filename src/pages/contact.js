@@ -17,7 +17,7 @@ export default function Home({ location }) {
   useEffect(() => {
     // sadly this is kind of the best solution to stop the user from scrolling on load time AND hide scrollbar during the time
     // where locomotivescroll isnt dynamically loaded yet
-    if (canvasLoadStatus.progress === 100) {
+    if (canvasLoadStatus.progress >= 100) {
       document.body.style.position = "static"
       if (scroll) scroll.update()
     }

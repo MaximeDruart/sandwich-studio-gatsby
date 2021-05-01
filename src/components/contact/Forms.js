@@ -43,7 +43,6 @@ const StyledForms = styled.div`
 `
 
 const Forms = ({ scroll, location }) => {
-  console.log(location)
   const { t } = useTranslation()
 
   return (
