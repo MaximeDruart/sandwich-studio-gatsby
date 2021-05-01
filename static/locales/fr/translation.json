@@ -1,9 +1,9 @@
 {
   "headerLinks": [
-    { "category": "about", "translation": "A propos" },
-    { "category": "projects", "translation": "Projects" },
+    { "category": "about", "translation": "Notre agence" },
     { "category": "web", "translation": "Web" },
     { "category": "design", "translation": "Design" },
+    { "category": "marketing", "translation": "Marketing" },
     { "category": "contact", "translation": "Contact" }
   ],
   "topLine": "Votre agence créative",
@@ -24,8 +24,8 @@
   "about-2-body": "Notre expertise dans le digital vous accompagnera pour renforcer votre présence sur le web et transmettre votre message efficacement. Notre atelier de production et notre réseau de prestataires seront votre allié pour développer packaging et objets publicitaires adaptés à vos besoins.",
   "design-headline": "Design & Illustration",
   "design-headline-2": "Nos offres",
-  "design-1-title": "Notre engagement",
-  "design-1-body": "Il n'est pas chose aisée de trouver un préstataire qui comprend réelement vos besoins. Du site vitrine au site e-commerce jusqu'à l'éxperience interactive, nous concevons des sites web adaptés à votre activité, utilisant les dernières technologies en vogue.",
+  "design-1-title": "Votre identité visuelle",
+  "design-1-body": "Gagnez en cohérence dans votre communication et renforcez votre image de marque par la création d'une identité visuelle singulière. De la création de votre logo à le création de visuels pour vos supports web et prints, nous vous aidons à communiquer avec vos clients.",
   "design-cards": [
     {
       "title":"Identité visuelle",
@@ -72,7 +72,7 @@
   ],
   "web-headline": "Conception web",
   "web-headline-2": "Nos offres",
-  "web-1-title": "Notre engagement",
+  "web-1-title": "Un site web qui vous ressemble",
   "web-1-body": "Il n'est pas chose aisée de trouver un préstataire qui comprend réelement vos besoins. Du site vitrine au site e-commerce jusqu'à l'éxperience interactive, nous concevons des sites web adaptés à votre activité, utilisant les dernières technologies en vogue.",
   "web-cards": [
     {
@@ -145,6 +145,54 @@
       "priceintro":"à partir de",
       "price":"5500€",
       "leadtime":"Livré en 6 semaines",
+      "ctatext":"Obtenir un devis"
+    }
+  ],
+  "marketing-headline": "Marketing digital",
+  "marketing-headline-2": "Nos offres",
+  "marketing-1-title": "Génerez plus de ventes et de trafic",
+  "marketing-1-body": "Gagnez en cohérence dans votre communication et renforcez votre image de marque par la création d'une identité visuelle singulière. De la création de votre logo à le création de visuels pour vos supports web et prints, nous vous aidons à communiquer avec vos clients.",
+  "marketing-cards": [
+    {
+      "title":"Audit marketing",
+      "description":"Faites le bilan de vos actions marketing, planifiez la suite",
+      "features":[
+        "Audit SEO",
+        "Audit UX",
+        "Audit outils marketing",
+        "Recommandations"
+      ],
+      "priceintro":"à partir de",
+      "price":"350€",
+      "leadtime":"Livré en 1 semaine",
+      "ctatext":"Obtenir un devis"
+    },
+    {
+      "title":"Mise en place d'outils analytics",
+      "description":"Tous les outils pour analyser vos résultats et optimiser efficacement",
+      "features":[
+        "Mise en place d'un pixel de tracking",
+        "Mise en place Google Analytics",
+        "Mise en place de Google Tag Manager : 2 micro-conversions",
+        "Création d'un rapport Data Studio sur-mesure"
+      ],
+      "priceintro":"à partir de",
+      "price":"450€",
+      "leadtime":"Livré en 2 semaines",
+      "ctatext":"Obtenir un devis"
+    },
+    {
+      "title":"Création de campagne",
+      "description":"Création d'une campagne Facebook Ads / Google Ads / Outbrain",
+      "features":[
+        "Création des visuels & recherche tagline",
+        "Création de 2 audiences personnalisées",
+        "Paramétrage de votre campagne principale",
+        "Création d'une campagne de retargeting"
+      ],
+      "priceintro":"à partir de",
+      "price":"550€",
+      "leadtime":"Livré en 2 semaines",
       "ctatext":"Obtenir un devis"
     }
   ],

@@ -11,8 +11,9 @@ theme.colors = {
 theme.textStyles = {
   headline: css`
     font-family: NeueMontrealRegular;
-    font-size: max(12vw, 85px);
+    font-size: max(10vw, 70px);
     letter-spacing: 0.01em;
+    opacity:0.1;
   `,
   h1: css`
     font-family: NeueMontrealRegular;

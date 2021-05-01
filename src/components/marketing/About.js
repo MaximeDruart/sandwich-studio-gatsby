@@ -30,12 +30,12 @@ padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);
     position: relative;
     width: max(30vw, 400px);
     height: max(30vw, 400px);
-    background: center / cover url("/images/web-1.jpg");
+    background: center / cover url("/images/design-1.jpg");
     .photo {
       position: absolute;
       width: max(30vw, 400px);
       height: max(30vw, 400px);
-      background: center / cover url("/images/web-2.jpg");
+      background: center / cover url("/images/design-2.jpg");
       bottom: -30%;
       right: -30%;
     }
@@ -151,7 +151,7 @@ const About = () => {
         data-scroll-speed="7"
         className="headline"
       >
-        {t("web-headline")} • {t("web-headline")} • {t("web-headline")}
+        {t("marketing-headline")} • {t("marketing-headline")} • {t("marketing-headline")}
       </div>
       <div className="our-mission about-section">
         <div
@@ -166,8 +166,8 @@ const About = () => {
           ></div>
         </div>
         <div className="text">
-          <div className="title">{t("web-1-title")}</div>
-          <div className="desc">{t("web-1-body")}</div>
+          <div className="title">{t("marketing-1-title")}</div>
+          <div className="desc">{t("marketing-1-body")}</div>
         </div>
       </div>
     </StyledAbout>

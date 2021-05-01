@@ -42,10 +42,10 @@ const StyledHeader = styled(motion.div)`
     ul.desk {
       display: flex;
       flex-flow: row nowrap;
-      width: max(31vw, 360px);
       justify-content: space-between;
       li {
         position: relative;
+        padding: 0 15px;
         overflow: hidden;
         .link-button {
           display: block;
@@ -55,6 +55,9 @@ const StyledHeader = styled(motion.div)`
               position: absolute;
             }
           }
+        }
+        &:last-child{
+          padding-right:0;
         }
       }
     }
@@ -161,7 +164,7 @@ const Header = ({ location, scroll, isHomepage }) => {
 
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
 
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+  const isMobile = useMediaQuery({ query: "(max-width: 800px)" })
 
   const internalLinkHandler = useCallback(
     category => {
@@ -175,6 +178,10 @@ const Header = ({ location, scroll, isHomepage }) => {
       }
       if (category === "design") {
         navigate("/design")
+        return
+      }
+      if (category === "marketing") {
+        navigate("/marketing")
         return
       }
       if (location.pathname !== "/") {

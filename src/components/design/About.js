@@ -30,12 +30,12 @@ const StyledAbout = styled.div`
       position: relative;
       width: max(30vw, 400px);
       height: max(30vw, 400px);
-      background: center / cover url("/images/mission-2.jpg");
+      background: center / cover url("/images/design-1.jpg");
       .photo {
         position: absolute;
         width: max(30vw, 400px);
         height: max(30vw, 400px);
-        background: center / cover url("/images/mission.png");
+        background: center / cover url("/images/design-2.jpg");
         bottom: -30%;
         right: -30%;
       }
@@ -47,6 +47,7 @@ const StyledAbout = styled.div`
         ${({ theme }) => theme.textStyles.h2};
       }
       .desc {
+        margin-top:10px;
         ${({ theme }) => theme.textStyles.text};
       }
     }
@@ -85,7 +86,7 @@ const StyledAbout = styled.div`
         text-align: left;
       }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 1000px) {
       * {
         text-align: center;
       }
@@ -93,6 +94,7 @@ const StyledAbout = styled.div`
 
       /* align-items: center; */
       .photos {
+        margin:auto;
         width: 240px;
         height: 240px;
         .photo {
@@ -106,7 +108,7 @@ const StyledAbout = styled.div`
       }
       &.our-mission {
         .text {
-          padding-top: 12vh;
+          padding-top: 4vh;
         }
       }
       &.who-we-are {

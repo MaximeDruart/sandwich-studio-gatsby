@@ -115,6 +115,20 @@ const loaderVariants = {
 }
 
 const FormContact = ({ scroll, location }) => {
+  let serviceValue=""
+  switch(location?.pathname){
+    case "/web":
+      serviceValue="choice-2"
+    break;
+
+    case "/design":
+      serviceValue="choice-1"
+    break;
+
+    case "/marketing":
+      serviceValue="choice-4"
+    break;
+  }
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -151,7 +165,7 @@ const FormContact = ({ scroll, location }) => {
       type: "date",
     },
     service: {
-      value: location?.pathname==="/web" ? "choice-2" : "",
+      value: serviceValue,
       placeholder: "Select a service",
       displayName: t("form-contact-display-names", { returnObjects: true })[5],
       type: "dropdown",
