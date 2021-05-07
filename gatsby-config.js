@@ -14,6 +14,7 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-svgr",
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-transition-link",
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {

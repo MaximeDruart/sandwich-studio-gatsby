@@ -6,6 +6,7 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 import useStore from "../../store"
 import { useMediaQuery } from "react-responsive"
 import { navigate } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledHeader = styled(motion.div)`
   * {
@@ -56,8 +57,31 @@ const StyledHeader = styled(motion.div)`
             }
           }
         }
-        &:last-child{
-          padding-right:0;
+        &.link-dropdown {
+          position: relative;
+          overflow: visible;
+          .text {
+            display: flex;
+            flex-flow: row nowrap;
+
+            .arrow {
+              margin-left: 6px;
+            }
+          }
+
+          .dropdown {
+            position: absolute;
+            padding: 10px 10px 10px 0;
+            ul {
+              li {
+                padding: 0;
+              }
+            }
+          }
+        }
+
+        &:last-child {
+          padding-right: 0;
         }
       }
     }
@@ -207,15 +231,19 @@ const Header = ({ location, scroll, isHomepage }) => {
         transition: { delay: 1.5 },
       }}
     >
-      <button
+      {/* i'm adding and hiding an anilink because it doesn't work without it. not sure why but an anilink probably needs to be there on first render so css / html for cover animation can be added accordingly */}
+      <AniLink
+        cover
+        direction="down"
+        bg="#0D0D0D"
         className="link-button"
-        onClick={() => (isHomepage ? scrollToTop() : navigate("/"))}
+        to="/"
       >
         <div className="left">
           <Logo className="logo" />
           <div className="logo-text">Sandwich.Studio</div>
         </div>
-      </button>
+      </AniLink>
       <div className="right">
         {isMobile ? (
           <motion.div animate={hamIsOpen ? "open" : ""} className="sandwich">
@@ -272,12 +300,66 @@ const Header = ({ location, scroll, isHomepage }) => {
           </motion.div>
         ) : (
           <ul className="desk">
+            <motion.li whileHover="hover" className="link-button link-dropdown">
+              <motion.div className="text">
+                <p>Services</p>
+                <motion.div
+                  initial={{ rotate: 90, scale: 0.7 }}
+                  variants={{ hover: { rotate: 270 } }}
+                  className="arrow"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="white"
+                      d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"
+                    />
+                  </svg>
+                </motion.div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                variants={{
+                  hover: { opacity: 1 },
+                }}
+                className="dropdown"
+              >
+                <ul>
+                  {ready &&
+                    t("headerLinksServices", { returnObjects: true }).map(
+                      link => (
+                        <motion.li
+                          whileHover={{ skew: -20 }}
+                          key={link.category}
+                        >
+                          <AniLink
+                            cover
+                            direction="down"
+                            bg="#0D0D0D"
+                            className="link-button"
+                            to={`/${link.category}`}
+                          >
+                            {link.translation}
+                          </AniLink>
+                        </motion.li>
+                      )
+                    )}
+                </ul>
+              </motion.div>
+            </motion.li>
             {ready &&
-              t("headerLinks", { returnObjects: true }).map(link => (
+              t("headerLinksElse", { returnObjects: true }).map(link => (
                 <li key={link.category}>
-                  <button
+                  <AniLink
+                    cover
+                    direction="down"
+                    bg="#0D0D0D"
                     className="link-button"
-                    onClick={() => internalLinkHandler(link.category)}
+                    to={`/${link.category}`}
                   >
                     <motion.span whileHover="hovering">
                       <motion.div variants={variants}>
@@ -289,7 +371,7 @@ const Header = ({ location, scroll, isHomepage }) => {
                         </div>
                       </motion.div>
                     </motion.span>
-                  </button>
+                  </AniLink>
                 </li>
               ))}
             {/* functional language switch */}

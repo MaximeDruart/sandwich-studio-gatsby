@@ -6,6 +6,16 @@
     { "category": "marketing", "translation": "Marketing" },
     { "category": "contact", "translation": "Contact" }
   ],
+
+  "headerLinksServices": [
+    { "category": "web", "translation": "Web" },
+    { "category": "design", "translation": "Design" },
+    { "category": "marketing", "translation": "Marketing" }
+  ],
+  "headerLinksElse": [
+    { "category": "about", "translation": "Notre agence" },
+    { "category": "contact", "translation": "Contact" }
+  ],
   "topLine": "Votre agence créative",
   "bottomLine": "Basée à Paris",
   "weAre": [
@@ -28,46 +38,46 @@
   "design-1-body": "Gagnez en cohérence dans votre communication et renforcez votre image de marque par la création d'une identité visuelle singulière. De la création de votre logo à le création de visuels pour vos supports web et prints, nous vous aidons à communiquer avec vos clients.",
   "design-cards": [
     {
-      "title":"Identité visuelle",
-      "description":"Démarrez ou faites evoluez votre activité avec un visuel cohérent et fort",
-      "features":[
+      "title": "Identité visuelle",
+      "description": "Démarrez ou faites evoluez votre activité avec un visuel cohérent et fort",
+      "features": [
         "Création de logo",
         "Palette de couleurs",
         "Jeu de typographies",
         "Iconographie",
         "Mise en situation"
       ],
-      "priceintro":"à partir de",
-      "price":"300€",
-      "leadtime":"Livré en 2 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "300€",
+      "leadtime": "Livré en 2 semaines",
+      "ctatext": "Obtenir un devis"
     },
     {
-      "title":"Webdesign",
-      "description":"Concevons un packaging dont vos clients se rappelleront",
-      "features":[
+      "title": "Webdesign",
+      "description": "Concevons un packaging dont vos clients se rappelleront",
+      "features": [
         "Responsive design : du mobile à au grand écran",
         "Prototypage interactif",
         "Le design au service de l'experience utilisateur"
       ],
-      "priceintro":"à partir de",
-      "price":"450€",
-      "leadtime":"Livré en 2 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "450€",
+      "leadtime": "Livré en 2 semaines",
+      "ctatext": "Obtenir un devis"
     },
     {
-      "title":"Création de contenus",
-      "description":"Communiquez sur différents supports avec un visuel impactant",
-      "features":[
+      "title": "Création de contenus",
+      "description": "Communiquez sur différents supports avec un visuel impactant",
+      "features": [
         "Communication pour le print : papêterie, flyers, cartes de visite",
         "Création de posts pour les réseaux sociaux",
         "Création de campagnes publicitaires",
         "Conception de packaging"
       ],
-      "priceintro":"à partir de",
-      "price":"100€",
-      "leadtime":"Livré en 4 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "100€",
+      "leadtime": "Livré en 4 semaines",
+      "ctatext": "Obtenir un devis"
     }
   ],
   "web-headline": "Conception web",
@@ -76,9 +86,9 @@
   "web-1-body": "Il n'est pas chose aisée de trouver un préstataire qui comprend réelement vos besoins. Du site vitrine au site e-commerce jusqu'à l'éxperience interactive, nous concevons des sites web adaptés à votre activité, utilisant les dernières technologies en vogue.",
   "web-cards": [
     {
-      "title":"Site vitrine",
-      "description":"Idéal pour présenter un point de vente physique ou votre activité.",
-      "features":[
+      "title": "Site vitrine",
+      "description": "Idéal pour présenter un point de vente physique ou votre activité.",
+      "features": [
         "Panel d'administration",
         "Thème premium customisé",
         "Optimisé pour mobiles",
@@ -86,15 +96,15 @@
         "3 révisions",
         "Hébergement et nom de domaine pendant 1 an"
       ],
-      "priceintro":"à partir de",
-      "price":"1400€",
-      "leadtime":"Livré en 2 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "1400€",
+      "leadtime": "Livré en 2 semaines",
+      "ctatext": "Obtenir un devis"
     },
     {
-      "title":"E-commerce starter",
-      "description":"Votre site e-commerce clé en main, pour vendre rapidement et à moindre frais.",
-      "features":[
+      "title": "E-commerce starter",
+      "description": "Votre site e-commerce clé en main, pour vendre rapidement et à moindre frais.",
+      "features": [
         "Panel d'administration",
         "Thème premium customisé",
         "Optimisé pour mobiles",
@@ -106,15 +116,15 @@
         "3 révisions",
         "Hébergement et nom de domaine pendant 1 an"
       ],
-      "priceintro":"à partir de",
-      "price":"2500€",
-      "leadtime":"Livré en 2 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "2500€",
+      "leadtime": "Livré en 2 semaines",
+      "ctatext": "Obtenir un devis"
     },
     {
-      "title":"E-commerce premium",
-      "description":"Un site web e-commerce qui ne ressemble à aucun autre",
-      "features":[
+      "title": "E-commerce premium",
+      "description": "Un site web e-commerce qui ne ressemble à aucun autre",
+      "features": [
         "Panel d'administration",
         "Thème sur-mesure",
         "Optimisé pour mobiles",
@@ -127,25 +137,25 @@
         "Hébergement et nom de domaine pendant 1 an",
         "Formation vidéo e-commerce"
       ],
-      "priceintro":"à partir de",
-      "price":"3600€",
-      "leadtime":"Livré en 4 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "3600€",
+      "leadtime": "Livré en 4 semaines",
+      "ctatext": "Obtenir un devis"
     },
     {
-      "title":"Expérience intéractive",
-      "description":"Un site web e-commerce qui ne ressemble à aucun autre",
-      "features":[
+      "title": "Expérience intéractive",
+      "description": "Un site web e-commerce qui ne ressemble à aucun autre",
+      "features": [
         "Panel d'administration",
         "Design sur-mesure",
         "Expérience 3D / Intéractive",
         "Optimisé pour mobiles",
         "Hébergement et nom de domaine pendant 1 an"
       ],
-      "priceintro":"à partir de",
-      "price":"5500€",
-      "leadtime":"Livré en 6 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "5500€",
+      "leadtime": "Livré en 6 semaines",
+      "ctatext": "Obtenir un devis"
     }
   ],
   "marketing-headline": "Marketing digital",
@@ -154,46 +164,46 @@
   "marketing-1-body": "Gagnez en cohérence dans votre communication et renforcez votre image de marque par la création d'une identité visuelle singulière. De la création de votre logo à le création de visuels pour vos supports web et prints, nous vous aidons à communiquer avec vos clients.",
   "marketing-cards": [
     {
-      "title":"Audit marketing",
-      "description":"Faites le bilan de vos actions marketing, planifiez la suite",
-      "features":[
+      "title": "Audit marketing",
+      "description": "Faites le bilan de vos actions marketing, planifiez la suite",
+      "features": [
         "Audit SEO",
         "Audit UX",
         "Audit outils marketing",
         "Recommandations"
       ],
-      "priceintro":"à partir de",
-      "price":"350€",
-      "leadtime":"Livré en 1 semaine",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "350€",
+      "leadtime": "Livré en 1 semaine",
+      "ctatext": "Obtenir un devis"
     },
     {
-      "title":"Mise en place d'outils analytics",
-      "description":"Tous les outils pour analyser vos résultats et optimiser efficacement",
-      "features":[
+      "title": "Mise en place d'outils analytics",
+      "description": "Tous les outils pour analyser vos résultats et optimiser efficacement",
+      "features": [
         "Mise en place d'un pixel de tracking",
         "Mise en place Google Analytics",
         "Mise en place de Google Tag Manager : 2 micro-conversions",
         "Création d'un rapport Data Studio sur-mesure"
       ],
-      "priceintro":"à partir de",
-      "price":"450€",
-      "leadtime":"Livré en 2 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "450€",
+      "leadtime": "Livré en 2 semaines",
+      "ctatext": "Obtenir un devis"
     },
     {
-      "title":"Création de campagne",
-      "description":"Création d'une campagne Facebook Ads / Google Ads / Outbrain",
-      "features":[
+      "title": "Création de campagne",
+      "description": "Création d'une campagne Facebook Ads / Google Ads / Outbrain",
+      "features": [
         "Création des visuels & recherche tagline",
         "Création de 2 audiences personnalisées",
         "Paramétrage de votre campagne principale",
         "Création d'une campagne de retargeting"
       ],
-      "priceintro":"à partir de",
-      "price":"550€",
-      "leadtime":"Livré en 2 semaines",
-      "ctatext":"Obtenir un devis"
+      "priceintro": "à partir de",
+      "price": "550€",
+      "leadtime": "Livré en 2 semaines",
+      "ctatext": "Obtenir un devis"
     }
   ],
   "services-headline": "Services",
@@ -211,11 +221,26 @@
   "services-5-cta": "Visualiser la brochure",
   "selected-works-headline": "Nos projets",
   "selected-works-categories": [
-    { "id":1, "title": "Kuch CBD", "desc": "Illustration & Packaging", "tag":"allpackaging"},
-    { "id":2, "title": "CBD420", "desc": "Illustration & Packaging", "tag":"allpackaging"},
-    { "id":3, "title": "MonGrinder", "desc": "Web", "tag":"allweb"},
-    { "id":4, "title": "Weed House", "desc": "Identité visuelle", "tag":"alldesign"},
-    { "id":5, "title": "Galactic Grinder", "desc": "Web", "tag":"allweb"}
+    {
+      "id": 1,
+      "title": "Kuch CBD",
+      "desc": "Illustration & Packaging",
+      "tag": "allpackaging"
+    },
+    {
+      "id": 2,
+      "title": "CBD420",
+      "desc": "Illustration & Packaging",
+      "tag": "allpackaging"
+    },
+    { "id": 3, "title": "MonGrinder", "desc": "Web", "tag": "allweb" },
+    {
+      "id": 4,
+      "title": "Weed House",
+      "desc": "Identité visuelle",
+      "tag": "alldesign"
+    },
+    { "id": 5, "title": "Galactic Grinder", "desc": "Web", "tag": "allweb" }
   ],
   "selected-works-hover-text": "Découvrir",
   "magnet-headline": "Votre Cadeau",

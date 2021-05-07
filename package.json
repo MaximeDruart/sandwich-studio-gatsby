@@ -28,6 +28,7 @@
     "gatsby-plugin-react-i18next": "^1.1.0",
     "gatsby-plugin-styled-components": "^4.1.0",
     "gatsby-plugin-svgr": "^3.0.0-beta.0",
+    "gatsby-plugin-transition-link": "^1.20.5",
     "gatsby-source-filesystem": "^3.1.0",
     "gsap": "^3.6.0",
     "i18next": "^19.9.2",

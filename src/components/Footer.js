@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import React from "react"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledFooter = styled.div`
   background: #151515;
@@ -87,9 +88,18 @@ const Footer = () => {
         </div>
       </div>
       <div className="right">
-        <Link className="privacy" to="/privacy-policy">
+        <AniLink
+          cover
+          direction="down"
+          bg="#0D0D0D"
+          className="link-button"
+          to={`/web`}
+          style={{ display: "none" }}
+          className="privacy"
+          to="/privacy-policy"
+        >
           {t("footer-privacy-policy")}
-        </Link>
+        </AniLink>
         <span className="creator-tag">{t("footer-creator-tag")}</span>
       </div>
     </StyledFooter>
