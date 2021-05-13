@@ -116,7 +116,7 @@ const imgVariants = {
   },
 }
 
-const noOfImagesByWork = [2, 4, 0, 1, 4]
+const noOfImagesByWork = [2, 4, 3, 1, 4]
 
 // taken from https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?file=/src/Example.tsx
 const swipeConfidenceThreshold = 12000

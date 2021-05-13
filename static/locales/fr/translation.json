@@ -1,6 +1,6 @@
 {
   "headerLinks": [
-    { "category": "about", "translation": "Notre agence" },
+    { "category": "", "translation": "Home" },
     { "category": "web", "translation": "Web" },
     { "category": "design", "translation": "Design" },
     { "category": "marketing", "translation": "Marketing" },
@@ -13,7 +13,7 @@
     { "category": "marketing", "translation": "Marketing" }
   ],
   "headerLinksElse": [
-    { "category": "about", "translation": "Notre agence" },
+    { "category": "", "translation": "Home" },
     { "category": "contact", "translation": "Contact" }
   ],
   "topLine": "Votre agence créative",
@@ -233,7 +233,7 @@
       "desc": "Illustration & Packaging",
       "tag": "allpackaging"
     },
-    { "id": 3, "title": "MonGrinder", "desc": "Web", "tag": "allweb" },
+    { "id": 3, "title": "MonGrinder", "desc": "Web", "tag": "allwebdesign" },
     {
       "id": 4,
       "title": "Weed House",
@@ -243,9 +243,9 @@
     { "id": 5, "title": "Galactic Grinder", "desc": "Web", "tag": "allweb" }
   ],
   "selected-works-hover-text": "Découvrir",
-  "magnet-headline": "Votre Cadeau",
-  "magnet-top-line": "Votre Cadeau",
-  "magnet-bottom-line": "Téléchargez votre check-list idéale pour votre entreprise",
+  "magnet-headline": "Pour vous",
+  "magnet-top-line": "11 étapes pour vous développer sur le web",
+  "magnet-bottom-line": "Téléchargez votre check-list pour développer votre activité",
   "magnet-submit-text": "Obtenir votre check-list",
   "forms-headline": "Contact",
   "form-contact-headline": "Assez parlé de nous,",
