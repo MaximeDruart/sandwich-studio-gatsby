@@ -8,7 +8,6 @@ import About from "../components/homepage/About"
 import Services from "../components/homepage/Services"
 import Footer from "../components/Footer"
 import ContactSpinner from "../components/homepage/ContactSpinner"
-import Cards from "../components/homepage/Cards"
 import SelectedWorks from "../components/homepage/SelectedWorks"
 import useStore from "../../store"
 import CanCanvas from "../components/homepage/CanCanvas"
@@ -79,7 +78,7 @@ export default function Home({ location }) {
         <CanCanvas scroll={scroll} />
         <Hero />
         <About />
-        <Cards></Cards>
+        <Services scroll={scroll} />
         <SelectedWorks filterby="all" />
         <SelectedPopup />
         <LeadMagnet />

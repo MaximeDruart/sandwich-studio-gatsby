@@ -11,6 +11,10 @@ export default createGlobalStyle`
       src: url("/fonts/neueMedium.otf");
     }
     @font-face {
+      font-family: "NeueMontrealBold";
+      src: url("/fonts/neueBold.otf");
+    }
+    @font-face {
       font-family: "BerlinBold";
       src: url("/fonts/berlinBold.ttf");
     }

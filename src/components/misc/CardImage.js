@@ -2,6 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
+import { Link } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledCard = styled.div`
 
@@ -10,6 +12,16 @@ const StyledCard = styled.div`
     color: ${({ theme }) => theme.colors.text};
   }
 
+    .card-upper{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        img{
+            width:150px;
+            margin:auto;
+            padding:20px 10px;
+        }
+    }
     border: 2px solid #1F1F1F;
     border-radius:20px;
     overflow:hidden;
@@ -17,63 +29,54 @@ const StyledCard = styled.div`
     flex-direction:column;
     justify-content:space-between;
     .card-header{
+        text-align:center;
         padding:20px;
-        background:#1F1F1F;
         h3{
+        font-family: NeueMontrealBold;
         font-size:32px;
-        font-family:NeueMontrealBold;
         margin-bottom:10px;
         }
-    }
-    .card-features{
-        padding:20px;
-        padding-left:40px;
-        list-style: disc;
-        li{
-            padding: 5px 0;
-            line-height:1.5;
+        p{
+          color:#a5a5a5;
         }
     }
     .card-footer{
-        padding:20px;
         display:flex;
         flex-direction:column;
-        .price{
-            font-family:NeueMontrealBold;
-            color:#FFB23E;
-            font-size:32px;
-            margin-top:5px;
-            margin-bottom:20px;
-        }
         .cta-button{
         ${({ theme }) => theme.textStyles.button};
         color:black;
+        display:block;
+        text-align:center;
         }
     }
 `
 
-const Card = ({index,title,description,content,priceintro,price,leadtime,cta}) => {
+const CardImage = ({index,title,description,cta,ctaurl}) => {
   const { t } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledCard key={index}>
-        <div>
+        <div className="card-upper">
+            <img src={"images/icon-"+index.slice(-1)+".svg"}></img>
             <div className="card-header">
                 <h3>{title}</h3>
                 <p>{description}</p>
             </div>
-            <div className="card-content">
-                {content}
-            </div>
         </div>
         <div className="card-footer">
-                <span className="price-intro">{priceintro}</span>
-                <span className="price">{price}</span>
-                <span>{leadtime}</span>
-                <a className="cta-button" href="#">{cta}</a>
+          <AniLink 
+            cover
+            direction="down"
+            bg="#0D0D0D"
+            className="cta-button"
+            to={ctaurl}
+            >
+              {cta}
+          </AniLink>
         </div>
     </StyledCard>
   )}
 
-export default Card
+export default CardImage

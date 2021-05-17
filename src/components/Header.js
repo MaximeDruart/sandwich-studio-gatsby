@@ -71,10 +71,12 @@ const StyledHeader = styled(motion.div)`
 
           .dropdown {
             position: absolute;
-            padding: 10px 10px 10px 0;
+            padding: 10px;
+            background:rgba(0,0,0,0.0);
+            backdrop-filter:blur(20px);
             ul {
               li {
-                padding: 0;
+                padding: 5px 0;
               }
             }
           }
@@ -206,6 +208,10 @@ const Header = ({ location, scroll, isHomepage }) => {
       }
       if (category === "marketing") {
         navigate("/marketing")
+        return
+      }
+      if (category === "packaging") {
+        navigate("/packaging")
         return
       }
       if (location.pathname !== "/") {

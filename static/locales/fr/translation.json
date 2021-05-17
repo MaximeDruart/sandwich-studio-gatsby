@@ -1,19 +1,21 @@
 {
   "headerLinks": [
-    { "category": "", "translation": "Home" },
+    { "category": "", "translation": "Accueil" },
     { "category": "web", "translation": "Web" },
     { "category": "design", "translation": "Design" },
     { "category": "marketing", "translation": "Marketing" },
+    { "category": "packaging", "translation": "Packaging" },
     { "category": "contact", "translation": "Contact" }
   ],
 
   "headerLinksServices": [
     { "category": "web", "translation": "Web" },
     { "category": "design", "translation": "Design" },
-    { "category": "marketing", "translation": "Marketing" }
+    { "category": "marketing", "translation": "Marketing" },
+    { "category": "packaging", "translation": "Packaging" }
   ],
   "headerLinksElse": [
-    { "category": "", "translation": "Home" },
+    { "category": "", "translation": "Accueil" },
     { "category": "contact", "translation": "Contact" }
   ],
   "topLine": "Votre agence créative",
@@ -241,6 +243,32 @@
       "tag": "alldesign"
     },
     { "id": 5, "title": "Galactic Grinder", "desc": "Web", "tag": "allweb" }
+  ],
+  "services-cards": [
+    {
+      "title": "Communication visuelle",
+      "description": "Gagnez en efficacité dans vos communications avec une identité visuelle forte.",
+      "ctatext": "Plus d'infos",
+      "ctaurl": "/design"
+    },
+    {
+      "title": "Conception web",
+      "description": "Renforcez votre présence sur le web avec un site adapté à vos besoins.",
+      "ctatext": "Plus d'infos",
+      "ctaurl": "/web"
+    },
+    {
+      "title": "Marketing digital",
+      "description": "Communiquez à grande échelle et développez vos ventes.",
+      "ctatext": "Plus d'infos",
+      "ctaurl": "/marketing"
+    },
+    {
+      "title": "Packaging & Goodies",
+      "description": "Conception de packaging et d'accessoires uniques pour fédérer votre marque",
+      "ctatext": "Plus d'infos",
+      "ctaurl": "/packaging"
+    }
   ],
   "selected-works-hover-text": "Découvrir",
   "magnet-headline": "Pour vous",

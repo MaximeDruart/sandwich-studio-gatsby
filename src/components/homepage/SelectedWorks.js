@@ -66,6 +66,7 @@ const StyledSelectedWorks = styled.div`
         }
         .title {
           ${({ theme }) => theme.textStyles.h4};
+          font-family:NeueMontrealBold;
           cursor: pointer;
         }
         .desc {

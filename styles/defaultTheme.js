@@ -16,7 +16,7 @@ theme.textStyles = {
     opacity:0.1;
   `,
   h1: css`
-    font-family: NeueMontrealRegular;
+    font-family: NeueMontrealBold;
     font-size: 100px;
     line-height: 140.62%;
     /* or 101px */
@@ -26,7 +26,7 @@ theme.textStyles = {
     }
   `,
   h2: css`
-    font-family: NeueMontrealRegular;
+    font-family: NeueMontrealBold;
     font-style: normal;
     font-weight: normal;
     font-size: 74px;
@@ -112,7 +112,7 @@ theme.textStyles = {
     line-height: 16px;
     letter-spacing: 0.08px;
     padding: 15px 30px;
-    border-radius: 4px;
+    border-radius: 20px;
     outline: none;
     border: none;
     display: flex;
@@ -121,6 +121,12 @@ theme.textStyles = {
     justify-content: space-between;
     cursor: pointer;
     margin-top: 20px;
+    transition:0.2s all;
+    &:hover{
+      background: #eaeaea;
+      padding-left:45px;
+      transition:0.2s all;
+    }
 
     @media (max-width: 600px) {
       font-size: 14px;
