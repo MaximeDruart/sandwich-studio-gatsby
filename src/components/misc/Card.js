@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledCard = styled.div`
 
@@ -71,7 +72,14 @@ const Card = ({index,title,description,content,priceintro,price,leadtime,cta}) =
                 <span className="price-intro">{priceintro}</span>
                 <span className="price">{price}</span>
                 <span>{leadtime}</span>
-                <a className="cta-button" href="#">{cta}</a>
+                <AniLink
+                cover
+                direction="down"
+                bg="#0D0D0D"
+                className="cta-button"
+                to="/contact">
+                    {cta}
+                </AniLink>
         </div>
     </StyledCard>
   )}
