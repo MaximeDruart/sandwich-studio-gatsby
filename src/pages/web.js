@@ -19,35 +19,39 @@ export default function Home({ location }) {
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" })
 
   useEffect(() => {
-    // sadly this is kind of the best solution to stop the user from scrolling on load time AND hide scrollbar during the time
-    // where locomotivescroll isnt dynamically loaded yet
-    if (canvasLoadStatus.progress >= 100) {
-      document.body.style.position = "static"
-      if (scroll) scroll.update()
-    }
-  }, [scroll, canvasLoadStatus])
-
-  useEffect(() => {
     if (mainContainerRef.current) {
-      import("locomotive-scroll").then(LocomotiveScroll => {
-        const Loco = LocomotiveScroll.default
-        const s = new Loco({
-          smooth: true,
-          el: mainContainerRef.current,
-          tablet: { smooth: true },
-          smartphone: { smooth: true },
-          reloadOnContextChange: true,
-          lerp: isTablet ? 0.1 : 0.1,
+      if (canvasLoadStatus.progress >= 100) {
+        import("locomotive-scroll").then(LocomotiveScroll => {
+          const Loco = LocomotiveScroll.default
+          // waiting for the animation to be done
+          setTimeout(() => {
+            const s = new Loco({
+              smooth: true,
+              el: mainContainerRef.current,
+              tablet: { smooth: true },
+              smartphone: { smooth: true },
+              reloadOnContextChange: true,
+              lerp: isTablet ? 0.1 : 0.1,
+            })
+
+            s.update()
+
+            setScroll(s)
+          }, 1600)
         })
-
-        s.update()
-
-        setScroll(s)
-      })
+      }
     }
     return () => scroll && scroll.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mainContainerRef])
+  }, [canvasLoadStatus, mainContainerRef])
+
+  useEffect(() => {
+    if (scroll) {
+      setTimeout(() => {
+        scroll.update()
+      }, 400)
+    }
+  }, [scroll])
 
   return (
     <>
