@@ -115,19 +115,19 @@ const loaderVariants = {
 }
 
 const FormContact = ({ scroll, location }) => {
-  let serviceValue=""
-  switch(location?.pathname){
+  let serviceValue = ""
+  switch (location?.pathname) {
     case "/web":
-      serviceValue="choice-2"
-    break;
+      serviceValue = "web_dev"
+      break
 
     case "/design":
-      serviceValue="choice-1"
-    break;
+      serviceValue = "design"
+      break
 
     case "/marketing":
-      serviceValue="choice-4"
-    break;
+      serviceValue = "digital_marketing"
+      break
   }
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
@@ -303,11 +303,11 @@ const FormContact = ({ scroll, location }) => {
               <option value="" disabled>
                 Select your option
               </option>
-              <option value="choice-1">Design</option>
-              <option value="choice-2">Conception / Développement web</option>
-              <option value="choice-3">Packaging</option>
-              <option value="choice-4">Marketing digital</option>
-              <option value="choice-5">Goodies & Merchandising</option>
+              <option value="design">Design</option>
+              <option value="web_dev">Conception / Développement web</option>
+              <option value="packaging">Packaging</option>
+              <option value="digital_marketing">Marketing digital</option>
+              <option value="goodies_merch">Goodies & Merchandising</option>
             </select>
           </div>
           <div className="form-group">
