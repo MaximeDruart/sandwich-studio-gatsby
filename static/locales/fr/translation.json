@@ -15,7 +15,7 @@
     { "category": "packaging", "translation": "Packaging" }
   ],
   "headerLinksElse": [
-    { "category": "", "translation": "Accueil" },
+    { "category": "home", "translation": "Accueil" },
     { "category": "contact", "translation": "Contact" }
   ],
   "topLine": "Votre agence créative",

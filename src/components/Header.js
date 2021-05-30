@@ -72,8 +72,8 @@ const StyledHeader = styled(motion.div)`
           .dropdown {
             position: absolute;
             padding: 10px;
-            background:rgba(0,0,0,0.0);
-            backdrop-filter:blur(20px);
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(20px);
             ul {
               li {
                 padding: 5px 0;
@@ -229,6 +229,8 @@ const Header = ({ location, scroll, isHomepage }) => {
     if (scroll) scroll.scrollTo(`top`)
   }, [scroll])
 
+  const [homeLink, contactLink] = t("headerLinksElse", { returnObjects: true })
+
   return (
     <StyledHeader
       initial={{ opacity: isHomepage ? 0 : 1 }}
@@ -306,6 +308,28 @@ const Header = ({ location, scroll, isHomepage }) => {
           </motion.div>
         ) : (
           <ul className="desk">
+            {ready && (
+              <li key={homeLink.category}>
+                <AniLink
+                  cover
+                  direction="down"
+                  bg="#0D0D0D"
+                  className="link-button"
+                  to={`/${homeLink.category}`}
+                >
+                  <motion.span whileHover="hovering">
+                    <motion.div variants={variants}>
+                      <div className="anim-link top-link">
+                        {homeLink.translation}
+                      </div>
+                      <div className="anim-link bottom-link">
+                        {homeLink.translation}
+                      </div>
+                    </motion.div>
+                  </motion.span>
+                </AniLink>
+              </li>
+            )}
             <motion.li whileHover="hover" className="link-button link-dropdown">
               <motion.div className="text">
                 <p>Services</p>
@@ -357,29 +381,28 @@ const Header = ({ location, scroll, isHomepage }) => {
                 </ul>
               </motion.div>
             </motion.li>
-            {ready &&
-              t("headerLinksElse", { returnObjects: true }).map(link => (
-                <li key={link.category}>
-                  <AniLink
-                    cover
-                    direction="down"
-                    bg="#0D0D0D"
-                    className="link-button"
-                    to={`/${link.category}`}
-                  >
-                    <motion.span whileHover="hovering">
-                      <motion.div variants={variants}>
-                        <div className="anim-link top-link">
-                          {link.translation}
-                        </div>
-                        <div className="anim-link bottom-link">
-                          {link.translation}
-                        </div>
-                      </motion.div>
-                    </motion.span>
-                  </AniLink>
-                </li>
-              ))}
+            {ready && (
+              <li key={contactLink.category}>
+                <AniLink
+                  cover
+                  direction="down"
+                  bg="#0D0D0D"
+                  className="link-button"
+                  to={`/${contactLink.category}`}
+                >
+                  <motion.span whileHover="hovering">
+                    <motion.div variants={variants}>
+                      <div className="anim-link top-link">
+                        {contactLink.translation}
+                      </div>
+                      <div className="anim-link bottom-link">
+                        {contactLink.translation}
+                      </div>
+                    </motion.div>
+                  </motion.span>
+                </AniLink>
+              </li>
+            )}
             {/* functional language switch */}
             {/* <li
             style={{ display: "none" }}
