@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
-import { validateCallback } from "../../../assets/utils/formValidator"
+import { validateMagnet } from "../../../assets/utils/formValidator"
 import { AnimatePresence, motion } from "framer-motion"
 import isEmpty from "is-empty"
 import { ReactComponent as Loader } from "../../../assets/icons/loader.svg"
@@ -168,7 +168,9 @@ const FormCallback = () => {
   const handleSubmit = e => {
     setErrors({})
     e.preventDefault()
-    const { errors, isValid } = validateCallback(logs)
+    const { errors, isValid } = validateMagnet(logs)
+
+    console.log(errors, isValid)
 
     if (isValid) {
       setLoading(true)
@@ -182,10 +184,12 @@ const FormCallback = () => {
         }),
       })
         .then(() => {
+          console.log("done")
           setSuccess(true)
           setLoading(false)
         })
         .catch(error => {
+          console.log(error)
           setErrors({ server: error })
           setLoading(false)
         })
