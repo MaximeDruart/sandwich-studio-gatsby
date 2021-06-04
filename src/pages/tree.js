@@ -67,7 +67,7 @@ export default function Home({ location }) {
 
       <main data-scroll-container ref={mainContainerRef}>
           <Container>
-            <img src="./images/logo-black.png"></img>
+            <img src="/images/logo-black.png"></img>
             <Button target={"/"} fullWidth>Notre site web</Button>
             <Button target={"/contact"} fullWidth>Obtenir un devis</Button>
             <Button target={"/contact"} fullWidth>Télecharger la to-do list pour booster votre activité</Button>
