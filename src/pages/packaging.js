@@ -60,7 +60,8 @@ export default function Home({ location }) {
   return (
     <>
       <Helmet>
-        <title>Sandwich Studio</title>
+        <title>Votre packaging sur-mesure par Sandwich Studio</title>
+        <meta name="description" content="Création de packaging sur-mesure. Petite ou grosse quantité. Cartonnage, coffret, doypack ou bocal, confiez nous la création et la production de vos packaging."></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
