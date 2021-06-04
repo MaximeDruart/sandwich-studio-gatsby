@@ -14,7 +14,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
-        pixelId: "303642951245695",
+        pixelId: '303642951245695',
+        trackViewContent: true, // skip track ViewContent on route update
       },
     },
     {
