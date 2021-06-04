@@ -73,6 +73,7 @@ export default function Home({ location }) {
             <Button target={"/contact"} fullWidth>Télecharger la to-do list pour booster votre activité</Button>
             <Button target={"https://www.instagram.com/sandwich.std/?hl=fr"} fullWidth>Instagram</Button>
           </Container>
+        <Footer />
       </main>
     </>
   )

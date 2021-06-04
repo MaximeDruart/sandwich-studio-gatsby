@@ -16,7 +16,7 @@ const encode = data =>
 const StyledLeadMagnet = styled.div`
   width: 100vw;
   /* overflow: hidden; */
-  margin-top: 30vh;
+  margin-top: 10vh;
 
   padding: 5vh max(10vw, 30px) 0 max(10vw, 30px);
 
