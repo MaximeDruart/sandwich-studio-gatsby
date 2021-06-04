@@ -201,7 +201,7 @@ const Hero = () => {
           <p>{t("topLine")}</p>
         </div>
         <div className="we-are">
-          <span className="left">We are</span>
+          <span className="left">We</span>
           <span ref={activeWordRef} className="right"></span>
           <motion.span
             initial={{ scaleY: 0 }}

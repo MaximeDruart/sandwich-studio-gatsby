@@ -5,11 +5,8 @@ import { graphql } from "gatsby"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import useStore from "../../store"
-import SelectedWorks from "../components/homepage/SelectedWorks"
-import SelectedPopup from "../components/homepage/SelectedPopup"
-import DoubleImageText from "../components/misc/DoubleImageText"
-import Cards from "../components/design/Cards"
-import Forms from "../components/contact/Forms"
+import Container from "../components/tree/Container"
+import Button from "../components/tree/Button"
 import { useMediaQuery } from "react-responsive"
 
 export default function Home({ location }) {
@@ -56,7 +53,7 @@ export default function Home({ location }) {
   return (
     <>
       <Helmet>
-        <title>Design & Illustration - Sandwich Studio</title>
+        <title>Sandwich Studio</title>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -69,18 +66,13 @@ export default function Home({ location }) {
       <Header location={location} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
-        <DoubleImageText
-        headline={"design-headline"}
-        imageFront={"/images/design-1.jpg"}
-        imageBack={"/images/design-2.jpg"}
-        title={"design-1-title"}
-        body={"design-1-body"}
-        />
-        <Cards />
-        <SelectedWorks filterby="design" />
-        <SelectedPopup />
-        <Forms location={location} />
-        <Footer />
+          <Container>
+            <img src="images/logo-black.png"></img>
+            <Button target={"/"} fullWidth>Notre site web</Button>
+            <Button target={"/contact"} fullWidth>Obtenir un devis</Button>
+            <Button target={"/contact"} fullWidth>Télecharger la to-do list pour booster votre activité</Button>
+            <Button target={"https://www.instagram.com/sandwich.std/?hl=fr"} fullWidth>Instagram</Button>
+          </Container>
       </main>
     </>
   )

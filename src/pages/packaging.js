@@ -3,8 +3,7 @@ import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 
 import Header from "../components/Header"
-import Hero from "../components/homepage/Hero"
-import About from "../components/homepage/About"
+import DoubleImageText from "../components/misc/DoubleImageText"
 import Services from "../components/homepage/Services"
 import Footer from "../components/Footer"
 import ContactSpinner from "../components/homepage/ContactSpinner"
@@ -13,7 +12,7 @@ import useStore from "../../store"
 import CanCanvas from "../components/homepage/CanCanvas"
 import { useMediaQuery } from "react-responsive"
 import SelectedPopup from "../components/homepage/SelectedPopup"
-import LeadMagnet from "../components/homepage/LeadMagnet"
+import Forms from "../components/contact/Forms"
 
 import "../global.css"
 
@@ -76,12 +75,17 @@ export default function Home({ location }) {
       <main data-scroll-container ref={mainContainerRef}>
         <ContactSpinner scroll={scroll} />
         <CanCanvas scroll={scroll} />
-        <Hero />
-        <About />
+        <DoubleImageText
+        headline={"packaging-headline"}
+        imageFront={"/images/packaging-1.jpg"}
+        imageBack={"/images/packaging-2.jpg"}
+        title={"packaging-1-title"}
+        body={"packaging-1-body"}
+        />
         <Services scroll={scroll} />
-        <SelectedWorks filterby="all" />
+        <SelectedWorks filterby="packaging" />
         <SelectedPopup />
-        <LeadMagnet />
+        <Forms location={location} />
         <Footer />
       </main>
     </>

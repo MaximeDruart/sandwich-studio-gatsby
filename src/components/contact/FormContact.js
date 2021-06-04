@@ -125,6 +125,11 @@ const FormContact = ({ scroll, location }) => {
       serviceValue = "design"
       break
 
+
+    case "/packaging":
+      serviceValue = "packaging"
+      break
+
     case "/marketing":
       serviceValue = "digital_marketing"
       break

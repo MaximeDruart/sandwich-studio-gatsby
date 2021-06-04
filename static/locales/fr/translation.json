@@ -21,14 +21,16 @@
   "topLine": "Votre agence créative",
   "bottomLine": "Basée à Paris",
   "weAre": [
-    "branding",
-    "packaging",
-    "design",
-    "marketing",
-    "merchandising",
-    "social media",
-    "sandwich"
+    "are Sandwich Studio",
+    "make brands",
+    "love design",
+    "do web development",
+    "do marketing",
+    "make merchandising"
   ],
+  "packaging-headline": "Packaging & Emballage",
+  "packaging-1-title": "Démarquez-vous avec un packaging unique",
+  "packaging-1-body": "Suivant votre budget et vos contraintes, nous concevons un packaging sur-mesure pour votre marque. Quelque soit le minimum de commande, nous vous guidons dans votre choix et assurons une production de qualité dans les meilleurs délais. Doypack imprimé, bocaux, boite en carton et coffret personnalisé, nos methodes de marquage et notre reseaux de préstataires vous donne accès à un large choix de packaging.",
   "about-headline": "A propos",
   "about-1-title": "Qui sommes-nous ?",
   "about-1-body": "Nous sommes 5 créatifs passionés qui ont décidés un jour de se rassembler pour apporter plus de valeur. Sandwich Studio c'est votre agence qui vous accompagne dans votre parcours sur le web, vos communications multi-support et vous aide à faire évoluer votre entreprise.",
@@ -36,7 +38,7 @@
   "about-2-body": "Renforcer votre présence sur le web et communiquer dans un language que vos prospects comprennent. Vous accompagner dans la conception et production de packaging, textiles et objets publicitaires.",
   "design-headline": "Design & Illustration",
   "design-headline-2": "Nos offres",
-  "design-1-title": "Votre identité visuelle",
+  "design-1-title": "Création d'identité visuelle",
   "design-1-body": "Gagnez en cohérence dans votre communication et renforcez votre image de marque par la création d'une identité visuelle singulière. De la création de votre logo à le création de visuels pour vos supports web et prints, nous vous aidons à communiquer avec vos clients.",
   "design-cards": [
     {
@@ -208,12 +210,12 @@
       "ctatext": "Obtenir un devis"
     }
   ],
-  "services-headline": "Services",
-  "services-1-title": "Communication visuelle",
-  "services-1-body": "Identité visuelle, création de logo, de formats publicitaires... Développons une identité forte en adéquation avec votre vision.",
+  "services-headline": "Le process",
+  "services-1-title": "Design de packaging",
+  "services-1-body": "Créons un design de packaging fidèle à votre identité visuelle et à votre briefing qui met en valeur votre produit.",
   "services-1-cta": "Visualiser la brochure",
-  "services-2-title": "Packaging",
-  "services-2-body": "Du prototype à la production, nous concevons des packaging originaux pour mettre en valeur vos produits. Grâce à notre atelier et techniques de marquage sur tout matériaux, nous pouvons rapidement concrétiser vos idées et produire selon vos besoins.",
+  "services-2-title": "Production sur-mesure",
+  "services-2-body": "Du prototype à la production, nous concevons des packaging originaux pour mettre en valeur vos produits. Grâce à notre atelier, notre reseaux de préstataire et nos techniques de marquage sur tout matériaux, nous pouvons rapidement concrétiser vos idées et produire selon vos besoins.",
   "services-2-cta": "Visualiser la brochure",
   "services-3-title": "Web & Marketing",
   "services-3-body": "Du site vitrine au site e-commerce, nous concevons des sites web qui ne laisseront pas vos clients indifférents. Nos formules marketing vous aideront à étendre votre présence sur le web et atteindre vos objectifs via la création de campagnes d'acquisition, l’analyse de vos données et l'optimisation de votre site.",

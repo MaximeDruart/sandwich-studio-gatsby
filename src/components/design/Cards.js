@@ -106,6 +106,7 @@ const Cards = () => {
             t("design-cards", { returnObjects: true }).map(
                 (card, index) => (
                   <Card
+                    key={index}
                     index={card.title + index}
                     title={card.title}
                     description={card.description}

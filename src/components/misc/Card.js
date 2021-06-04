@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
+import Button from "../tree/Button"
 
 const StyledCard = styled.div`
 
@@ -20,7 +21,7 @@ const StyledCard = styled.div`
     .card-header{
         padding:20px;
         background:#1F1F1F;
-        h3{
+        h2{
         font-size:32px;
         font-family:NeueMontrealBold;
         margin-bottom:10px;
@@ -61,7 +62,7 @@ const Card = ({index,title,description,content,priceintro,price,leadtime,cta}) =
     <StyledCard key={index}>
         <div>
             <div className="card-header">
-                <h3>{title}</h3>
+                <h2>{title}</h2>
                 <p>{description}</p>
             </div>
             <div className="card-content">
@@ -72,14 +73,7 @@ const Card = ({index,title,description,content,priceintro,price,leadtime,cta}) =
                 <span className="price-intro">{priceintro}</span>
                 <span className="price">{price}</span>
                 <span>{leadtime}</span>
-                <AniLink
-                cover
-                direction="down"
-                bg="#0D0D0D"
-                className="cta-button"
-                to="/contact">
-                    {cta}
-                </AniLink>
+                <Button target="/contact" fullWidth>{cta}</Button>
         </div>
     </StyledCard>
   )}

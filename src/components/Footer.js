@@ -79,7 +79,7 @@ const Footer = () => {
       <div className="left">
         <span className="at">@sandwich.studio 2021</span>
         <div className="contact">
-          <a className="email" href="mailto:someone@yoursite.com">
+          <a className="email" href="mailto:contact@sandwichstudio.fr">
             <img src="/images/email-icon.png" alt="link to email" />
           </a>
           <a className="insta" href="https://www.instagram.com/sandwich.std">

@@ -30,12 +30,12 @@ const StyledAbout = styled.div`
       position: relative;
       width: max(30vw, 400px);
       height: max(30vw, 400px);
-      background: center / cover url("/images/design-1.jpg");
+      background: center / cover url("${props => props.imgFront}");
       .photo {
         position: absolute;
         width: max(30vw, 400px);
         height: max(30vw, 400px);
-        background: center / cover url("/images/design-2.jpg");
+        background: center / cover url("${props => props.imgBack}");
         bottom: -30%;
         right: -30%;
       }
@@ -62,28 +62,8 @@ const StyledAbout = styled.div`
       flex-direction: row-reverse;
       margin-top: 25vh;
       margin-bottom: 55vh;
-
-      .photos {
-        background: center / cover url("/images/whoweare-3.jpg");
-        .photo-bm {
-          position: absolute;
-          width: max(30vw, 400px);
-          height: max(30vw, 400px);
-          background: center / cover url("/images/whoweare.jpg");
-          bottom: -50vh;
-          left: -20vw;
-        }
-        .photo-bl {
-          position: absolute;
-          width: max(30vw, 400px);
-          height: max(30vw, 400px);
-          background: center / cover url("/images/whoweare-2.jpg");
-          bottom: -40vh;
-          left: -60vw;
-        }
-      }
       .text {
-        text-align: left;
+        text-align: right;
       }
     }
     @media (max-width: 1000px) {
@@ -138,20 +118,20 @@ const StyledAbout = styled.div`
   }
 `
 
-const About = () => {
+const DoubleImageText = ({headline,imageFront,imageBack,title,body}) => {
   const { t } = useTranslation()
 
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
-    <StyledAbout id="about" data-scroll-section>
+    <StyledAbout id="about" data-scroll-section imgFront={imageFront} imgBack={imageBack}>
       <div
         data-scroll
         data-scroll-direction="horizontal"
         data-scroll-speed="7"
         className="headline"
       >
-        {t("design-headline")} • {t("design-headline")} • {t("design-headline")}
+        {t(headline)} • {t(headline)} • {t(headline)}
       </div>
       <div className="our-mission about-section">
         <div
@@ -166,12 +146,12 @@ const About = () => {
           ></div>
         </div>
         <div className="text">
-          <div className="title">{t("design-1-title")}</div>
-          <div className="desc">{t("design-1-body")}</div>
+          <h1 className="title">{t(title)}</h1>
+          <div className="desc">{t(body)}</div>
         </div>
       </div>
     </StyledAbout>
   )
 }
 
-export default About
+export default DoubleImageText

@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 
 import { ReactComponent as Arrow } from "../../../assets/icons/arrow.svg"
 import { useMediaQuery } from "react-responsive"
+import Button from "../tree/Button"
 
 const StyledServices = styled.div`
   width: 100vw;
@@ -260,10 +261,10 @@ const Services = ({ scroll }) => {
           </motion.svg>
         </div>
         <div className="text align-right">
-          <div className="title">{t("services-1-title")} </div>
+          <h2 className="title">{t("services-1-title")} </h2>
           <div className="body">{t("services-1-body")} </div>
 
-          <CallToActionButton text={t("services-1-cta")} />
+          <Button target="/contact">Obtenir un devis</Button>
         </div>
       </div>
 
@@ -275,10 +276,10 @@ const Services = ({ scroll }) => {
         className="section second tl-section tl-section-1"
       >
         <div className="text">
-          <div className="title">{t("services-2-title")} </div>
+          <h2 className="title">{t("services-2-title")} </h2>
           <div className="body">{t("services-2-body")} </div>
 
-          <CallToActionButton text={t("services-2-cta")} />
+          <Button target="/contact">Obtenir un devis</Button> 
         </div>
         <div className="decoration"></div>
       </div>
@@ -291,10 +292,10 @@ const Services = ({ scroll }) => {
         className="section second tl-section tl-section-3"
       >
         <div className="text">
-          <div className="title">{t("services-3-title")} </div>
+          <h2 className="title">{t("services-3-title")} </h2>
           <div className="body">{t("services-3-body")} </div>
 
-          <CallToActionButton text={t("services-3-cta")} />
+          <Button target="/contact">Obtenir un devis</Button>
         </div>
         <div className="decoration"></div>
       </div>
@@ -330,10 +331,10 @@ const Services = ({ scroll }) => {
           />
         </div>
         <div className="text align-right">
-          <div className="title">{t("services-5-title")} </div>
+          <h2 className="title">{t("services-5-title")} </h2>
           <div className="body">{t("services-5-body")} </div>
 
-          <CallToActionButton text={t("services-5-cta")} />
+          <Button target="/contact">Contact</Button>
         </div>
       </div>
     </StyledServices>

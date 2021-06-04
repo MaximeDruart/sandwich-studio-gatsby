@@ -38,6 +38,7 @@ theme.textStyles = {
     }
   `,
   h3: css`
+    margin-bottom:10px;
     font-family: NeueMontrealRegular;
     font-style: normal;
     font-weight: normal;
@@ -124,7 +125,6 @@ theme.textStyles = {
     transition:0.2s all;
     &:hover{
       background: #eaeaea;
-      padding-left:45px;
       transition:0.2s all;
     }
 

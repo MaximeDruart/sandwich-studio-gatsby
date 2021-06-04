@@ -8,7 +8,7 @@ import useStore from "../../store"
 import SelectedWorks from "../components/homepage/SelectedWorks"
 import SelectedPopup from "../components/homepage/SelectedPopup"
 import DoubleImageText from "../components/misc/DoubleImageText"
-import Cards from "../components/design/Cards"
+import Cards from "../components/marketing/Cards"
 import Forms from "../components/contact/Forms"
 import { useMediaQuery } from "react-responsive"
 
@@ -56,7 +56,7 @@ export default function Home({ location }) {
   return (
     <>
       <Helmet>
-        <title>Design & Illustration - Sandwich Studio</title>
+        <title>Sandwich Studio - La checklist indispensable pour démarrer votre activité</title>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -70,14 +70,14 @@ export default function Home({ location }) {
 
       <main data-scroll-container ref={mainContainerRef}>
         <DoubleImageText
-        headline={"design-headline"}
+        headline={"marketing-headline"}
         imageFront={"/images/design-1.jpg"}
         imageBack={"/images/design-2.jpg"}
-        title={"design-1-title"}
-        body={"design-1-body"}
+        title={"marketing-1-title"}
+        body={"marketing-1-body"}
         />
         <Cards />
-        <SelectedWorks filterby="design" />
+        <SelectedWorks filterby="marketing" />
         <SelectedPopup />
         <Forms location={location} />
         <Footer />

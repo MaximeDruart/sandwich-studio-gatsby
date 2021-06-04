@@ -7,7 +7,7 @@ import Footer from "../components/Footer"
 import useStore from "../../store"
 import SelectedWorks from "../components/homepage/SelectedWorks"
 import SelectedPopup from "../components/homepage/SelectedPopup"
-import About from "../components/web/About"
+import DoubleImageText from "../components/misc/DoubleImageText"
 import Cards from "../components/web/Cards"
 import Forms from "../components/contact/Forms"
 import { useMediaQuery } from "react-responsive"
@@ -69,7 +69,13 @@ export default function Home({ location }) {
       <Header location={location} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
-        <About />
+      <DoubleImageText
+        headline={"web-headline"}
+        imageFront={"/images/web-1.jpg"}
+        imageBack={"/images/web-2.jpg"}
+        title={"web-1-title"}
+        body={"web-1-body"}
+        />
         <Cards />
         <SelectedWorks filterby="web" />
         <SelectedPopup />
