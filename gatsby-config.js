@@ -11,6 +11,13 @@ module.exports = {
     description: `Sandwich studio agency website`,
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-PXRNVGQ",
+        includeInDevelopment: true,
+      },
+    },
     "gatsby-plugin-styled-components",
     "gatsby-plugin-svgr",
     "gatsby-plugin-react-helmet",
@@ -34,7 +41,6 @@ module.exports = {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
           "G-PQLE6Z6ZHY", // Google Analytics / GA
-          "GTM-PXRNVGQ" // GTAG
         ],
         // This object is used for configuration specific to this plugin
         pluginConfig: {
