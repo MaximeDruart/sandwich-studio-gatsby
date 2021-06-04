@@ -56,7 +56,8 @@ export default function Home({ location }) {
   return (
     <>
       <Helmet>
-        <title>Conception Web - Sandwich Studio</title>
+        <title>Votre site web sur-mesure avec Sandwich Studio</title>
+        <meta name="description" content="Confiez la création de votre site web à l'agence Sandwich Studio. Développons un site web professionnel à votre image et au meilleur prix."></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"

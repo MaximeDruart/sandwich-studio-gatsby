@@ -52,7 +52,8 @@ export default function Home({ location }) {
   return (
     <>
       <Helmet>
-        <title>Contact - Sandwich Studio</title>
+        <title>Construisons ensemble - Sandwich Studio</title>
+        <meta name="description" content="Un logo ? Un site web ? Une idée ? Discutons de votre projet et commencons à le réaliser ensemble."></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"

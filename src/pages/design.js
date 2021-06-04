@@ -56,7 +56,8 @@ export default function Home({ location }) {
   return (
     <>
       <Helmet>
-        <title>Design & Illustration - Sandwich Studio</title>
+        <title>Votre identité visuelle par Sandwich Studio</title>
+        <meta name="description" content="Créons un logo et une identité visuelle professionelle et reconnaissable par vos clients. Mettons en valeur les atouts et valeurs de votre marque."></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"

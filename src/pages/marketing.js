@@ -56,7 +56,8 @@ export default function Home({ location }) {
   return (
     <>
       <Helmet>
-        <title>Marketing digital - Sandwich Studio</title>
+        <title>Marketing Digital - Génerez plus de ventes avec Sandwich Studio</title>
+        <meta name="description" content="De l'aquisition de trafic à l'analyse de vos données, mettons en place une stratégie pour améliorer vos résultats sur le web."></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
