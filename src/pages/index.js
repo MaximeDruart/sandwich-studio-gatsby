@@ -62,6 +62,7 @@ export default function Home({ location }) {
       <Helmet>
         <title>Sandwich Studio - Agence créative à Paris</title>
         <meta name="description" content="Du logo à la création de votre site web, on vous accompagne dans votre transformation digitale et vos communications multi-supports."></meta>
+        <meta name="facebook-domain-verification" content="28rdw927c9t60caque6wzoc3k4mn3b" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
