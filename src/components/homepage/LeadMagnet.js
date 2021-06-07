@@ -5,6 +5,7 @@ import { validateMagnet } from "../../../assets/utils/formValidator"
 import { AnimatePresence, motion } from "framer-motion"
 import isEmpty from "is-empty"
 import { ReactComponent as Loader } from "../../../assets/icons/loader.svg"
+import { downloadFile } from "../../../assets/utils/fileDownload"
 
 const encode = data =>
   Object.keys(data)
@@ -170,8 +171,6 @@ const FormCallback = () => {
     e.preventDefault()
     const { errors, isValid } = validateMagnet(logs)
 
-    console.log(errors, isValid)
-
     if (isValid) {
       setLoading(true)
       const form = e.target
@@ -184,12 +183,11 @@ const FormCallback = () => {
         }),
       })
         .then(() => {
-          console.log("done")
           setSuccess(true)
           setLoading(false)
+          downloadFile("./ToDoList-10-Etapes-Sandwich-Studio.pdf")
         })
         .catch(error => {
-          console.log(error)
           setErrors({ server: error })
           setLoading(false)
         })
