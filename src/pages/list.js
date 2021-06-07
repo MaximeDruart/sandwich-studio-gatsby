@@ -16,26 +16,21 @@ export default function Home({ location }) {
 
   useEffect(() => {
     if (mainContainerRef.current) {
-      if (canvasLoadStatus.progress >= 100) {
-        import("locomotive-scroll").then(LocomotiveScroll => {
-          const Loco = LocomotiveScroll.default
-          // waiting for the animation to be done
-          setTimeout(() => {
-            const s = new Loco({
-              smooth: true,
-              el: mainContainerRef.current,
-              tablet: { smooth: true },
-              smartphone: { smooth: true },
-              reloadOnContextChange: true,
-              lerp: isTablet ? 0.1 : 0.1,
-            })
-
-            s.update()
-
-            setScroll(s)
-          }, 1600)
+      import("locomotive-scroll").then(LocomotiveScroll => {
+        const Loco = LocomotiveScroll.default
+        // waiting for the animation to be done
+        const s = new Loco({
+          smooth: true,
+          el: mainContainerRef.current,
+          tablet: { smooth: true },
+          smartphone: { smooth: true },
+          reloadOnContextChange: true,
+          lerp: isTablet ? 0.1 : 0.1,
         })
-      }
+
+        s.update()
+        setScroll(s)
+      })
     }
     return () => scroll && scroll.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,10 +44,21 @@ export default function Home({ location }) {
     }
   }, [scroll])
 
+  useEffect(() => {
+    if (scroll) {
+      setTimeout(() => {
+        scroll.update()
+      }, 400)
+    }
+  }, [scroll])
+
   return (
     <>
       <Helmet>
-        <title>Sandwich Studio - La checklist indispensable pour démarrer votre activité</title>
+        <title>
+          Sandwich Studio - La checklist indispensable pour démarrer votre
+          activité
+        </title>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -65,8 +71,8 @@ export default function Home({ location }) {
       <Header location={location} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
-          <LeadMagnet></LeadMagnet>
-          <Footer></Footer>
+        <LeadMagnet></LeadMagnet>
+        <Footer></Footer>
       </main>
     </>
   )

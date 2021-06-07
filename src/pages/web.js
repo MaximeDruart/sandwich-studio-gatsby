@@ -20,26 +20,21 @@ export default function Home({ location }) {
 
   useEffect(() => {
     if (mainContainerRef.current) {
-      if (canvasLoadStatus.progress >= 100) {
-        import("locomotive-scroll").then(LocomotiveScroll => {
-          const Loco = LocomotiveScroll.default
-          // waiting for the animation to be done
-          setTimeout(() => {
-            const s = new Loco({
-              smooth: true,
-              el: mainContainerRef.current,
-              tablet: { smooth: true },
-              smartphone: { smooth: true },
-              reloadOnContextChange: true,
-              lerp: isTablet ? 0.1 : 0.1,
-            })
-
-            s.update()
-
-            setScroll(s)
-          }, 1600)
+      import("locomotive-scroll").then(LocomotiveScroll => {
+        const Loco = LocomotiveScroll.default
+        // waiting for the animation to be done
+        const s = new Loco({
+          smooth: true,
+          el: mainContainerRef.current,
+          tablet: { smooth: true },
+          smartphone: { smooth: true },
+          reloadOnContextChange: true,
+          lerp: isTablet ? 0.1 : 0.1,
         })
-      }
+
+        s.update()
+        setScroll(s)
+      })
     }
     return () => scroll && scroll.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +52,10 @@ export default function Home({ location }) {
     <>
       <Helmet>
         <title>Votre site web sur-mesure avec Sandwich Studio</title>
-        <meta name="description" content="Confiez la création de votre site web à l'agence Sandwich Studio. Développons un site web professionnel à votre image et au meilleur prix."></meta>
+        <meta
+          name="description"
+          content="Confiez la création de votre site web à l'agence Sandwich Studio. Développons un site web professionnel à votre image et au meilleur prix."
+        ></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -70,12 +68,12 @@ export default function Home({ location }) {
       <Header location={location} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
-      <DoubleImageText
-        headline={"web-headline"}
-        imageFront={"/images/web-1.jpg"}
-        imageBack={"/images/web-2.jpg"}
-        title={"web-1-title"}
-        body={"web-1-body"}
+        <DoubleImageText
+          headline={"web-headline"}
+          imageFront={"/images/web-1.jpg"}
+          imageBack={"/images/web-2.jpg"}
+          title={"web-1-title"}
+          body={"web-1-body"}
         />
         <Cards />
         <SelectedWorks filterby="web" />

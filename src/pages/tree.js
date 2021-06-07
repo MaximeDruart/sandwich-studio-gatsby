@@ -17,26 +17,21 @@ export default function Home({ location }) {
 
   useEffect(() => {
     if (mainContainerRef.current) {
-      if (canvasLoadStatus.progress >= 100) {
-        import("locomotive-scroll").then(LocomotiveScroll => {
-          const Loco = LocomotiveScroll.default
-          // waiting for the animation to be done
-          setTimeout(() => {
-            const s = new Loco({
-              smooth: true,
-              el: mainContainerRef.current,
-              tablet: { smooth: true },
-              smartphone: { smooth: true },
-              reloadOnContextChange: true,
-              lerp: isTablet ? 0.1 : 0.1,
-            })
-
-            s.update()
-
-            setScroll(s)
-          }, 1600)
+      import("locomotive-scroll").then(LocomotiveScroll => {
+        const Loco = LocomotiveScroll.default
+        // waiting for the animation to be done
+        const s = new Loco({
+          smooth: true,
+          el: mainContainerRef.current,
+          tablet: { smooth: true },
+          smartphone: { smooth: true },
+          reloadOnContextChange: true,
+          lerp: isTablet ? 0.1 : 0.1,
         })
-      }
+
+        s.update()
+        setScroll(s)
+      })
     }
     return () => scroll && scroll.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,13 +61,24 @@ export default function Home({ location }) {
       <Header location={location} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
-          <Container>
-            <img src="/images/logo-black.png"></img>
-            <Button target={"/"} fullWidth>Notre site web</Button>
-            <Button target={"/contact"} fullWidth>Obtenir un devis</Button>
-            <Button target={"/contact"} fullWidth>Télecharger la to-do list pour booster votre activité</Button>
-            <Button target={"https://www.instagram.com/sandwich.std/?hl=fr"} fullWidth>Instagram</Button>
-          </Container>
+        <Container>
+          <img src="/images/logo-black.png"></img>
+          <Button target={"/"} fullWidth>
+            Notre site web
+          </Button>
+          <Button target={"/contact"} fullWidth>
+            Obtenir un devis
+          </Button>
+          <Button target={"/contact"} fullWidth>
+            Télecharger la to-do list pour booster votre activité
+          </Button>
+          <Button
+            target={"https://www.instagram.com/sandwich.std/?hl=fr"}
+            fullWidth
+          >
+            Instagram
+          </Button>
+        </Container>
         <Footer />
       </main>
     </>

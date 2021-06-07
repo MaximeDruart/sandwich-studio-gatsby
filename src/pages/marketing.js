@@ -20,26 +20,21 @@ export default function Home({ location }) {
 
   useEffect(() => {
     if (mainContainerRef.current) {
-      if (canvasLoadStatus.progress >= 100) {
-        import("locomotive-scroll").then(LocomotiveScroll => {
-          const Loco = LocomotiveScroll.default
-          // waiting for the animation to be done
-          setTimeout(() => {
-            const s = new Loco({
-              smooth: true,
-              el: mainContainerRef.current,
-              tablet: { smooth: true },
-              smartphone: { smooth: true },
-              reloadOnContextChange: true,
-              lerp: isTablet ? 0.1 : 0.1,
-            })
-
-            s.update()
-
-            setScroll(s)
-          }, 1600)
+      import("locomotive-scroll").then(LocomotiveScroll => {
+        const Loco = LocomotiveScroll.default
+        // waiting for the animation to be done
+        const s = new Loco({
+          smooth: true,
+          el: mainContainerRef.current,
+          tablet: { smooth: true },
+          smartphone: { smooth: true },
+          reloadOnContextChange: true,
+          lerp: isTablet ? 0.1 : 0.1,
         })
-      }
+
+        s.update()
+        setScroll(s)
+      })
     }
     return () => scroll && scroll.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,8 +51,13 @@ export default function Home({ location }) {
   return (
     <>
       <Helmet>
-        <title>Marketing Digital - Génerez plus de ventes avec Sandwich Studio</title>
-        <meta name="description" content="De l'aquisition de trafic à l'analyse de vos données, mettons en place une stratégie pour améliorer vos résultats sur le web."></meta>
+        <title>
+          Marketing Digital - Génerez plus de ventes avec Sandwich Studio
+        </title>
+        <meta
+          name="description"
+          content="De l'aquisition de trafic à l'analyse de vos données, mettons en place une stratégie pour améliorer vos résultats sur le web."
+        ></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -71,11 +71,11 @@ export default function Home({ location }) {
 
       <main data-scroll-container ref={mainContainerRef}>
         <DoubleImageText
-        headline={"marketing-headline"}
-        imageFront={"/images/design-1.jpg"}
-        imageBack={"/images/design-2.jpg"}
-        title={"marketing-1-title"}
-        body={"marketing-1-body"}
+          headline={"marketing-headline"}
+          imageFront={"/images/design-1.jpg"}
+          imageBack={"/images/design-2.jpg"}
+          title={"marketing-1-title"}
+          body={"marketing-1-body"}
         />
         <Cards />
         <SelectedWorks filterby="marketing" />

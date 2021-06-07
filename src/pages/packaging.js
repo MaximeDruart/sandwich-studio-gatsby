@@ -24,26 +24,21 @@ export default function Home({ location }) {
 
   useEffect(() => {
     if (mainContainerRef.current) {
-      if (canvasLoadStatus.progress >= 100) {
-        import("locomotive-scroll").then(LocomotiveScroll => {
-          const Loco = LocomotiveScroll.default
-          // waiting for the animation to be done
-          setTimeout(() => {
-            const s = new Loco({
-              smooth: true,
-              el: mainContainerRef.current,
-              tablet: { smooth: true },
-              smartphone: { smooth: true },
-              reloadOnContextChange: true,
-              lerp: isTablet ? 0.1 : 0.1,
-            })
-
-            s.update()
-
-            setScroll(s)
-          }, 1600)
+      import("locomotive-scroll").then(LocomotiveScroll => {
+        const Loco = LocomotiveScroll.default
+        // waiting for the animation to be done
+        const s = new Loco({
+          smooth: true,
+          el: mainContainerRef.current,
+          tablet: { smooth: true },
+          smartphone: { smooth: true },
+          reloadOnContextChange: true,
+          lerp: isTablet ? 0.1 : 0.1,
         })
-      }
+
+        s.update()
+        setScroll(s)
+      })
     }
     return () => scroll && scroll.destroy()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,7 +56,10 @@ export default function Home({ location }) {
     <>
       <Helmet>
         <title>Votre packaging sur-mesure par Sandwich Studio</title>
-        <meta name="description" content="Création de packaging sur-mesure. Petite ou grosse quantité. Cartonnage, coffret, doypack ou bocal, confiez nous la création et la production de vos packaging."></meta>
+        <meta
+          name="description"
+          content="Création de packaging sur-mesure. Petite ou grosse quantité. Cartonnage, coffret, doypack ou bocal, confiez nous la création et la production de vos packaging."
+        ></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -77,11 +75,11 @@ export default function Home({ location }) {
         <ContactSpinner scroll={scroll} />
         <CanCanvas scroll={scroll} />
         <DoubleImageText
-        headline={"packaging-headline"}
-        imageFront={"/images/packaging-1.jpg"}
-        imageBack={"/images/packaging-2.jpg"}
-        title={"packaging-1-title"}
-        body={"packaging-1-body"}
+          headline={"packaging-headline"}
+          imageFront={"/images/packaging-1.jpg"}
+          imageBack={"/images/packaging-2.jpg"}
+          title={"packaging-1-title"}
+          body={"packaging-1-body"}
         />
         <Services scroll={scroll} />
         <SelectedWorks filterby="packaging" />
