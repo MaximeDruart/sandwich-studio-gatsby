@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
+import axios from 'axios';
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 import Header from "../components/Header"
 import Hero from "../components/homepage/Hero"
@@ -17,12 +19,23 @@ import LeadMagnet from "../components/homepage/LeadMagnet"
 import "../global.css"
 
 export default function Home({ location }) {
+  const { t, ready } = useTranslation()
   const mainContainerRef = useRef(null)
   const [scroll, setScroll] = useState(null)
+  let [apiData,setApiData] = useState(null)
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" })
 
   useEffect(() => {
+    const fetchHome = async () => {
+      try {
+        const response = await axios.get(t("backend-url")+'/homepage');
+        setApiData(response.data)
+      } catch (error) {
+        setApiData(null)
+      }
+    }
+    fetchHome()
     if (mainContainerRef.current) {
       // condition rempli seulement sur la home
       if (canvasLoadStatus.progress >= 100) {
@@ -85,11 +98,23 @@ export default function Home({ location }) {
         <ContactSpinner scroll={scroll} />
         {/* <CanCanvas scroll={scroll} /> */}
         <Hero />
-        <About />
-        <Cards></Cards>
+        <About
+          titleWho={apiData != null ? apiData.info.titleWhowheare : "______"}
+          bodyWho={apiData != null ? apiData.info.bodyWhoweare : "______"}
+          imgWhoFront={apiData != null ? apiData.info.imgWhoweare[0].url : "______"}
+          imgWhoBack={apiData != null ? apiData.info.imgWhoweare[1].url : "______"}
+          titleMission={apiData != null ? apiData.info.titleMission : "______"}
+          bodyMission={apiData != null ? apiData.info.bodyMission : "______"}
+          imgMission={apiData != null ? apiData.info.imgMission[0].url : "______"}
+          imgMissionOne={apiData != null ? apiData.info.imgMission[1].url : "______"}
+          imgMissionTwo={apiData != null ? apiData.info.imgMission[2].url : "______"}   />
+        <Cards services={apiData != null ? apiData.info.homeServices : []}></Cards>
         <SelectedWorks filterby="all" />
         <SelectedPopup />
-        <LeadMagnet />
+        <LeadMagnet
+          title={apiData != null ? apiData.info.formTitle : "______"}
+          body={apiData != null ? apiData.info.formBody : "______"}
+          />
         <Footer />
       </main>
     </>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
@@ -30,12 +30,12 @@ const StyledAbout = styled.div`
       position: relative;
       width: max(30vw, 400px);
       height: max(30vw, 400px);
-      background: center / cover url("/images/mission-2.jpg");
+      background: center / cover url("${props => props.imgWhoFront}");
       .photo {
         position: absolute;
         width: max(30vw, 400px);
         height: max(30vw, 400px);
-        background: center / cover url("/images/mission.png");
+        background: center / cover url("${props => props.imgWhoBack}");
         bottom: -30%;
         right: -30%;
       }
@@ -63,12 +63,12 @@ const StyledAbout = styled.div`
       margin-bottom: 55vh;
 
       .photos {
-        background: center / cover url("/images/whoweare-3.jpg");
+        background: center / cover url("${props => props.imgMission}");
         .photo-bm {
           position: absolute;
           width: max(30vw, 400px);
           height: max(30vw, 400px);
-          background: center / cover url("/images/whoweare.jpg");
+          background: center / cover url("${props => props.imgMissionOne}");
           bottom: -50vh;
           left: -20vw;
         }
@@ -76,7 +76,7 @@ const StyledAbout = styled.div`
           position: absolute;
           width: max(30vw, 400px);
           height: max(30vw, 400px);
-          background: center / cover url("/images/whoweare-2.jpg");
+          background: center / cover url("${props => props.imgMissionTwo}");
           bottom: -40vh;
           left: -60vw;
         }
@@ -136,13 +136,19 @@ const StyledAbout = styled.div`
   }
 `
 
-const About = () => {
+const About = ({titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,bodyMission,imgMission,imgMissionOne,imgMissionTwo}) => {
   const { t } = useTranslation()
 
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
-    <StyledAbout id="about" data-scroll-section>
+    <StyledAbout id="about" data-scroll-section
+    imgWhoFront={t("images-url")+imgWhoFront}
+    imgWhoBack={t("images-url")+imgWhoBack}
+    imgMission={t("images-url")+imgMission}
+    imgMissionOne={t("images-url")+imgMissionOne}
+    imgMissionTwo={t("images-url")+imgMissionTwo}
+    >
       <div
         data-scroll
         data-scroll-direction="horizontal"
@@ -164,8 +170,8 @@ const About = () => {
           ></div>
         </div>
         <div className="text">
-          <div className="title">{t("about-1-title")}</div>
-          <div className="desc">{t("about-1-body")}</div>
+          <div className="title">{titleWho}</div>
+          <div className="desc">{bodyWho}</div>
         </div>
       </div>
       <div className="who-we-are about-section">
@@ -186,8 +192,8 @@ const About = () => {
           ></div>
         </div>
         <div className="text">
-          <div className="title">{t("about-2-title")}</div>
-          <div className="desc">{t("about-2-body")}</div>
+          <div className="title">{titleMission}</div>
+          <div className="desc">{bodyMission}</div>
         </div>
       </div>
     </StyledAbout>

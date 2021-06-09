@@ -52,14 +52,14 @@ const StyledCard = styled.div`
     }
 `
 
-const CardImage = ({index,title,description,cta,ctaurl}) => {
+const CardImage = ({index,title,description,cta,ctaurl,img}) => {
   const { t } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledCard key={index}>
         <div className="card-upper">
-            <img src={"images/icon-"+index.slice(-1)+".svg"}></img>
+            <img src={img}></img>
             <div className="card-header">
                 <h3>{title}</h3>
                 <p>{description}</p>

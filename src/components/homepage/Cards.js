@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect,useState} from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
@@ -87,9 +87,16 @@ const StyledAbout = styled.div`
   }
 `
 
-const Cards = () => {
+const Cards = ({services}) => {
   const { t } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+  const [servicesData,setServicesData] = useState([0,1,2])
+
+  useEffect(() => {
+    if(services != null && services.length > 0){
+      setServicesData(services)
+    }
+  })
 
   return (
     <StyledAbout id="about" data-scroll-section>
@@ -103,14 +110,15 @@ const Cards = () => {
       </div>
         <div className="container">
             {
-            t("services-cards", { returnObjects: true }).map(
+            servicesData.map(
                 (card, index) => (
                   <CardImage
                     index={card.title + index}
                     title={card.title}
-                    description={card.description}
-                    cta={card.ctatext}
-                    ctaurl={card.ctaurl}
+                    img={t("images-url")+(card.img != null ? card.img.url : null)}
+                    description={card.body}
+                    cta={card.targetAnchor}
+                    ctaurl={card.target}
                   ></CardImage>
                 )
             )}

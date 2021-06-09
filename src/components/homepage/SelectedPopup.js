@@ -6,6 +6,7 @@ import { ReactComponent as Close } from "../../../assets/icons/close.svg"
 import { ReactComponent as SmallArrow } from "../../../assets/icons/small-arrow.svg"
 import gsap from "gsap/gsap-core"
 import { useMemo } from "react"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 const StyledPopup = styled(motion.div)`
   width: 100vw;
@@ -125,22 +126,25 @@ const swipePower = (offset, velocity) => {
 }
 
 const SelectedPopup = () => {
+  const { t, ready } = useTranslation()
   const setSelectedWork = useStore(state => state.setSelectedWork)
   const selectedWork = useStore(state => state.selectedWork)
+  console.log(selectedWork.workImages)
+  const [images, setImages] = useState([])
+  console.log(selectedWork.workNumber)
+  console.log(images)
 
   const [focusedImage, setFocusedImage] = useState(0)
 
-  const imageSources = useMemo(
-    () =>
-      new Array(noOfImagesByWork[selectedWork.workNumber -1])
-        .fill()
-        .map(
-          (_, index) =>
-            `/images/sw-${selectedWork.workNumber}_${index + 1}.jpg`
-        ),
-    [selectedWork]
-  )
 
+  let imageSources=[1,2,3]
+if(selectedWork.workNumber){
+  imageSources = selectedWork.workImages.map((image,key)=>{
+    console.log(image.url)
+    return t("images-url")+image.url
+  })
+}
+console.log(imageSources)
   const clamper = useMemo(() => gsap.utils.clamp(0, imageSources.length - 1), [
     imageSources,
   ])

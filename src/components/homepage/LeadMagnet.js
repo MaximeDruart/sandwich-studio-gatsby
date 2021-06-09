@@ -145,7 +145,7 @@ const loaderVariants = {
   },
 }
 
-const FormCallback = () => {
+const FormCallback = ({title,body}) => {
   const { t } = useTranslation()
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
@@ -250,8 +250,8 @@ const FormCallback = () => {
       <div className="lead-magnet-wrapper">
         <div className="lead-magnet">
           <div className="title">
-            <div className="form-headline">{t("magnet-top-line")}</div>
-            <div className="form-bottom-line">{t("magnet-bottom-line")}</div>
+            <div className="form-headline">{title}</div>
+            <div className="form-bottom-line">{body}</div>
           </div>
           <form
             name="magnet"

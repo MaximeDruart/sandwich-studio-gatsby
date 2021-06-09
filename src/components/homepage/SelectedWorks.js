@@ -1,10 +1,11 @@
 import styled from "styled-components"
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg"
 import { useMediaQuery } from "react-responsive"
 import useStore from "../../../store"
+import axios from 'axios';
 
 const StyledSelectedWorks = styled.div`
   width: 100vw;
@@ -33,8 +34,10 @@ const StyledSelectedWorks = styled.div`
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
+      align-items: baseline;
 
       .work {
+        width:300px;
         margin-right: 62px;
         .image-container {
           cursor: pointer;
@@ -72,6 +75,10 @@ const StyledSelectedWorks = styled.div`
         .desc {
           ${({ theme }) => theme.textStyles.text};
         }
+        .fulldesc {
+          ${({ theme }) => theme.textStyles.text};
+          color:#afafaf;
+        }
       }
     }
 
@@ -101,8 +108,24 @@ const SelectedWorks = ({ filterby }) => {
   const { t, ready } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
   const [isDragging, setIsDragging] = useState(false)
+  let [apiData,setApiData] = useState([{tag:"undone",cover:[]}])
 
   const setSelectedWork = useStore(state => state.setSelectedWork)
+
+  useEffect(() => {
+
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(t("backend-url")+'/projects');
+        setApiData(response.data)
+      } catch (error) {
+      }
+    }
+    if(apiData[0].tag ==="undone"){
+      fetchServices()
+    }
+    console.log(apiData)
+  })
 
   return (
     <StyledSelectedWorks id="projects" data-scroll-section>
@@ -136,8 +159,7 @@ const SelectedWorks = ({ filterby }) => {
           className="works"
         >
           {ready &&
-            t("selected-works-categories", { returnObjects: true })
-              .filter(item => item.tag.includes(filterby))
+            apiData.filter(item => item.tag.includes(filterby))
               .map((work, index) => (
                 <div key={work.title + index} className="work">
                   <motion.div
@@ -146,13 +168,13 @@ const SelectedWorks = ({ filterby }) => {
                     className="image-container"
                     onClick={() =>
                       !isDragging &&
-                      setSelectedWork({ isOpen: true, workNumber: work.id })
+                      setSelectedWork({ isOpen: true, workNumber: work.id , workImages:work.media})
                     }
                   >
                     <motion.img
                       variants={hoverVariants}
                       draggable="false"
-                      src={`/images/sw-${work.id}.jpg`}
+                      src={t("images-url")+work.cover[0].url}
                       alt=""
                     />
                     <motion.div
@@ -164,7 +186,8 @@ const SelectedWorks = ({ filterby }) => {
                     </motion.div>
                   </motion.div>
                   <motion.div className="title">{work.title}</motion.div>
-                  <motion.div className="desc">{work.desc}</motion.div>
+                  <motion.div className="desc">{work.description}</motion.div>
+                  <motion.div className="fulldesc">{work.fulldesc}</motion.div>
                 </div>
               ))}
         </motion.div>

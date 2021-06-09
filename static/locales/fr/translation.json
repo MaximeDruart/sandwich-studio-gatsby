@@ -1,4 +1,6 @@
 {
+  "images-url": "",
+  "backend-url":"https://murmuring-sands-31907.herokuapp.com",
   "headerLinks": [
     { "category": "", "translation": "Accueil" },
     { "category": "web", "translation": "Web" },
