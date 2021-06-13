@@ -1,17 +1,16 @@
-import React, { useEffect, useRef, useState } from "react"
-import { Helmet } from "react-helmet"
+import React,{useEffect,useRef,useState} from "react"
 import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
+import loadable from '@loadable/component'
 
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-import useStore from "../../store"
-import SelectedWorks from "../components/misc/SelectedWorks"
-import DoubleImageText from "../components/misc/DoubleImageText"
-import Cards from "../components/web/Cards"
-import Forms from "../components/contact/Forms"
+import Header from "../../components/Header"
+import getComponentFromApi from "../../components/misc/getComponentFromApi"
+import Footer from "../../components/Footer"
+import useStore from "../../../store"
 import { useMediaQuery } from "react-responsive"
+import Headline from "../../components/misc/Headline"
 
-export default function Home({ location }) {
+export default function Service(props) {
   const mainContainerRef = useRef(null)
   const [scroll, setScroll] = useState(null)
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
@@ -43,17 +42,19 @@ export default function Home({ location }) {
     if (scroll) {
       setTimeout(() => {
         scroll.update()
-      }, 400)
+      }, 1000)
     }
   }, [scroll])
 
-  return (
-    <>
+  return(
+<>
       <Helmet>
-        <title>Votre site web sur-mesure avec Sandwich Studio</title>
+        <title>
+        {props.data.strapiPageservices.metatitle}
+        </title>
         <meta
           name="description"
-          content="Confiez la création de votre site web à l'agence Sandwich Studio. Développons un site web professionnel à votre image et au meilleur prix."
+          content={props.data.strapiPageservices.metadesc}
         ></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -64,27 +65,33 @@ export default function Home({ location }) {
         />
       </Helmet>
 
-      <Header location={location} scroll={scroll} />
+      <Header location={props.location} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
-        <DoubleImageText
-          headline={"web-headline"}
-          imageFront={"/images/web-1.jpg"}
-          imageBack={"/images/web-2.jpg"}
-          title={"web-1-title"}
-          body={"web-1-body"}
-        />
-        <Cards />
-        <SelectedWorks filterby="web" />
-        <Forms location={location} />
+        {props.data.strapiPageservices.main.map((item,index) => {
+          const Component = loadable(() => import('../../components/misc/'+getComponentFromApi(item)))
+          return (
+              <Component location={props.location} key={index} apiData={item} />
+          )
+        })}
         <Footer />
       </main>
     </>
   )
 }
-
+  
+// This is the page query that connects the data to the actual component. Here you can query for any and all fields
+// you need access to within your code. Again, since Gatsby always queries for `id` in the collection, you can use that
+// to connect to this GraphQL query.
 export const query = graphql`
-  query($language: String!) {
+  query($id: String,$language: String!) {
+    strapiPageservices(id: { eq: $id }) {
+        id
+        slug
+        metatitle
+        metadesc
+        main
+    }
     locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {

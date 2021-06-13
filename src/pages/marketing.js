@@ -5,8 +5,8 @@ import { graphql } from "gatsby"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import useStore from "../../store"
-import SelectedWorks from "../components/homepage/SelectedWorks"
-import SelectedPopup from "../components/homepage/SelectedPopup"
+import SelectedWorks from "../components/misc/SelectedWorks"
+import Headline from "../components/misc/Headline"
 import DoubleImageText from "../components/misc/DoubleImageText"
 import Cards from "../components/marketing/Cards"
 import Forms from "../components/contact/Forms"
@@ -70,6 +70,7 @@ export default function Home({ location }) {
       <Header location={location} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
+        <Headline title="test"></Headline>
         <DoubleImageText
           headline={"marketing-headline"}
           imageFront={"/images/design-1.jpg"}
@@ -79,7 +80,6 @@ export default function Home({ location }) {
         />
         <Cards />
         <SelectedWorks filterby="marketing" />
-        <SelectedPopup />
         <Forms location={location} />
         <Footer />
       </main>

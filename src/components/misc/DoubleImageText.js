@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
+import Headline from "../misc/Headline"
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -118,21 +119,19 @@ const StyledAbout = styled.div`
   }
 `
 
-const DoubleImageText = ({headline,imageFront,imageBack,title,body}) => {
+const DoubleImageText = ({headline,imageFront,imageBack,title,body,apiData}) => {
   const { t } = useTranslation()
-
+  headline = t(headline)
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
-
+  if(apiData){
+    headline=apiData.headline
+    imageFront =apiData.images[0].url
+    imageBack =apiData.images[1].url
+    title=apiData.title
+    body=apiData.content
+  }
   return (
     <StyledAbout id="about" data-scroll-section imgFront={imageFront} imgBack={imageBack}>
-      <div
-        data-scroll
-        data-scroll-direction="horizontal"
-        data-scroll-speed="7"
-        className="headline"
-      >
-        {t(headline)} • {t(headline)} • {t(headline)}
-      </div>
       <div className="our-mission about-section">
         <div
           data-scroll

@@ -12,6 +12,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `https://murmuring-sands-31907.herokuapp.com`,
+        queryLimit: 1000, // Defaults to 100
+        collectionTypes: [`projects`, `pageservices`, `home-services`, `productcards`]
+      },
+    },
+    {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
         pixelId: '303642951245695',

@@ -129,10 +129,7 @@ const SelectedPopup = () => {
   const { t, ready } = useTranslation()
   const setSelectedWork = useStore(state => state.setSelectedWork)
   const selectedWork = useStore(state => state.selectedWork)
-  console.log(selectedWork.workImages)
   const [images, setImages] = useState([])
-  console.log(selectedWork.workNumber)
-  console.log(images)
 
   const [focusedImage, setFocusedImage] = useState(0)
 
@@ -140,11 +137,9 @@ const SelectedPopup = () => {
   let imageSources=[1,2,3]
 if(selectedWork.workNumber){
   imageSources = selectedWork.workImages.map((image,key)=>{
-    console.log(image.url)
     return t("images-url")+image.url
   })
 }
-console.log(imageSources)
   const clamper = useMemo(() => gsap.utils.clamp(0, imageSources.length - 1), [
     imageSources,
   ])

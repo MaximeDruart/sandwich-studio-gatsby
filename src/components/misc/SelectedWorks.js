@@ -6,6 +6,9 @@ import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg
 import { useMediaQuery } from "react-responsive"
 import useStore from "../../../store"
 import axios from 'axios';
+import SelectedPopup from "./SelectedPopup"
+
+import Headline from "../misc/Headline"
 
 const StyledSelectedWorks = styled.div`
   width: 100vw;
@@ -103,12 +106,13 @@ const hoverTextVariants = {
   hover: { opacity: 1 },
 }
 
-const SelectedWorks = ({ filterby }) => {
+const SelectedWorks = (props,apiData) => {
+  let [filterby,setfilterby] = useState(props.filterby ? props.filterby : props.apiData.filterby)
   const worksRef = useRef(null)
   const { t, ready } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
   const [isDragging, setIsDragging] = useState(false)
-  let [apiData,setApiData] = useState([{tag:"undone",cover:[]}])
+  let [apiResp,setApiResp] = useState([{tag:"undone",cover:[]}])
 
   const setSelectedWork = useStore(state => state.setSelectedWork)
 
@@ -117,29 +121,24 @@ const SelectedWorks = ({ filterby }) => {
     const fetchServices = async () => {
       try {
         const response = await axios.get(t("backend-url")+'/projects');
-        setApiData(response.data)
+        setApiResp(response.data)
       } catch (error) {
       }
     }
-    if(apiData[0].tag ==="undone"){
+    if(apiResp[0].tag ==="undone"){
       fetchServices()
     }
-    console.log(apiData)
-  })
+  },[])
 
   return (
-    <StyledSelectedWorks id="projects" data-scroll-section>
-      <div
-        data-scroll
-        data-scroll-direction="horizontal"
-        data-scroll-speed="7"
-        className="headline"
-      >
-        {t("selected-works-headline")} • {t("selected-works-headline")} •{" "}
-        {t("selected-works-headline")}
-      </div>
+    <>
+    <SelectedPopup />
+    <StyledSelectedWorks id="projects" data-scroll-container>
+      {!props.apiData ? (
+      <Headline title={t("selected-works-headline")}></Headline>
+      ) : null}
 
-      <motion.div className="works-wrapper">
+      <motion.div className="works-wrapper" data-scroll-section>
         <motion.div
           ref={worksRef}
           dragConstraints={{
@@ -159,7 +158,7 @@ const SelectedWorks = ({ filterby }) => {
           className="works"
         >
           {ready &&
-            apiData.filter(item => item.tag.includes(filterby))
+            apiResp.filter(item => item.tag.includes(filterby))
               .map((work, index) => (
                 <div key={work.title + index} className="work">
                   <motion.div
@@ -193,6 +192,7 @@ const SelectedWorks = ({ filterby }) => {
         </motion.div>
       </motion.div>
     </StyledSelectedWorks>
+    </>
   )
 }
 

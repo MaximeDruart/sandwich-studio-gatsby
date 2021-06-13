@@ -10,10 +10,9 @@ import About from "../components/homepage/About"
 import Footer from "../components/Footer"
 import ContactSpinner from "../components/homepage/ContactSpinner"
 import Cards from "../components/homepage/Cards"
-import SelectedWorks from "../components/homepage/SelectedWorks"
+import SelectedWorks from "../components/misc/SelectedWorks"
 import useStore from "../../store"
 import { useMediaQuery } from "react-responsive"
-import SelectedPopup from "../components/homepage/SelectedPopup"
 import LeadMagnet from "../components/homepage/LeadMagnet"
 
 import "../global.css"
@@ -110,7 +109,6 @@ export default function Home({ location }) {
           imgMissionTwo={apiData != null ? apiData.info.imgMission[2].url : "______"}   />
         <Cards services={apiData != null ? apiData.info.homeServices : []}></Cards>
         <SelectedWorks filterby="all" />
-        <SelectedPopup />
         <LeadMagnet
           title={apiData != null ? apiData.info.formTitle : "______"}
           body={apiData != null ? apiData.info.formBody : "______"}

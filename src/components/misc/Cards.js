@@ -1,8 +1,10 @@
-import React from "react"
+import React,{useEffect,useState} from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
 import Card from "../misc/Card"
+import { graphql } from "gatsby"
+import axios from 'axios';
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -87,37 +89,47 @@ const StyledAbout = styled.div`
   }
 `
 
-const Cards = () => {
+const Cards = (targetService) => {
+  const title = targetService.apiData.productcards.title
   const { t } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
-  console.log(t("marketing-cards"))
+  let [apiData,setApiData] = useState([{tag:"undone",cover:[]}])
+  let [isLoading,setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(t("backend-url")+'/productcards?');
+        setApiData(response.data)
+        setIsLoading(false)
+      } catch (error) {
+      }
+    }
+    if(apiData[0].tag ==="undone"){
+      fetchServices()
+    }
+  })
+  
 
   return (
-    <StyledAbout id="about" data-scroll-section>
-      <div
-        data-scroll
-        data-scroll-direction="horizontal"
-        data-scroll-speed="7"
-        className="headline"
-      >
-        {t("marketing-headline-2")} • {t("marketing-headline-2")} • {t("marketing-headline-2")}
-      </div>
-        <div className="container">
-            {
-            t("marketing-cards", { returnObjects: true }).map(
+    <StyledAbout >
+        <div className="container" data-scroll-section>
+            {targetService.apiData.productcards.map(
                 (card, index) => (
                   <Card
+                    key={index}
                     index={card.title + index}
                     title={card.title}
-                    description={card.description}
-                    content={
+                    description={card.subtitle}
+                    content={!isLoading ?
                       <ul className="card-features">
-                          {card.features.map((feature,index)=>
-                          <li>{feature}</li>
-                          )}
-                      </ul>}
-                    priceintro={card.priceintro}
-                    price={card.price}
+                      {apiData[apiData.findIndex(x => x.id === card.id)].feature ? apiData[apiData.findIndex(x => x.id === card.id)].feature.map((feature,index)=>
+                        <li key={index}>{feature.feature}</li>
+                        ) : null}
+                      </ul>
+                      :null }
+                    priceintro="à partir de"
+                    price={card.price+"€"}
                     leadtime={card.leadtime}
                     cta="Obtenir un devis"
                   ></Card>

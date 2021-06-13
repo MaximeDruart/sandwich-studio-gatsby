@@ -5,8 +5,7 @@ import { graphql } from "gatsby"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import useStore from "../../store"
-import SelectedWorks from "../components/homepage/SelectedWorks"
-import SelectedPopup from "../components/homepage/SelectedPopup"
+import SelectedWorks from "../components/misc/SelectedWorks"
 import DoubleImageText from "../components/misc/DoubleImageText"
 import Cards from "../components/design/Cards"
 import Forms from "../components/contact/Forms"
@@ -77,7 +76,6 @@ export default function Home({ location }) {
         />
         <Cards />
         <SelectedWorks filterby="design" />
-        <SelectedPopup />
         <Forms location={location} />
         <Footer />
       </main>

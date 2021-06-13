@@ -7,11 +7,10 @@ import DoubleImageText from "../components/misc/DoubleImageText"
 import Services from "../components/homepage/Services"
 import Footer from "../components/Footer"
 import ContactSpinner from "../components/homepage/ContactSpinner"
-import SelectedWorks from "../components/homepage/SelectedWorks"
+import SelectedWorks from "../components/misc/SelectedWorks"
 import useStore from "../../store"
 import CanCanvas from "../components/homepage/CanCanvas"
 import { useMediaQuery } from "react-responsive"
-import SelectedPopup from "../components/homepage/SelectedPopup"
 import Forms from "../components/contact/Forms"
 
 import "../global.css"
@@ -83,7 +82,6 @@ export default function Home({ location }) {
         />
         <Services scroll={scroll} />
         <SelectedWorks filterby="packaging" />
-        <SelectedPopup />
         <Forms location={location} />
         <Footer />
       </main>
