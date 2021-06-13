@@ -90,7 +90,6 @@ const StyledAbout = styled.div`
 const Cards = () => {
   const { t } = useTranslation()
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
-  console.log(t("marketing-cards"))
 
   return (
     <StyledAbout id="about" data-scroll-section>
