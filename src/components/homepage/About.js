@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
@@ -60,7 +60,7 @@ const StyledAbout = styled.div`
     &.who-we-are {
       flex-direction: row-reverse;
       margin-top: 25vh;
-      margin-bottom: 55vh;
+      margin-bottom: 30vh;
 
       .photos {
         background: center / cover url("${props => props.imgMission}");

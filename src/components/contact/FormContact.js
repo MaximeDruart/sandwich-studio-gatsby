@@ -15,7 +15,6 @@ const encode = data =>
     .join("&")
 
 const StyledFormContact = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   flex-flow: column nowrap;
@@ -135,6 +134,8 @@ const FormContact = ({ scroll, location }) => {
     case "/marketing":
       serviceValue = "digital_marketing"
       break
+
+    default:serviceValue=null
   }
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)

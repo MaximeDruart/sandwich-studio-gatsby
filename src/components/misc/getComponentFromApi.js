@@ -10,6 +10,14 @@ export default function getComponentFromApi(input) {
             return "SelectedWorks"
         case "forms.formcontact":
             return "Forms"
+        case "page.imagebig":
+            return "ImageBig"
+        case "page.ctabanner":
+            return "CtaBannerText"
+        case "page.imageduo":
+            return "ImageDuo"
+        case "page.text-block":
+            return "TextBlock"
         default:
             return "Headline"
     }

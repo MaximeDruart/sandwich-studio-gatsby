@@ -62,7 +62,7 @@ export default function Home({ location }) {
 
       <main data-scroll-container ref={mainContainerRef}>
         <Container>
-          <img src="/images/logo-black.png"></img>
+          <img alt="Sandwich Studio logo" src="/images/logo-black.png"></img>
           <Button target={"/"} fullWidth>
             Notre site web
           </Button>

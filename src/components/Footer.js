@@ -1,14 +1,13 @@
-import { Link } from "gatsby"
 import React from "react"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
+import { graphql,StaticQuery } from "gatsby"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledFooter = styled.div`
   background: #151515;
   width: 100vw;
-  height: 10vh;
-  padding: 0 max(5vw, 40px) 0 max(5vw, 40px);
+  padding: 20px max(5vw, 40px) 50px max(5vw, 40px);
   margin-top: 30vh;
 
   display: flex;
@@ -19,13 +18,12 @@ const StyledFooter = styled.div`
 
   .left {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
+    flex-flow: column nowrap;
+    align-items: baseline;
     justify-content: space-between;
     .at {
     }
     .contact {
-      margin-left: 30px;
       display: flex;
       .email {
         margin-right: max(1.5vw, 15px);
@@ -88,19 +86,35 @@ const Footer = () => {
         </div>
       </div>
       <div className="right">
-        <AniLink
-          cover
-          direction="down"
-          bg="#0D0D0D"
-          className="link-button"
-          to={`/web`}
-          style={{ display: "none" }}
-          className="privacy"
-          to="/privacy-policy"
-        >
-          {t("footer-privacy-policy")}
-        </AniLink>
-        <span className="creator-tag">{t("footer-creator-tag")}</span>
+      <ul>
+        <StaticQuery
+        query={graphql`
+        query{
+          strapiMenufooter {
+            menulink {
+              url
+              anchor
+            }
+          }
+        }
+        `}
+        render={data => (
+          data.strapiMenufooter.menulink.map((item,index)=>(
+            <li>
+              <AniLink 
+                cover
+                direction="down"
+                bg="#0D0D0D"
+                className="cta-button"
+                to={item.url}
+                >
+                  {item.anchor}
+              </AniLink>
+            </li>
+          ))
+        )}
+      />
+    </ul>
       </div>
     </StyledFooter>
   )

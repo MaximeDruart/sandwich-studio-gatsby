@@ -4,9 +4,9 @@ import { motion } from "framer-motion"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg"
 import { useMediaQuery } from "react-responsive"
-import useStore from "../../../store"
 import axios from 'axios';
 import SelectedPopup from "./SelectedPopup"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import Headline from "../misc/Headline"
 
@@ -33,6 +33,7 @@ const StyledSelectedWorks = styled.div`
     /* justify-content: center; */
     align-items: center;
     .works {
+      margin-left: 5vw;
       width: fit-content;
       display: flex;
       flex-flow: row nowrap;
@@ -69,6 +70,21 @@ const StyledSelectedWorks = styled.div`
               margin-bottom: 30px;
             }
           }
+          .viewmore-text {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            opacity: 1;
+
+            span {
+              ${({ theme }) => theme.textStyles.h3};
+              margin-bottom: 30px;
+            }
+          }
         }
         .title {
           ${({ theme }) => theme.textStyles.h4};
@@ -85,10 +101,16 @@ const StyledSelectedWorks = styled.div`
       }
     }
 
+    @media (max-width: 1200px) {
+      .works {
+        margin-left: 0;
+      }
+    }
     @media (max-width: 600px) {
       justify-content: center;
       .works {
         flex-flow: column;
+        margin-left: 0;
 
         .work {
           margin-right: 0;
@@ -114,31 +136,25 @@ const SelectedWorks = (props,apiData) => {
   const [isDragging, setIsDragging] = useState(false)
   let [apiResp,setApiResp] = useState([{tag:"undone",cover:[]}])
 
-  const setSelectedWork = useStore(state => state.setSelectedWork)
-
   useEffect(() => {
 
     const fetchServices = async () => {
       try {
-        const response = await axios.get(t("backend-url")+'/projects');
+        const response = await axios.get(t("backend-url")+'/pageprojects');
         setApiResp(response.data)
+        console.log(response.data)
       } catch (error) {
       }
     }
     if(apiResp[0].tag ==="undone"){
       fetchServices()
     }
-  },[])
+  },[apiResp,t])
 
   return (
-    <>
-    <SelectedPopup />
-    <StyledSelectedWorks id="projects" data-scroll-container>
-      {!props.apiData ? (
-      <Headline title={t("selected-works-headline")}></Headline>
-      ) : null}
+    <StyledSelectedWorks id="projects" data-scroll-section>
 
-      <motion.div className="works-wrapper" data-scroll-section>
+      <motion.div className="works-wrapper">
         <motion.div
           ref={worksRef}
           dragConstraints={{
@@ -165,34 +181,56 @@ const SelectedWorks = (props,apiData) => {
                     variants={{ hover: { scale: 0.985 } }}
                     whileHover="hover"
                     className="image-container"
-                    onClick={() =>
-                      !isDragging &&
-                      setSelectedWork({ isOpen: true, workNumber: work.id , workImages:work.media})
-                    }
                   >
-                    <motion.img
-                      variants={hoverVariants}
-                      draggable="false"
-                      src={t("images-url")+work.cover[0].url}
-                      alt=""
-                    />
-                    <motion.div
-                      variants={hoverTextVariants}
-                      className="hover-text"
-                    >
-                      <span>{t("selected-works-hover-text")}</span>
-                      <Arrow />
-                    </motion.div>
+                    <AniLink
+                      cover
+                      direction="down"
+                      bg="#0D0D0D"
+                      to={"/projects/"+work.slug}>
+                      <motion.img
+                        variants={hoverVariants}
+                        draggable="false"
+                        src={t("images-url")+work.cover.url}
+                        alt=""
+                      />
+                      <motion.div
+                        variants={hoverTextVariants}
+                        className="hover-text"
+                      >
+                        <span>{t("selected-works-hover-text")}</span>
+                        <Arrow />
+                      </motion.div>
+                    </AniLink>
                   </motion.div>
                   <motion.div className="title">{work.title}</motion.div>
                   <motion.div className="desc">{work.description}</motion.div>
                   <motion.div className="fulldesc">{work.fulldesc}</motion.div>
                 </div>
               ))}
+              {filterby!=="all" ? (
+                <div className="work">
+                  <motion.div
+                    variants={{ hover: { scale: 0.985 } }}
+                    whileHover="hover"
+                    className="image-container"
+                    onClick={() =>
+                      !isDragging &&
+                      setfilterby("all")
+                    }
+                  >
+                    <motion.div
+                      variants={hoverTextVariants}
+                      className="viewmore-text"
+                    >
+                      <span>Tous les projets</span>
+                      <Arrow />
+                    </motion.div>
+                  </motion.div>
+                </div>
+              ) : null}
         </motion.div>
       </motion.div>
     </StyledSelectedWorks>
-    </>
   )
 }
 

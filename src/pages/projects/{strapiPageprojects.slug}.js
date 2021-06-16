@@ -28,6 +28,8 @@ export default function Service(props) {
           reloadOnContextChange: true,
           lerp: isTablet ? 0.1 : 0.1,
         })
+
+        s.update()
         setScroll(s)
       })
     }
@@ -39,7 +41,7 @@ export default function Service(props) {
     if (scroll) {
       setTimeout(() => {
         scroll.update()
-      }, 1500)
+      }, 2000)
     }
   }, [scroll])
 
@@ -47,11 +49,11 @@ export default function Service(props) {
 <>
       <Helmet>
         <title>
-        {props.data.strapiPageservices.metatitle}
+        {props.data.strapiPageprojects.metatitle}
         </title>
         <meta
           name="description"
-          content={props.data.strapiPageservices.metadesc}
+          content={props.data.strapiPageprojects.metadesc}
         ></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -64,10 +66,9 @@ export default function Service(props) {
 
       <Header location={props.location} scroll={scroll} />
 
-      <main data-scroll-container scroll={scroll} ref={mainContainerRef}>
-        {props.data.strapiPageservices.main.map((item,index) => {
+      <main data-scroll-container ref={mainContainerRef}>
+        {props.data.strapiPageprojects.main.map((item,index) => {
           const Component = loadable(() => import('../../components/misc/'+getComponentFromApi(item)))
-          console.log(index+" / "+props.data.strapiPageservices.main.length)
           return (
               <Component location={props.location} key={index} apiData={item} />
           )
@@ -83,7 +84,7 @@ export default function Service(props) {
 // to connect to this GraphQL query.
 export const query = graphql`
   query($id: String,$language: String!) {
-    strapiPageservices(id: { eq: $id }) {
+    strapiPageprojects(id: { eq: $id }) {
         id
         slug
         metatitle

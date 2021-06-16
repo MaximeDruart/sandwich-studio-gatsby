@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { motion } from "framer-motion"
-
-import { ReactComponent as Arrow } from "../../../assets/icons/arrow.svg"
 import { useMediaQuery } from "react-responsive"
 import Button from "../tree/Button"
 
@@ -144,28 +142,6 @@ const variants = {
 }
 const fillVariants = {
   drawn: { opacity: 1, transition: { delay: 0.8 } },
-}
-
-const ctaVariants = {
-  hover: {
-    x: 10,
-  },
-}
-
-const CallToActionButton = ({ text }) => {
-  return (
-    <motion.a
-      href="./brochure.pdf"
-      target="blank"
-      whileHover="hover"
-      className="cta"
-    >
-      <span className="text-content">{text}</span>
-      <motion.div variants={ctaVariants}>
-        <Arrow className="arrow" />
-      </motion.div>
-    </motion.a>
-  )
 }
 
 const Services = ({ scroll }) => {

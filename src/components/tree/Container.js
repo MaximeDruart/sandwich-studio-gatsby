@@ -1,8 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { useTranslation } from "gatsby-plugin-react-i18next"
-import { useMediaQuery } from "react-responsive"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledContainer = styled.div`
   width:100vw;
@@ -31,8 +28,6 @@ const StyledContainer = styled.div`
 `
 
 const Container = ({children}) => {
-  const { t } = useTranslation()
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledContainer>

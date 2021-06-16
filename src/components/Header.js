@@ -225,9 +225,6 @@ const Header = ({ location, scroll, isHomepage }) => {
     },
     [location.pathname, isMobile, scroll]
   )
-  const scrollToTop = useCallback(() => {
-    if (scroll) scroll.scrollTo(`top`)
-  }, [scroll])
 
   const [homeLink, contactLink] = t("headerLinksElse", { returnObjects: true })
 

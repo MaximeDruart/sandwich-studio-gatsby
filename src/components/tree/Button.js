@@ -1,11 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { useTranslation } from "gatsby-plugin-react-i18next"
-import { useMediaQuery } from "react-responsive"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledButton = styled.div`
-  ${props => props.isFullWidth ? "width:100%;" : null}
+  width: ${props   => props.isFullWidth ? "100%" : "fit-content"};
   padding:0px !important;
   a{
     ${({ theme }) => theme.textStyles.button};
@@ -20,8 +18,6 @@ const StyledButton = styled.div`
 `
 
 const Button = ({target, children,fullWidth}) => {
-  const { t } = useTranslation()
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledButton isFullWidth={fullWidth}>

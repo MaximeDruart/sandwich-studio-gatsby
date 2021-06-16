@@ -117,8 +117,6 @@ const imgVariants = {
   },
 }
 
-const noOfImagesByWork = [2, 4, 3, 1, 4]
-
 // taken from https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?file=/src/Example.tsx
 const swipeConfidenceThreshold = 12000
 const swipePower = (offset, velocity) => {
@@ -126,10 +124,9 @@ const swipePower = (offset, velocity) => {
 }
 
 const SelectedPopup = () => {
-  const { t, ready } = useTranslation()
+  const { t } = useTranslation()
   const setSelectedWork = useStore(state => state.setSelectedWork)
   const selectedWork = useStore(state => state.selectedWork)
-  const [images, setImages] = useState([])
 
   const [focusedImage, setFocusedImage] = useState(0)
 

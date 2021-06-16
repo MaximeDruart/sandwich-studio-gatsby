@@ -1,15 +1,11 @@
 import React,{useEffect,useState} from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
-import { useMediaQuery } from "react-responsive"
 import Card from "../misc/Card"
-import { graphql } from "gatsby"
 import axios from 'axios';
 
 const StyledAbout = styled.div`
   width: 100vw;
-
-  padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);
 
   * {
     font-family: NeueMontrealRegular;
@@ -23,6 +19,9 @@ const StyledAbout = styled.div`
   }
 
   .container {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
       margin-top:50px;
       display:grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -33,7 +32,9 @@ const StyledAbout = styled.div`
   }
 
   @media (max-width: 1200px){
+    padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);
     .container{
+      width:100%;
       grid-template-columns: 1fr 1fr;
     }
     .container .card:nth-child(4){
@@ -90,9 +91,7 @@ const StyledAbout = styled.div`
 `
 
 const Cards = (targetService) => {
-  const title = targetService.apiData.productcards.title
   const { t } = useTranslation()
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
   let [apiData,setApiData] = useState([{tag:"undone",cover:[]}])
   let [isLoading,setIsLoading] = useState(true)
 

@@ -1,8 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { useTranslation } from "gatsby-plugin-react-i18next"
-import { useMediaQuery } from "react-responsive"
-import { Link } from "gatsby"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledCard = styled.div`
@@ -23,7 +20,7 @@ const StyledCard = styled.div`
         }
     }
     border: 2px solid #1F1F1F;
-    border-radius:20px;
+    border-radius:10px;
     overflow:hidden;
     display:flex;
     flex-direction:column;
@@ -53,13 +50,11 @@ const StyledCard = styled.div`
 `
 
 const CardImage = ({index,title,description,cta,ctaurl,img}) => {
-  const { t } = useTranslation()
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledCard key={index}>
         <div className="card-upper">
-            <img src={img}></img>
+            <img alt="Service logo" src={img}></img>
             <div className="card-header">
                 <h3>{title}</h3>
                 <p>{description}</p>

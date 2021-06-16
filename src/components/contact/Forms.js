@@ -24,14 +24,14 @@ const StyledForms = styled.div`
   }
 
   .forms {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:40px;
   }
 
   @media (max-width: 1200px) {
     .forms {
+      display:flex;
       flex-flow: column nowrap;
       align-items: center;
     }

@@ -1,14 +1,13 @@
 import React, {useEffect,useState} from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
-import { useMediaQuery } from "react-responsive"
 import CardImage from "../misc/CardImage"
 
 const StyledAbout = styled.div`
   width: 100vw;
 
   padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);
-  margin-bottom:200px;
+  margin-bottom:10vh;
 
   * {
     font-family: NeueMontrealRegular;
@@ -89,14 +88,13 @@ const StyledAbout = styled.div`
 
 const Cards = ({services}) => {
   const { t } = useTranslation()
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
   const [servicesData,setServicesData] = useState([0,1,2])
 
   useEffect(() => {
     if(services != null && services.length > 0){
       setServicesData(services)
     }
-  })
+  },[services])
 
   return (
     <StyledAbout id="about" data-scroll-section>

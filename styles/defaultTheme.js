@@ -11,7 +11,7 @@ theme.colors = {
 theme.textStyles = {
   headline: css`
     font-family: NeueMontrealRegular;
-    font-size: max(10vw, 70px);
+    font-size: max(6vw, 70px);
     letter-spacing: 0.01em;
     opacity:0.1;
   `,
@@ -113,7 +113,7 @@ theme.textStyles = {
     line-height: 16px;
     letter-spacing: 0.08px;
     padding: 15px 30px;
-    border-radius: 20px;
+    border-radius: 10px;
     outline: none;
     border: none;
     display: flex;

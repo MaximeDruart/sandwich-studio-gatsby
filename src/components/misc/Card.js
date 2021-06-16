@@ -1,8 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { useTranslation } from "gatsby-plugin-react-i18next"
-import { useMediaQuery } from "react-responsive"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Button from "../tree/Button"
 
 const StyledCard = styled.div`
@@ -13,7 +10,7 @@ const StyledCard = styled.div`
   }
 
     border: 2px solid #1F1F1F;
-    border-radius:20px;
+    border-radius:10px;
     overflow:hidden;
     display:flex;
     flex-direction:column;
@@ -55,8 +52,6 @@ const StyledCard = styled.div`
 `
 
 const Card = ({index,title,description,content,priceintro,price,leadtime,cta}) => {
-  const { t } = useTranslation()
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
 
   return (
     <StyledCard key={index}>

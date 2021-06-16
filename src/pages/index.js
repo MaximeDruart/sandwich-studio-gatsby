@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import axios from 'axios';
 import { useTranslation } from "gatsby-plugin-react-i18next"
+import luge from '@waaark/luge'
 
 import Header from "../components/Header"
 import Hero from "../components/homepage/Hero"
@@ -11,6 +12,7 @@ import Footer from "../components/Footer"
 import ContactSpinner from "../components/homepage/ContactSpinner"
 import Cards from "../components/homepage/Cards"
 import SelectedWorks from "../components/misc/SelectedWorks"
+import Headline from "../components/misc/Headline"
 import useStore from "../../store"
 import { useMediaQuery } from "react-responsive"
 import LeadMagnet from "../components/homepage/LeadMagnet"
@@ -18,7 +20,7 @@ import LeadMagnet from "../components/homepage/LeadMagnet"
 import "../global.css"
 
 export default function Home({ location }) {
-  const { t, ready } = useTranslation()
+  const { t } = useTranslation()
   const mainContainerRef = useRef(null)
   const [scroll, setScroll] = useState(null)
   let [apiData,setApiData] = useState(null)
@@ -108,6 +110,7 @@ export default function Home({ location }) {
           imgMissionOne={apiData != null ? apiData.info.imgMission[1].url : "______"}
           imgMissionTwo={apiData != null ? apiData.info.imgMission[2].url : "______"}   />
         <Cards services={apiData != null ? apiData.info.homeServices : []}></Cards>
+        <Headline title="Nos projets"></Headline>
         <SelectedWorks filterby="all" />
         <LeadMagnet
           title={apiData != null ? apiData.info.formTitle : "______"}
