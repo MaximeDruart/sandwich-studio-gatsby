@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
 import axios from 'axios';
 import { useTranslation } from "gatsby-plugin-react-i18next"
-import luge from '@waaark/luge'
 
 import Header from "../components/Header"
 import Hero from "../components/homepage/Hero"
