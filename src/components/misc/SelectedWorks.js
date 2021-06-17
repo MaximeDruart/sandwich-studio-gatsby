@@ -142,7 +142,6 @@ const SelectedWorks = (props,apiData) => {
       try {
         const response = await axios.get(t("backend-url")+'/pageprojects');
         setApiResp(response.data)
-        console.log(response.data)
       } catch (error) {
       }
     }

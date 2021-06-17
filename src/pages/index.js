@@ -14,7 +14,7 @@ import SelectedWorks from "../components/misc/SelectedWorks"
 import Headline from "../components/misc/Headline"
 import useStore from "../../store"
 import { useMediaQuery } from "react-responsive"
-import LeadMagnet from "../components/homepage/LeadMagnet"
+import LeadMagnet from "../components/misc/LeadMagnet"
 
 import "../global.css"
 

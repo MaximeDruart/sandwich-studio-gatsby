@@ -8,6 +8,7 @@ const StyledContainer = styled.div`
   justify-content:center;
   align-items:center;
   div {
+    box-sizing: content-box;
     background:#1F1F1F;
     width:300px;
     display:flex;

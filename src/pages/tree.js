@@ -9,7 +9,7 @@ import Container from "../components/tree/Container"
 import Button from "../components/tree/Button"
 import { useMediaQuery } from "react-responsive"
 
-export default function Home({ location }) {
+export default function Home(props) {
   const mainContainerRef = useRef(null)
   const [scroll, setScroll] = useState(null)
   const canvasLoadStatus = useStore(state => state.canvasLoadStatus)
@@ -58,26 +58,16 @@ export default function Home({ location }) {
         />
       </Helmet>
 
-      <Header location={location} scroll={scroll} />
+      <Header location={props.location} scroll={scroll} />
 
       <main data-scroll-container ref={mainContainerRef}>
         <Container>
           <img alt="Sandwich Studio logo" src="/images/logo-black.png"></img>
-          <Button target={"/"} fullWidth>
-            Notre site web
-          </Button>
-          <Button target={"/contact"} fullWidth>
-            Obtenir un devis
-          </Button>
-          <Button target={"/contact"} fullWidth>
-            Télecharger la to-do list pour booster votre activité
-          </Button>
-          <Button
-            target={"https://www.instagram.com/sandwich.std/?hl=fr"}
-            fullWidth
-          >
-            Instagram
-          </Button>
+          {props.data.strapiPagetree.link.map((item,index) =>(
+            <Button target={item.url} fullWidth>
+            {item.anchor}
+            </Button>
+          ))}
         </Container>
         <Footer />
       </main>
@@ -87,6 +77,14 @@ export default function Home({ location }) {
 
 export const query = graphql`
   query($language: String!) {
+    strapiPagetree {
+      id
+      link {
+        id
+        anchor
+        url
+      }
+    }
     locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {

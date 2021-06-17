@@ -10,6 +10,8 @@ export default function getComponentFromApi(input) {
             return "SelectedWorks"
         case "forms.formcontact":
             return "Forms"
+        case "forms.formtodolist":
+            return "LeadMagnet"
         case "page.imagebig":
             return "ImageBig"
         case "page.ctabanner":

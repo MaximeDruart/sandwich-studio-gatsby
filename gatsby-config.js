@@ -16,8 +16,8 @@ module.exports = {
       options: {
         apiURL: `https://murmuring-sands-31907.herokuapp.com`,
         queryLimit: 1000, // Defaults to 100
-        collectionTypes: [`projects`, `pageservices`, `home-services`, `productcards`, `pageprojects`],
-        singleTypes: [`menufooter`],
+        collectionTypes: [`projects`, `pageservices`, `home-services`, `productcards`, `pageprojects`, `pagelandings`],
+        singleTypes: [`menufooter`,`pagetree`],
       },
     },
     {

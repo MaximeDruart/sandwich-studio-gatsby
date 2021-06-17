@@ -3,18 +3,18 @@
   "backend-url":"https://murmuring-sands-31907.herokuapp.com",
   "headerLinks": [
     { "category": "", "translation": "Accueil" },
-    { "category": "services/web", "translation": "Web" },
-    { "category": "services/design", "translation": "Design" },
-    { "category": "services/marketing", "translation": "Marketing" },
-    { "category": "services/packaging", "translation": "Packaging" },
+    { "category": "web", "translation": "Web" },
+    { "category": "design", "translation": "Design" },
+    { "category": "marketing", "translation": "Marketing" },
+    { "category": "packaging", "translation": "Packaging" },
     { "category": "contact", "translation": "Contact" }
   ],
 
   "headerLinksServices": [
-    { "category": "services/web", "translation": "Web" },
-    { "category": "services/design", "translation": "Design" },
-    { "category": "services/marketing", "translation": "Marketing" },
-    { "category": "services/packaging", "translation": "Packaging" }
+    { "category": "web", "translation": "Web" },
+    { "category": "design", "translation": "Design" },
+    { "category": "marketing", "translation": "Marketing" },
+    { "category": "packaging", "translation": "Packaging" }
   ],
   "headerLinksElse": [
     { "category": "", "translation": "Accueil" },
