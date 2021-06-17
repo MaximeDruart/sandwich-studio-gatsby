@@ -7,8 +7,10 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: `Sandwich Studio`,
-    description: `Sandwich studio agency website`,
+    siteUrl: `https://www.sandwichstudio.fr`,
+    title: `Sandwich Studio - Agence créative à Paris`,
+    logo: `https://sandwichstudio.fr/images/logo-black.png`,
+    description: `Sandwich Studio est votre spécialiste de la transformation digitiale et de vos communications multi-supports. Design, web et marketing.`,
   },
   plugins: [
     {
@@ -38,6 +40,7 @@ module.exports = {
     "gatsby-plugin-svgr",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-transition-link",
+    "gatsby-plugin-sitemap",
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {

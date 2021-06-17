@@ -15,6 +15,7 @@ import Headline from "../components/misc/Headline"
 import useStore from "../../store"
 import { useMediaQuery } from "react-responsive"
 import LeadMagnet from "../components/misc/LeadMagnet"
+import Seo from "../components/misc/Seo"
 
 import "../global.css"
 
@@ -73,24 +74,11 @@ export default function Home({ location }) {
 
   return (
     <>
-      <Helmet>
-        <title>Sandwich Studio - Agence créative à Paris</title>
-        <meta
-          name="description"
-          content="Du logo à la création de votre site web, on vous accompagne dans votre transformation digitale et vos communications multi-supports."
-        ></meta>
-        <meta
-          name="facebook-domain-verification"
-          content="28rdw927c9t60caque6wzoc3k4mn3b"
-        />
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="preload"
-          href="/fonts/neueRegular.otf"
-          as="font"
-          crossOrigin=""
-        />
-      </Helmet>
+    <Seo
+      title="Sandwich Studio - Agence créative à Paris"
+      description="Sandwich Studio est votre spécialiste de la transformation digitiale et de vos communications multi-supports. Design, web et marketing."
+      article={false}
+    ></Seo>
 
       <Header location={location} isHomepage={true} scroll={scroll} />
 

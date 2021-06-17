@@ -1,11 +1,11 @@
 import React,{useEffect,useRef,useState} from "react"
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet"
 import loadable from '@loadable/component'
 
 import Header from "../components/Header"
 import getComponentFromApi from "../components/misc/getComponentFromApi"
 import Footer from "../components/Footer"
+import Seo from "../components/misc/Seo"
 import useStore from "../../store"
 import { useMediaQuery } from "react-responsive"
 
@@ -44,23 +44,12 @@ export default function Service(props) {
   }, [scroll])
 
   return(
-<>
-      <Helmet>
-        <title>
-        {props.data.strapiPageservices.metatitle}
-        </title>
-        <meta
-          name="description"
-          content={props.data.strapiPageservices.metadesc}
-        ></meta>
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="preload"
-          href="/fonts/neueRegular.otf"
-          as="font"
-          crossOrigin=""
-        />
-      </Helmet>
+    <>
+      <Seo
+        title={props.data.strapiPageservices.metatitle}
+        description={props.data.strapiPageservices.metadesc}
+        article={false}>
+      </Seo>
 
       <Header location={props.location} scroll={scroll} />
 

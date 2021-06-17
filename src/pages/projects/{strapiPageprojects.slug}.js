@@ -8,6 +8,7 @@ import getComponentFromApi from "../../components/misc/getComponentFromApi"
 import Footer from "../../components/Footer"
 import useStore from "../../../store"
 import { useMediaQuery } from "react-responsive"
+import Seo from "../../components/misc/Seo"
 
 export default function Service(props) {
   const mainContainerRef = useRef(null)
@@ -47,22 +48,12 @@ export default function Service(props) {
 
   return(
 <>
-      <Helmet>
-        <title>
-        {props.data.strapiPageprojects.metatitle}
-        </title>
-        <meta
-          name="description"
-          content={props.data.strapiPageprojects.metadesc}
-        ></meta>
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="preload"
-          href="/fonts/neueRegular.otf"
-          as="font"
-          crossOrigin=""
-        />
-      </Helmet>
+
+      <Seo
+        title={props.data.strapiPageprojects.metatitle}
+        description={props.data.strapiPageprojects.metadesc}
+        article={false}>
+      </Seo>
 
       <Header location={props.location} scroll={scroll} />
 
