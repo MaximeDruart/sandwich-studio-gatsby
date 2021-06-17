@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import isEmpty from "is-empty"
 import { ReactComponent as Loader } from "../../../assets/icons/loader.svg"
 import { downloadFile } from "../../../assets/utils/fileDownload"
+import parse from 'html-react-parser';
 
 const encode = data =>
   Object.keys(data)
@@ -253,7 +254,7 @@ const FormCallback = (props) => {
         <div className="lead-magnet">
           <div className="title">
             <div className="form-headline">{title}</div>
-            <div className="form-bottom-line">{body}</div>
+            <div className="form-bottom-line">{parse(body)}</div>
           </div>
           <form
             name="magnet"

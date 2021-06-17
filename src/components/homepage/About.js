@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
+import parse from 'html-react-parser';
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -171,7 +172,7 @@ const About = ({titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,bodyMission
         </div>
         <div className="text">
           <div className="title">{titleWho}</div>
-          <div className="desc">{bodyWho}</div>
+          <div className="desc">{parse(bodyWho)}</div>
         </div>
       </div>
       <div className="who-we-are about-section">
@@ -193,7 +194,7 @@ const About = ({titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,bodyMission
         </div>
         <div className="text">
           <div className="title">{titleMission}</div>
-          <div className="desc">{bodyMission}</div>
+          <div className="desc">{parse(bodyMission)}</div>
         </div>
       </div>
     </StyledAbout>

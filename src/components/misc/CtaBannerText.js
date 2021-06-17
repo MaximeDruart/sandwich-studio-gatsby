@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Button from "../tree/Button"
+import parse from 'html-react-parser';
 
 const StyledBanner = styled.div`
 
@@ -47,7 +48,7 @@ const CtaBannerText = (apiData) => {
     <StyledBanner data-scroll-section>
         <div className="banner">
             <h3>{apiData.apiData.title}</h3>
-            <p>{apiData.apiData.content}</p>
+            <p>{parse(apiData.apiData.content)}</p>
 
             <Button target={apiData.apiData.ctaaction} >{apiData.apiData.ctaanchor}</Button>
         </div>

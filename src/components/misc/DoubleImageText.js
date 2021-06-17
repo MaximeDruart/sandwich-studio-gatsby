@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
+import parse from 'html-react-parser';
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -110,7 +111,7 @@ const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiDa
         </div>
         <div className="text">
           <h1 className="title">{t(title)}</h1>
-          <div className="desc">{t(body)}</div>
+          <div className="desc">{parse(t(body))}</div>
         </div>
       </div>
     </StyledAbout>

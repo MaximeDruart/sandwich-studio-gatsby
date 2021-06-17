@@ -37,6 +37,7 @@
     "gatsby-source-filesystem": "^3.1.0",
     "gatsby-source-strapi": "^1.0.1",
     "gsap": "^3.6.0",
+    "html-react-parser": "^1.2.6",
     "i18next": "^19.9.2",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-xhr-backend": "^3.2.2",
