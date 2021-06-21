@@ -5,10 +5,8 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 import { ReactComponent as Arrow } from "../../../assets/icons/upwards-arrow.svg"
 import { useMediaQuery } from "react-responsive"
 import axios from 'axios';
-import SelectedPopup from "./SelectedPopup"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
-
-import Headline from "../misc/Headline"
+import PlaceHolder from '../misc/imagePlaceholder';
 
 const StyledSelectedWorks = styled.div`
   width: 100vw;
@@ -135,13 +133,14 @@ const SelectedWorks = (props,apiData) => {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
   const [isDragging, setIsDragging] = useState(false)
   let [apiResp,setApiResp] = useState([{tag:"undone",cover:[]}])
+  let [isLoading,setIsLoading] = useState(true)
 
   useEffect(() => {
-
     const fetchServices = async () => {
       try {
         const response = await axios.get(t("backend-url")+'/pageprojects');
         setApiResp(response.data)
+        setIsLoading(false)
       } catch (error) {
       }
     }
@@ -186,10 +185,12 @@ const SelectedWorks = (props,apiData) => {
                       direction="down"
                       bg="#0D0D0D"
                       to={"/projects/"+work.slug}>
-                      <motion.img
+                      <PlaceHolder
                         variants={hoverVariants}
                         draggable="false"
                         src={t("images-url")+work.cover.url}
+                        width="300px"
+                        height="450px"
                         alt=""
                       />
                       <motion.div
@@ -206,6 +207,15 @@ const SelectedWorks = (props,apiData) => {
                   <motion.div className="fulldesc">{work.fulldesc}</motion.div>
                 </div>
               ))}
+
+              {isLoading ? (
+                <div className="work" style={{backgroundColor:"#1b1b1b",height:"630px"}}>
+                <motion.div
+                  className="image-container"
+                >
+                </motion.div>
+              </div>
+              ) : null}
               {filterby!=="all" ? (
                 <div className="work">
                   <motion.div

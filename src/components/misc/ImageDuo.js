@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Button from "../tree/Button"
+import { useMediaQuery } from "react-responsive"
+import PlaceHolder from '../misc/imagePlaceholder';
 
 const StyledImage = styled.div`
 * {
@@ -24,7 +25,7 @@ const StyledImage = styled.div`
         .duo{
             display:grid;
             grid-template-columns: 1fr 1fr;
-            grid-gap:40px;
+            grid-gap:2vw;
             @media (max-width: 1200px){
                 grid-template-columns: 1fr;
             }
@@ -39,13 +40,23 @@ const StyledImage = styled.div`
 `
 
 const ImageDuo = (apiData) => {
-
+    const isMobile = useMediaQuery({ query: "(max-width: 1200px)" })
   return (
     <StyledImage data-scroll-section>
         <figure className="block">
             <div className="duo">
-                <img src={apiData.apiData.images[0].url}></img>
-                <img src={apiData.apiData.images[1].url}></img>
+                <PlaceHolder
+                    src={apiData.apiData.images[0].url}
+                    width={!isMobile ? "39vw" : "90vw"}
+                    height="auto"
+                    ratio="16/9"
+                />
+                <PlaceHolder
+                    src={apiData.apiData.images[1].url}
+                    width={!isMobile ? "39vw" : "90vw"}
+                    height="auto"
+                    ratio="16/9"
+                />
             </div>
             <figcaption>
                 <p>{apiData.apiData.caption}</p>

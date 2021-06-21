@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Button from "../tree/Button"
+import { useMediaQuery } from "react-responsive"
+import PlaceHolder from '../misc/imagePlaceholder';
 
 const StyledImage = styled.div`
 * {
@@ -31,10 +32,16 @@ const StyledImage = styled.div`
 `
 
 const ImageBig = (apiData) => {
+    const isMobile = useMediaQuery({ query: "(max-width: 1200px)" })
   return (
     <StyledImage data-scroll-section>
         <figure className="block">
-            <img src={apiData.apiData.image.url}></img>
+            <PlaceHolder
+                src={apiData.apiData.image.url}
+                width={isMobile ? "90vw" : "80vw"}
+                height="auto"
+                ratio="16 / 9"  
+            ></PlaceHolder>
             <figcaption>
                 <p>{apiData.apiData.caption}</p>
             </figcaption>

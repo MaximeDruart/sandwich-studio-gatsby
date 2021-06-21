@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
 import parse from 'html-react-parser';
+import PlaceHolder from '../misc/imagePlaceholder';
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -27,19 +28,20 @@ const StyledAbout = styled.div`
     align-items:center;
     width: 100%;
     margin: auto;
-    .photos {
-      width: 30%;
+    .images{  
       position: relative;
-      width: max(30vw, 400px);
-      height: max(30vw, 400px);
-      background: center / cover url("${props => props.imgFront}");
+      width: 400px;
+      height: 400px;
       .photo {
+        width: 30%;
         position: absolute;
-        width: max(30vw, 400px);
-        height: max(30vw, 400px);
-        background: center / cover url("${props => props.imgBack}");
-        bottom: -30%;
-        right: ${props => props.isReverse ? "-30%" : "30%"};
+        width: 400px;
+        height: 400px;
+      }
+      .photo-front{
+        position:absolute;
+        top:30%;
+        left: ${props=> props.isReverse ? "30%" : "-30%"};
       }
     }
     .text {
@@ -61,23 +63,22 @@ const StyledAbout = styled.div`
       flex-flow: column;
 
       /* align-items: center; */
-      .photos {
-        margin:auto;
+      .images {
         width: 240px;
         height: 240px;
         .photo {
           width: 240px;
           height: 240px;
+          &:first-child{
+            top: 100px;
+            right:90px;
+          }
         }
       }
       .text {
         width: 100%;
         text-align: center;
-      }
-      &.our-mission {
-        .text {
-          padding-top: 4vh;
-        }
+        margin-top:50px;
       }
     }
   }
@@ -86,7 +87,9 @@ const StyledAbout = styled.div`
 const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiData}) => {
   const { t } = useTranslation()
   headline = t(headline)
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
+  const isMobile = useMediaQuery({ query: "(max-width: 1000px)" })
+  let [isLoading,setIsLoading] = useState(true)
+
   if(apiData){
     headline=apiData.headline
     imageFront =apiData.images[0].url
@@ -98,16 +101,28 @@ const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiDa
   return (
     <StyledAbout id="about" data-scroll-section imgFront={imageFront} imgBack={imageBack} isReverse={reverse}>
       <div className="our-mission about-section">
-        <div
-          data-scroll
-          data-scroll-speed={isMobile ? 0.5 : 2}
-          className="photos"
-        >
+        <div className="images">
           <div
             data-scroll
-            data-scroll-speed={isMobile ? 1 : 4}
-            className="photo"
-          ></div>
+            data-scroll-speed={2}>
+            <PlaceHolder
+              width={isMobile ? "240px" : "400px"}
+              height={isMobile ? "240px" : "400px"}
+              src={imageBack}
+              absolute
+            ></PlaceHolder>
+          </div>
+          <div
+            className="photo-front"
+            data-scroll
+            data-scroll-speed={4}>
+            <PlaceHolder
+              width={isMobile ? "240px" : "400px"}
+              height={isMobile ? "240px" : "400px"}
+              src={imageFront}
+              absolute
+            ></PlaceHolder>
+          </div>
         </div>
         <div className="text">
           <h1 className="title">{t(title)}</h1>

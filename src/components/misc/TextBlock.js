@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Button from "../tree/Button"
+import parse from 'html-react-parser';
 
 const StyledText = styled.div`
 * {
@@ -41,7 +42,7 @@ const TextBlock = (apiData) => {
     <StyledText data-scroll-section>
         <div className="block">
             <h3>{apiData.apiData.title}</h3>
-            <p>{apiData.apiData.content}</p>
+            <p>{parse(apiData.apiData.content)}</p>
         </div>
     </StyledText>
   )}

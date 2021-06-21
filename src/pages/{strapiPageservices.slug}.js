@@ -39,7 +39,7 @@ export default function Service(props) {
     if (scroll) {
       setTimeout(() => {
         scroll.update()
-      }, 2000)
+      }, 1000)
     }
   }, [scroll])
 
