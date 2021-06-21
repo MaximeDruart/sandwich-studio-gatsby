@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import Card from "../misc/Card"
 import axios from 'axios';
+import ReactPlaceholder from 'react-placeholder';
+import "react-placeholder/lib/reactPlaceholder.css";
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -88,6 +90,13 @@ const StyledAbout = styled.div`
           }
       }
   }
+  .text-block{
+    margin-top:20px;
+    padding:0 20px;
+  }
+  .text-row{
+    background-color:#1b1b1b !important;
+  }
 `
 
 const Cards = (targetService) => {
@@ -120,13 +129,17 @@ const Cards = (targetService) => {
                     index={card.title + index}
                     title={card.title}
                     description={card.subtitle}
-                    content={!isLoading ?
-                      <ul className="card-features">
-                      {apiData[apiData.findIndex(x => x.id === card.id)].feature ? apiData[apiData.findIndex(x => x.id === card.id)].feature.map((feature,index)=>
-                        <li key={index}>{feature.feature}</li>
-                        ) : null}
-                      </ul>
-                      :null }
+                    content={
+                      <ReactPlaceholder type='text' rows={7} ready={!isLoading}>
+                        {!isLoading ? (
+                          <ul className="card-features">
+                          {apiData[apiData.findIndex(x => x.id === card.id)].feature ? apiData[apiData.findIndex(x => x.id === card.id)].feature.map((feature,index)=>
+                            <li key={index}>{feature.feature}</li>
+                            ) : null}
+                          </ul>
+                        ): null}
+                      </ReactPlaceholder>
+                      }
                     priceintro="à partir de"
                     price={card.price+"€"}
                     leadtime={card.leadtime}
