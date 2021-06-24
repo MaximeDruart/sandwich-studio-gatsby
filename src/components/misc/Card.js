@@ -3,12 +3,10 @@ import styled from "styled-components"
 import Button from "../tree/Button"
 
 const StyledCard = styled.div`
-
   * {
     font-family: NeueMontrealRegular;
     color: ${({ theme }) => theme.colors.text};
   }
-
     border: 2px solid #1F1F1F;
     border-radius:10px;
     overflow:hidden;
@@ -50,9 +48,7 @@ const StyledCard = styled.div`
         }
     }
 `
-
 const Card = ({index,title,description,content,priceintro,price,leadtime,cta}) => {
-
   return (
     <StyledCard key={index}>
         <div>
@@ -72,5 +68,4 @@ const Card = ({index,title,description,content,priceintro,price,leadtime,cta}) =
         </div>
     </StyledCard>
   )}
-
 export default Card

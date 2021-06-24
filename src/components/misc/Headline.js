@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-
 const StyledHeadline = styled.p`
   color: white;
   ${({ theme }) => theme.textStyles.headline};
@@ -8,14 +7,12 @@ const StyledHeadline = styled.p`
   width: 100%;
   margin-top: 4vh;
 `
-
 const Headline = ({title,apiData}) => {
   if(apiData){
     title = apiData.title
   }
-
   return (
-    <div data-scroll-section>
+    <div>
       <StyledHeadline
       className="headline"
       data-scroll
@@ -25,5 +22,4 @@ const Headline = ({title,apiData}) => {
       </StyledHeadline>
     </div>
   )}
-
 export default Headline

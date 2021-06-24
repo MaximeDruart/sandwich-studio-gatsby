@@ -6,15 +6,13 @@
     { "category": "web", "translation": "Web" },
     { "category": "design", "translation": "Design" },
     { "category": "marketing", "translation": "Marketing" },
-    { "category": "packaging", "translation": "Packaging" },
     { "category": "contact", "translation": "Contact" }
   ],
 
   "headerLinksServices": [
     { "category": "web", "translation": "Web" },
     { "category": "design", "translation": "Design" },
-    { "category": "marketing", "translation": "Marketing" },
-    { "category": "packaging", "translation": "Packaging" }
+    { "category": "marketing", "translation": "Marketing" }
   ],
   "headerLinksElse": [
     { "category": "", "translation": "Accueil" },
@@ -30,258 +28,13 @@
     "do marketing",
     "make merchandising"
   ],
-  "packaging-headline": "Packaging & Emballage",
-  "packaging-1-title": "Démarquez-vous avec un packaging unique",
-  "packaging-1-body": "Suivant votre budget et vos contraintes, nous concevons un packaging sur-mesure pour votre marque. Quelque soit le minimum de commande, nous vous guidons dans votre choix et assurons une production de qualité dans les meilleurs délais. Doypack imprimé, bocaux, boite en carton et coffret personnalisé, nos methodes de marquage et notre reseaux de préstataires vous donne accès à un large choix de packaging.",
-  "about-headline": "A propos",
-  "about-1-title": "Qui sommes-nous ?",
-  "about-1-body": "Nous sommes 5 créatifs passionés qui ont décidés un jour de se rassembler pour apporter plus de valeur. Sandwich Studio c'est votre agence qui vous accompagne dans votre parcours sur le web, vos communications multi-support et vous aide à faire évoluer votre entreprise.",
-  "about-2-title": "Notre mission",
-  "about-2-body": "Renforcer votre présence sur le web et communiquer dans un language que vos prospects comprennent. Vous accompagner dans la conception et production de packaging, textiles et objets publicitaires.",
-  "design-headline": "Design & Illustration",
-  "design-headline-2": "Nos offres",
-  "design-1-title": "Création d'identité visuelle",
-  "design-1-body": "Gagnez en cohérence dans votre communication et renforcez votre image de marque par la création d'une identité visuelle singulière. De la création de votre logo à le création de visuels pour vos supports web et prints, nous vous aidons à communiquer avec vos clients.",
-  "design-cards": [
-    {
-      "title": "Identité visuelle",
-      "description": "Démarrez ou faites evoluez votre activité avec un visuel cohérent et fort",
-      "features": [
-        "Création de logo",
-        "Palette de couleurs",
-        "Jeu de typographies",
-        "Iconographie",
-        "Mise en situation"
-      ],
-      "priceintro": "à partir de",
-      "price": "300€",
-      "leadtime": "Livré en 2 semaines",
-      "ctatext": "Obtenir un devis"
-    },
-    {
-      "title": "Webdesign",
-      "description": "Concevons un packaging dont vos clients se rappelleront",
-      "features": [
-        "Responsive design : du mobile à au grand écran",
-        "Prototypage interactif",
-        "Le design au service de l'experience utilisateur"
-      ],
-      "priceintro": "à partir de",
-      "price": "450€",
-      "leadtime": "Livré en 2 semaines",
-      "ctatext": "Obtenir un devis"
-    },
-    {
-      "title": "Création de contenus",
-      "description": "Communiquez sur différents supports avec un visuel impactant",
-      "features": [
-        "Communication pour le print : papêterie, flyers, cartes de visite",
-        "Création de posts pour les réseaux sociaux",
-        "Création de campagnes publicitaires",
-        "Conception de packaging"
-      ],
-      "priceintro": "à partir de",
-      "price": "80€",
-      "leadtime": "Livré en 1 semaines",
-      "ctatext": "Obtenir un devis"
-    }
-  ],
-  "web-headline": "Conception web",
-  "web-headline-2": "Nos offres",
-  "web-1-title": "Un site web qui vous ressemble",
-  "web-1-body": "Il n'est pas chose aisée de trouver un préstataire qui comprend réelement vos besoins. Du site vitrine au site e-commerce jusqu'à l'éxperience interactive, nous concevons des sites web adaptés à votre activité, utilisant les dernières technologies en vogue.",
-  "web-cards": [
-    {
-      "title": "Site vitrine",
-      "description": "Idéal pour présenter un point de vente physique ou votre activité.",
-      "features": [
-        "Panel d'administration",
-        "Thème premium customisé",
-        "Optimisé pour mobiles",
-        "Jusqu'à 10 pages",
-        "3 révisions",
-        "Hébergement et nom de domaine pendant 1 an"
-      ],
-      "priceintro": "à partir de",
-      "price": "1400€",
-      "leadtime": "Livré en 2 semaines",
-      "ctatext": "Obtenir un devis"
-    },
-    {
-      "title": "E-commerce starter",
-      "description": "Votre site e-commerce clé en main, pour vendre rapidement et à moindre frais.",
-      "features": [
-        "Panel d'administration",
-        "Thème premium customisé",
-        "Optimisé pour mobiles",
-        "5 catégories de produits et 20 produits",
-        "Page d'accueil / Listing produits / Produit / CGU et CGV / Politique de confidentialité / Contact",
-        "Intégrations du module de paiement : Paypal, Stripe, Cryptomonnaies",
-        "Bandeau RGPD",
-        "Formulaire de contact intégré",
-        "3 révisions",
-        "Hébergement et nom de domaine pendant 1 an"
-      ],
-      "priceintro": "à partir de",
-      "price": "2500€",
-      "leadtime": "Livré en 2 semaines",
-      "ctatext": "Obtenir un devis"
-    },
-    {
-      "title": "E-commerce premium",
-      "description": "Un site web e-commerce qui ne ressemble à aucun autre",
-      "features": [
-        "Panel d'administration",
-        "Thème sur-mesure",
-        "Optimisé pour mobiles",
-        "5 catégories de produits et 20 produits",
-        "Page d'accueil / Listing produits / Produit / CGU et CGV / Politique de confidentialité / Contact",
-        "Intégrations du module de paiement : Paypal, Stripe, Cryptomonnaies",
-        "Bandeau RGPD",
-        "Formulaire de contact intégré",
-        "3 révisions",
-        "Hébergement et nom de domaine pendant 1 an",
-        "Formation vidéo e-commerce"
-      ],
-      "priceintro": "à partir de",
-      "price": "3600€",
-      "leadtime": "Livré en 4 semaines",
-      "ctatext": "Obtenir un devis"
-    },
-    {
-      "title": "Expérience intéractive",
-      "description": "Un site web e-commerce qui ne ressemble à aucun autre",
-      "features": [
-        "Panel d'administration",
-        "Design sur-mesure",
-        "Expérience 3D / Intéractive",
-        "Optimisé pour mobiles",
-        "Hébergement et nom de domaine pendant 1 an"
-      ],
-      "priceintro": "à partir de",
-      "price": "5500€",
-      "leadtime": "Livré en 6 semaines",
-      "ctatext": "Obtenir un devis"
-    }
-  ],
-  "marketing-headline": "Marketing digital",
-  "marketing-headline-2": "Nos offres",
-  "marketing-1-title": "Génerez plus de ventes et de trafic",
-  "marketing-1-body": "Gagnez en cohérence dans votre communication et renforcez votre image de marque par la création d'une identité visuelle singulière. De la création de votre logo à le création de visuels pour vos supports web et prints, nous vous aidons à communiquer avec vos clients.",
-  "marketing-cards": [
-    {
-      "title": "Audit marketing",
-      "description": "Faites le bilan de vos actions marketing, planifiez la suite",
-      "features": [
-        "Audit SEO",
-        "Audit UX",
-        "Audit outils marketing",
-        "Recommandations"
-      ],
-      "priceintro": "à partir de",
-      "price": "350€",
-      "leadtime": "Livré en 1 semaine",
-      "ctatext": "Obtenir un devis"
-    },
-    {
-      "title": "Mise en place d'outils analytics",
-      "description": "Tous les outils pour analyser vos résultats et optimiser efficacement",
-      "features": [
-        "Mise en place d'un pixel de tracking",
-        "Mise en place Google Analytics",
-        "Mise en place de Google Tag Manager : 2 micro-conversions",
-        "Création d'un rapport Data Studio sur-mesure"
-      ],
-      "priceintro": "à partir de",
-      "price": "450€",
-      "leadtime": "Livré en 2 semaines",
-      "ctatext": "Obtenir un devis"
-    },
-    {
-      "title": "Création de campagne",
-      "description": "Création d'une campagne Facebook Ads / Google Ads / Outbrain",
-      "features": [
-        "Création des visuels & recherche tagline",
-        "Création de 2 audiences personnalisées",
-        "Paramétrage de votre campagne principale",
-        "Création d'une campagne de retargeting"
-      ],
-      "priceintro": "à partir de",
-      "price": "550€",
-      "leadtime": "Livré en 2 semaines",
-      "ctatext": "Obtenir un devis"
-    }
-  ],
-  "services-headline": "Le process",
-  "services-1-title": "Design de packaging",
-  "services-1-body": "Créons un design de packaging fidèle à votre identité visuelle et à votre briefing qui met en valeur votre produit.",
-  "services-1-cta": "Visualiser la brochure",
-  "services-2-title": "Production sur-mesure",
-  "services-2-body": "Du prototype à la production, nous concevons des packaging originaux pour mettre en valeur vos produits. Grâce à notre atelier, notre reseaux de préstataire et nos techniques de marquage sur tout matériaux, nous pouvons rapidement concrétiser vos idées et produire selon vos besoins.",
-  "services-2-cta": "Visualiser la brochure",
-  "services-3-title": "Web & Marketing",
-  "services-3-body": "Du site vitrine au site e-commerce, nous concevons des sites web qui ne laisseront pas vos clients indifférents. Nos formules marketing vous aideront à étendre votre présence sur le web et atteindre vos objectifs via la création de campagnes d'acquisition, l’analyse de vos données et l'optimisation de votre site.",
-  "services-3-cta": "Visualiser la brochure",
-  "services-5-title": "Goodies & Merchandising",
-  "services-5-body": "Communiquez avec des objets publicitaires pour fidéliser vos clients et affirmer votre image de marque. Profitez de notre large gamme d’accessoires et textiles personnalisés dans notre atelier Parisien. Du tote bag au grinder, en passant par l’impression de stickers vinyl, nous saurons vous conseiller dans le choix de produits qui renforceront la préférence de vos clients pour votre marque.",
-  "services-5-cta": "Visualiser la brochure",
-  "selected-works-headline": "Nos projets",
-  "selected-works-categories": [
-    {
-      "id": 1,
-      "title": "Kuch CBD",
-      "desc": "Illustration & Packaging",
-      "tag": "allpackaging"
-    },
-    {
-      "id": 2,
-      "title": "CBD420",
-      "desc": "Illustration & Packaging",
-      "tag": "allpackaging"
-    },
-    { "id": 3, "title": "MonGrinder", "desc": "Web", "tag": "allwebdesign" },
-    {
-      "id": 4,
-      "title": "Weed House",
-      "desc": "Identité visuelle",
-      "tag": "alldesign"
-    },
-    { "id": 5, "title": "Galactic Grinder", "desc": "Web", "tag": "allweb" }
-  ],
-  "services-cards": [
-    {
-      "title": "Communication visuelle",
-      "description": "Gagnez en efficacité dans vos communications avec une identité visuelle forte.",
-      "ctatext": "Plus d'infos",
-      "ctaurl": "/design"
-    },
-    {
-      "title": "Conception web",
-      "description": "Renforcez votre présence sur le web avec un site adapté à vos besoins.",
-      "ctatext": "Plus d'infos",
-      "ctaurl": "/web"
-    },
-    {
-      "title": "Marketing digital",
-      "description": "Communiquez à grande échelle et développez vos ventes.",
-      "ctatext": "Plus d'infos",
-      "ctaurl": "/marketing"
-    },
-    {
-      "title": "Packaging & Goodies",
-      "description": "Conception de packaging et d'accessoires uniques pour fédérer votre marque",
-      "ctatext": "Plus d'infos",
-      "ctaurl": "/packaging"
-    }
-  ],
   "selected-works-hover-text": "Découvrir",
+  "about-headline": "A propos",
+  "marketing-headline-2": "A propos",
   "magnet-headline": "Pour vous",
-  "magnet-top-line": "11 étapes pour vous développer sur le web",
-  "magnet-bottom-line": "Téléchargez votre check-list pour développer votre activité",
   "magnet-submit-text": "Obtenir votre check-list",
-  "forms-headline": "Contact",
-  "form-contact-headline": "Et si on travaillait ensemble ?",
-  "form-contact-bottom-line": "Discutons de vos projets",
+  "form-contact-headline":"Et si on travaillait ensemble ?",
+  "form-contact-bottom-line":"Discutons de vos projets",
   "form-contact-display-names": [
     "Nom",
     "Nom de l'entreprise (optionnel)",

@@ -42,17 +42,17 @@ const StyledImage = styled.div`
 const ImageDuo = (apiData) => {
     const isMobile = useMediaQuery({ query: "(max-width: 1200px)" })
   return (
-    <StyledImage data-scroll-section>
+    <StyledImage >
         <figure className="block">
             <div className="duo">
                 <PlaceHolder
-                    src={apiData.apiData.images[0].url}
+                    src={apiData.apiData.images[0].formats.medium.url}
                     width={!isMobile ? "39vw" : "90vw"}
                     height="auto"
                     ratio="16/9"
                 />
                 <PlaceHolder
-                    src={apiData.apiData.images[1].url}
+                    src={apiData.apiData.images[1].formats.medium.url}
                     width={!isMobile ? "39vw" : "90vw"}
                     height="auto"
                     ratio="16/9"

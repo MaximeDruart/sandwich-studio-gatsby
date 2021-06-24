@@ -100,13 +100,8 @@ const Cards = () => {
   const { t } = useTranslation()
 
   return (
-    <StyledAbout id="about" data-scroll-section>
-      <div
-        data-scroll
-        data-scroll-direction="horizontal"
-        data-scroll-speed="7"
-        className="headline"
-      >
+    <StyledAbout id="about">
+      <div className="headline">
         {t("web-headline-2")} • {t("web-headline-2")} • {t("web-headline-2")}
       </div>
       <div className="container">

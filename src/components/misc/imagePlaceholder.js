@@ -18,6 +18,13 @@ const StyledImage = styled.div`
     }
     img{
       height:100%;
+      &.loaded{
+        animation: fadeIn linear 0.2s;
+      }
+    }
+    @keyframes fadeIn {
+      0% {opacity:0;}
+      100% {opacity:1;}
     }
 `
 
@@ -25,15 +32,20 @@ const PlaceHolder = ({width,height,absolute,ratio,src}) => {
   let [isLoading,setIsLoading] = useState(true)
 
   let handleLoad = () =>{
+    if(isLoading){
     setIsLoading(false)
+    }
   }
 
   return (
     <StyledImage absolute={absolute} iWidth={width} iHeight={height} ratio={ratio}>
       <img
         src={src}
+        alt=""
         onLoad={handleLoad}
         style={isLoading ? {display:"none"} : null}
+        className={isLoading ? null : "loaded"}
+        onDragStart={(e)=>{e.preventDefault()}}
       >
       </img>
       {isLoading ? (

@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import Button from "../tree/Button"
 import parse from 'html-react-parser';
 
 const StyledText = styled.div`
@@ -28,7 +27,7 @@ const StyledText = styled.div`
             white-space: break-spaces;
             margin-bottom:10px;
         }
-        p{
+        .content{
             font-size:24px;
             white-space: break-spaces;
             line-height:1.6;
@@ -39,10 +38,12 @@ const StyledText = styled.div`
 const TextBlock = (apiData) => {
 
   return (
-    <StyledText data-scroll-section>
+    <StyledText>
         <div className="block">
             <h3>{apiData.apiData.title}</h3>
-            <p>{parse(apiData.apiData.content)}</p>
+            <div className="content">
+                {parse(apiData.apiData.content)}
+            </div>
         </div>
     </StyledText>
   )}

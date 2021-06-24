@@ -125,16 +125,12 @@ const FormContact = ({ scroll, location }) => {
     case "/design":
       serviceValue = "design"
       break
-
-
     case "/packaging":
       serviceValue = "packaging"
       break
-
     case "/marketing":
       serviceValue = "digital_marketing"
       break
-
     default:serviceValue=null
   }
   const [errors, setErrors] = useState({})

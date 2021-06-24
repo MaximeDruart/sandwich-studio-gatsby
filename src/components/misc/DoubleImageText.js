@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React,{useEffect} from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
@@ -24,19 +24,19 @@ const StyledAbout = styled.div`
   .about-section {
     display: flex;
     flex-flow: ${props => props.isReverse ? "row-reverse" : "row"} nowrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items:center;
-    width: 100%;
+    width: 80vw;
     margin: auto;
     .images{  
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: 450px;
+      height: 450px;
       .photo {
         width: 30%;
         position: absolute;
-        width: 400px;
-        height: 400px;
+        width: 450px;
+        height: 450px;
       }
       .photo-front{
         position:absolute;
@@ -88,26 +88,26 @@ const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiDa
   const { t } = useTranslation()
   headline = t(headline)
   const isMobile = useMediaQuery({ query: "(max-width: 1000px)" })
-  let [isLoading,setIsLoading] = useState(true)
 
   if(apiData){
     headline=apiData.headline
-    imageFront =apiData.images[0].url
-    imageBack =apiData.images[1].url
+    imageFront =apiData.images[0].formats.medium ? apiData.images[0].formats.medium.url : apiData.images[0].url
+    imageBack =apiData.images[1].formats.medium ? apiData.images[1].formats.medium.url : apiData.images[1].url
     title=apiData.title
     body=apiData.content
     reverse=apiData.isreverse
   }
   return (
-    <StyledAbout id="about" data-scroll-section imgFront={imageFront} imgBack={imageBack} isReverse={reverse}>
+    <StyledAbout id="about" imgFront={imageFront} imgBack={imageBack} isReverse={reverse}>
       <div className="our-mission about-section">
         <div className="images">
           <div
             data-scroll
-            data-scroll-speed={2}>
+            data-scroll-speed={2}
+          >
             <PlaceHolder
-              width={isMobile ? "240px" : "400px"}
-              height={isMobile ? "240px" : "400px"}
+              width={isMobile ? "240px" : "450px"}
+              height={isMobile ? "240px" : "450px"}
               src={imageBack}
               absolute
             ></PlaceHolder>
@@ -115,10 +115,11 @@ const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiDa
           <div
             className="photo-front"
             data-scroll
-            data-scroll-speed={4}>
+            data-scroll-speed={4}
+          >
             <PlaceHolder
-              width={isMobile ? "240px" : "400px"}
-              height={isMobile ? "240px" : "400px"}
+              width={isMobile ? "240px" : "450px"}
+              height={isMobile ? "240px" : "450px"}
               src={imageFront}
               absolute
             ></PlaceHolder>

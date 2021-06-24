@@ -150,7 +150,7 @@ const SelectedWorks = (props,apiData) => {
   },[apiResp,t])
 
   return (
-    <StyledSelectedWorks id="projects" data-scroll-section>
+    <StyledSelectedWorks id="projects">
 
       <motion.div className="works-wrapper">
         <motion.div
@@ -187,7 +187,7 @@ const SelectedWorks = (props,apiData) => {
                       to={"/projects/"+work.slug}>
                       <PlaceHolder
                         variants={hoverVariants}
-                        draggable="false"
+                        draggable="true"
                         src={t("images-url")+work.cover.url}
                         width="300px"
                         height="450px"

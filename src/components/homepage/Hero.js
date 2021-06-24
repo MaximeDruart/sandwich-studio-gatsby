@@ -194,7 +194,7 @@ const Hero = () => {
   }, [canvasLoadStatus])
 
   return (
-    <StyledHero data-scroll-section>
+    <StyledHero>
       <div ref={loadScreenRef} className="load-screen"></div>
       <div className="dom">
         <div className="top-line">

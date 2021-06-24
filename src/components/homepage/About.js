@@ -1,31 +1,21 @@
 import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
-import { useMediaQuery } from "react-responsive"
 import parse from 'html-react-parser';
-
+import Headline from "../../components/misc/Headline"
+import { useMediaQuery } from "react-responsive";
 const StyledAbout = styled.div`
   width: 100vw;
-
   padding: 5vh max(5vw, 40px) 0 max(5vw, 40px);
-
   * {
     font-family: NeueMontrealRegular;
     color: ${({ theme }) => theme.colors.text};
   }
-
-  .headline {
-    ${({ theme }) => theme.textStyles.headline};
-    white-space: nowrap;
-    width: 100%;
-  }
-
   .about-section {
     display: flex;
     flex-flow: row nowrap;
     margin-top: 7vh;
     justify-content: space-between;
-
     .photos {
       width: 30%;
       position: relative;
@@ -51,18 +41,15 @@ const StyledAbout = styled.div`
         ${({ theme }) => theme.textStyles.text};
       }
     }
-
     &.our-mission {
       .text {
         padding-top: 30vh;
       }
     }
-
     &.who-we-are {
       flex-direction: row-reverse;
       margin-top: 25vh;
       margin-bottom: 30vh;
-
       .photos {
         background: center / cover url("${props => props.imgMission}");
         .photo-bm {
@@ -91,8 +78,6 @@ const StyledAbout = styled.div`
         text-align: center;
       }
       flex-flow: column;
-
-      /* align-items: center; */
       .photos {
         width: 240px;
         height: 240px;
@@ -136,39 +121,28 @@ const StyledAbout = styled.div`
     }
   }
 `
-
 const About = ({titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,bodyMission,imgMission,imgMissionOne,imgMissionTwo}) => {
   const { t } = useTranslation()
-
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
-
   return (
-    <StyledAbout id="about" data-scroll-section
+    <StyledAbout id="about"
     imgWhoFront={t("images-url")+imgWhoFront}
     imgWhoBack={t("images-url")+imgWhoBack}
     imgMission={t("images-url")+imgMission}
     imgMissionOne={t("images-url")+imgMissionOne}
     imgMissionTwo={t("images-url")+imgMissionTwo}
     >
-      <div
-        data-scroll
-        data-scroll-direction="horizontal"
-        data-scroll-speed="7"
-        className="headline"
-      >
-        {t("about-headline")} • {t("about-headline")} • {t("about-headline")}
-      </div>
+      <Headline title="À propos"/>
       <div className="our-mission about-section">
         <div
+        data-scroll
+        data-scroll-speed={isMobile ? 0.5 : 2}
+        className="photos">
+          <div 
           data-scroll
-          data-scroll-speed={isMobile ? 0.5 : 2}
-          className="photos"
-        >
-          <div
-            data-scroll
-            data-scroll-speed={isMobile ? 1 : 4}
-            className="photo"
-          ></div>
+          data-scroll-speed={isMobile ? 1 : 4}
+          className="photo">
+          </div>
         </div>
         <div className="text">
           <div className="title">{titleWho}</div>
@@ -176,21 +150,18 @@ const About = ({titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,bodyMission
         </div>
       </div>
       <div className="who-we-are about-section">
-        <div
+        <div 
+          className="photos"
+          data-scroll
+          data-scroll-speed={isMobile ? 0.5 : 2}>
+          <div
+          data-scroll
+          data-scroll-speed={isMobile ? 0.25 : 1}
+          className="photo photo-bl"></div>
+          <div
           data-scroll
           data-scroll-speed={isMobile ? 0.5 : 2}
-          className="photos"
-        >
-          <div
-            data-scroll
-            data-scroll-speed={isMobile ? 0.25 : 1}
-            className="photo photo-bl"
-          ></div>
-          <div
-            data-scroll
-            data-scroll-speed={isMobile ? 0.5 : 2}
-            className="photo photo-bm"
-          ></div>
+          className="photo photo-bm"></div>
         </div>
         <div className="text">
           <div className="title">{titleMission}</div>
@@ -200,5 +171,4 @@ const About = ({titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,bodyMission
     </StyledAbout>
   )
 }
-
 export default About

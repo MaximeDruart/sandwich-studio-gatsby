@@ -18,22 +18,12 @@ const encode = data =>
 const StyledLeadMagnet = styled.div`
   width: 100vw;
   /* overflow: hidden; */
-  margin-top: 10vh;
-
   padding: 5vh max(10vw, 30px) 0 max(10vw, 30px);
 
   * {
     font-family: NeueMontrealRegular;
     color: ${({ theme }) => theme.colors.text};
   }
-
-  .headline {
-    ${({ theme }) => theme.textStyles.headline};
-    white-space: nowrap;
-    width: 100%;
-    margin-bottom: 8vh;
-  }
-
   .lead-magnet-wrapper {
     width: 100%;
     display: flex;
@@ -239,17 +229,8 @@ const FormCallback = (props) => {
         )),
     [logs, errors, handleChange]
   )
-
   return (
-    <StyledLeadMagnet id="magnet" data-scroll-section>
-      <div
-        data-scroll
-        data-scroll-direction="horizontal"
-        data-scroll-speed="9"
-        className="headline"
-      >
-        {t("magnet-headline")} • {t("magnet-headline")} • {t("magnet-headline")}
-      </div>
+    <StyledLeadMagnet id="magnet">
       <div className="lead-magnet-wrapper">
         <div className="lead-magnet">
           <div className="title">

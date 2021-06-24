@@ -13,15 +13,7 @@ const StyledAbout = styled.div`
     font-family: NeueMontrealRegular;
     color: ${({ theme }) => theme.colors.text};
   }
-
-  .headline {
-    ${({ theme }) => theme.textStyles.headline};
-    white-space: nowrap;
-    width: 100%;
-  }
-
   .container {
-      margin-top:50px;
       display:grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-gap:40px;
@@ -97,20 +89,13 @@ const Cards = ({services}) => {
   },[services])
 
   return (
-    <StyledAbout id="about" data-scroll-section>
-      <div
-        data-scroll
-        data-scroll-direction="horizontal"
-        data-scroll-speed="7"
-        className="headline"
-      >
-        {t("marketing-headline-2")} • {t("marketing-headline-2")} • {t("marketing-headline-2")}
-      </div>
+    <StyledAbout id="about">
         <div className="container">
             {
             servicesData.map(
                 (card, index) => (
                   <CardImage
+                    key={index}
                     index={card.title + index}
                     title={card.title}
                     img={t("images-url")+(card.img != null ? card.img.url : null)}

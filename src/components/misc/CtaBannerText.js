@@ -34,7 +34,7 @@ const StyledBanner = styled.div`
             margin-bottom:10px;
             color:#292929;
         }
-        p{
+        .content{
             color:#292929;
             font-size:18px;
             white-space: break-spaces;
@@ -45,14 +45,14 @@ const StyledBanner = styled.div`
 const CtaBannerText = (apiData) => {
 
   return (
-    <StyledBanner data-scroll-section>
+    <StyledBanner>
         <div className="banner">
             <h3>{apiData.apiData.title}</h3>
-            <p>{parse(apiData.apiData.content)}</p>
-
+            <div className="content">
+              {parse(apiData.apiData.content)}
+            </div>
             <Button target={apiData.apiData.ctaaction} >{apiData.apiData.ctaanchor}</Button>
         </div>
     </StyledBanner>
   )}
-
 export default CtaBannerText

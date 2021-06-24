@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const StyledCard = styled.div`
 
@@ -61,15 +60,14 @@ const CardImage = ({index,title,description,cta,ctaurl,img}) => {
             </div>
         </div>
         <div className="card-footer">
-          <AniLink 
-            cover
+          <a 
             direction="down"
             bg="#0D0D0D"
             className="cta-button"
-            to={ctaurl}
+            href={ctaurl}
             >
               {cta}
-          </AniLink>
+          </a>
         </div>
     </StyledCard>
   )}

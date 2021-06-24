@@ -121,20 +121,20 @@ const Cards = (targetService) => {
 
   return (
     <StyledAbout >
-        <div className="container" data-scroll-section>
+        <div className="container" >
             {targetService.apiData.productcards.map(
                 (card, index) => (
                   <Card
-                    key={index}
                     index={card.title + index}
                     title={card.title}
                     description={card.subtitle}
+                    key={index}
                     content={
-                      <ReactPlaceholder type='text' rows={7} ready={!isLoading}>
+                      <ReactPlaceholder type='text' rows={7} ready={!isLoading} showLoadingAnimation={true}>
                         {!isLoading ? (
                           <ul className="card-features">
-                          {apiData[apiData.findIndex(x => x.id === card.id)].feature ? apiData[apiData.findIndex(x => x.id === card.id)].feature.map((feature,index)=>
-                            <li key={index}>{feature.feature}</li>
+                          {apiData[apiData.findIndex(x => x.id === card.id)].feature ? apiData[apiData.findIndex(x => x.id === card.id)].feature.map((feature,id)=>
+                            <li key={id}>{feature.feature}</li>
                             ) : null}
                           </ul>
                         ): null}

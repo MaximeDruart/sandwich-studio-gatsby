@@ -1,5 +1,4 @@
 import React from "react"
-import { useTranslation } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
 import { graphql,StaticQuery } from "gatsby"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
@@ -71,9 +70,8 @@ const StyledFooter = styled.div`
 `
 
 const Footer = () => {
-  const { t } = useTranslation()
   return (
-    <StyledFooter data-scroll-section>
+    <StyledFooter>
       <div className="left">
         <span className="at">@sandwich.studio 2021</span>
         <div className="contact">
@@ -100,7 +98,7 @@ const Footer = () => {
         `}
         render={data => (
           data.strapiMenufooter.menulink.map((item,index)=>(
-            <li>
+            <li key={index}>
               <AniLink 
                 cover
                 direction="down"

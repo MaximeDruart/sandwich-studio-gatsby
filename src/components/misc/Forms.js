@@ -43,7 +43,7 @@ const StyledForms = styled.div`
 const Forms = ({ scroll, location }) => {
 
   return (
-    <StyledForms id="contact" data-scroll-section>
+    <StyledForms id="contact">
       <div className="forms">
         <FormContact location={location} scroll={scroll} />
         <FormCallback />

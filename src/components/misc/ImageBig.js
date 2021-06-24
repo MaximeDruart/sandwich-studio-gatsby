@@ -34,10 +34,10 @@ const StyledImage = styled.div`
 const ImageBig = (apiData) => {
     const isMobile = useMediaQuery({ query: "(max-width: 1200px)" })
   return (
-    <StyledImage data-scroll-section>
+    <StyledImage>
         <figure className="block">
             <PlaceHolder
-                src={apiData.apiData.image.url}
+                src={apiData.apiData.image.formats.large.url}
                 width={isMobile ? "90vw" : "80vw"}
                 height="auto"
                 ratio="16 / 9"  
