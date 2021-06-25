@@ -35,9 +35,14 @@ const StyledBanner = styled.div`
             color:#292929;
         }
         .content{
+          color:#292929;
+          font-size:18px;
+          white-space: break-spaces;
+          p{
             color:#292929;
             font-size:18px;
             white-space: break-spaces;
+          }
         }
     }
 `
