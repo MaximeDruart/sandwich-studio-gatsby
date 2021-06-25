@@ -38,9 +38,9 @@ export default function Home({ location }) {
     ></Seo>
 
       <Header location={location} isHomepage={true}/>
+          <ContactSpinner/>
       <Loco>
         <main>
-          <ContactSpinner/>
           <Hero />
           <About
             titleWho={apiData != null ? apiData.info.titleWhowheare : "______"}

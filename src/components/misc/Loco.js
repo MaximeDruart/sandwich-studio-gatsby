@@ -9,7 +9,7 @@ export default function Loco({children,location}) {
             smooth: true,
             el: mainContainerRef.current,
             tablet: { smooth: true },
-            smartphone: { smooth: false },
+            smartphone: { smooth: true },
             reloadOnContextChange: true,
             lerp: 0.07,
         })

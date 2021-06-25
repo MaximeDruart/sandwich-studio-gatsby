@@ -29,6 +29,7 @@ const ContactSpinner = ({ scroll }) => {
   const canvasLoadStatus = useStore(store => store.canvasLoadStatus)
   return (
     <StyledContactSpinner
+    data-scroll
       className="link-button"
       onClick={() => {
         navigate("/contact")
