@@ -26,7 +26,9 @@ export default function Home({ location }) {
         setApiData(null)
       }
     }
-    fetchHome()
+    if(apiData===null){
+      fetchHome()
+    }
   })
 
   return (
