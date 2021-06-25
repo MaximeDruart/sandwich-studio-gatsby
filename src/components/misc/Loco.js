@@ -21,7 +21,7 @@ export default function Loco({children,location}) {
         if (scroll) {
         setTimeout(() => {
             scroll.update()
-        }, 1200)
+        }, 1500)
         }
     }, [mainContainerRef.current,scroll,location])
     return (

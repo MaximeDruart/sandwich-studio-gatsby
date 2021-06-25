@@ -36,6 +36,7 @@ const StyledHeader = styled(motion.div)`
     }
     .logo-text {
       font-family: "BerlinBold";
+      margin-top: 4px;
     }
   }
 
