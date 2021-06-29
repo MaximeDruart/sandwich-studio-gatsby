@@ -1,10 +1,9 @@
-import React,{useEffect} from "react"
+import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { useMediaQuery } from "react-responsive"
 import parse from 'html-react-parser';
 import PlaceHolder from '../misc/imagePlaceholder';
-
 const StyledAbout = styled.div`
   width: 100vw;
 
@@ -14,13 +13,6 @@ const StyledAbout = styled.div`
     font-family: NeueMontrealRegular;
     color: ${({ theme }) => theme.colors.text};
   }
-
-  .headline {
-    ${({ theme }) => theme.textStyles.headline};
-    white-space: nowrap;
-    width: 100%;
-  }
-
   .about-section {
     display: flex;
     flex-flow: ${props => props.isReverse ? "row-reverse" : "row"} nowrap;
@@ -30,16 +22,13 @@ const StyledAbout = styled.div`
     margin: auto;
     .images{  
       position: relative;
-      width: 450px;
-      height: 450px;
-      .photo {
-        width: 30%;
-        position: absolute;
-        width: 450px;
-        height: 450px;
+      div{
+        width: ${props => props.isMobile ? "240px" : "450px"};
+        height: ${props => props.isMobile ? "240px" : "450px"};
       }
       .photo-front{
         position:absolute;
+        z-index: 9;
         top:30%;
         left: ${props=> props.isReverse ? "30%" : "-30%"};
       }
@@ -98,13 +87,10 @@ const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiDa
     reverse=apiData.isreverse
   }
   return (
-    <StyledAbout id="about" imgFront={imageFront} imgBack={imageBack} isReverse={reverse}>
+    <StyledAbout isMobile={isMobile} id="about" imgFront={imageFront} imgBack={imageBack} isReverse={reverse}>
       <div className="our-mission about-section">
         <div className="images">
-          <div
-            data-scroll
-            data-scroll-speed={2}
-          >
+          <div data-lg-parallax data-lg-parallax-amplitude="1">
             <PlaceHolder
               width={isMobile ? "240px" : "450px"}
               height={isMobile ? "240px" : "450px"}
@@ -112,11 +98,7 @@ const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiDa
               absolute
             ></PlaceHolder>
           </div>
-          <div
-            className="photo-front"
-            data-scroll
-            data-scroll-speed={4}
-          >
+          <div className="photo-front" data-lg-parallax data-lg-parallax-amplitude="2">
             <PlaceHolder
               width={isMobile ? "240px" : "450px"}
               height={isMobile ? "240px" : "450px"}

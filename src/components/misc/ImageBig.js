@@ -35,7 +35,7 @@ const ImageBig = (apiData) => {
     const isMobile = useMediaQuery({ query: "(max-width: 1200px)" })
   return (
     <StyledImage>
-        <figure className="block">
+        <figure className="block" data-aos="fade-up">
             <PlaceHolder
                 src={apiData.apiData.image.formats.large.url}
                 width={isMobile ? "90vw" : "80vw"}

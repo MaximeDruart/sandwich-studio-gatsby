@@ -4,7 +4,7 @@ const theme = {}
 
 theme.colors = {
   background: "#0D0D0D",
-  grey: "#828F91",
+  grey: "#232323",
   text: "#FFFFFF",
 }
 
@@ -34,7 +34,7 @@ theme.textStyles = {
     /* identical to box height, or 79px */
     letter-spacing: 0.0125em;
     @media (max-width: 600px) {
-      font-size: 56px;
+      font-size: 38px;
     }
   `,
   h3: css`

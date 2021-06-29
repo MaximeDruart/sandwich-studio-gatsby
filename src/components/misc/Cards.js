@@ -130,7 +130,7 @@ const Cards = (targetService) => {
                     description={card.subtitle}
                     key={index}
                     content={
-                      <ReactPlaceholder type='text' rows={7} ready={!isLoading} showLoadingAnimation={true}>
+                      <ReactPlaceholder type='text' rows={7} ready={!isLoading} showLoadingAnimation={true} color="#232323">
                         {!isLoading ? (
                           <ul className="card-features">
                           {apiData[apiData.findIndex(x => x.id === card.id)].feature ? apiData[apiData.findIndex(x => x.id === card.id)].feature.map((feature,id)=>

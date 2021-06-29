@@ -2,6 +2,8 @@ import React, {useEffect,useState} from "react"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import CardImage from "../misc/CardImage"
+import ReactPlaceholder from 'react-placeholder';
+import "react-placeholder/lib/reactPlaceholder.css";
 
 const StyledAbout = styled.div`
   width: 100vw;
@@ -78,9 +80,9 @@ const StyledAbout = styled.div`
   }
 `
 
-const Cards = ({services}) => {
+const Cards = ({services,isLoading}) => {
   const { t } = useTranslation()
-  const [servicesData,setServicesData] = useState([0,1,2])
+  const [servicesData,setServicesData] = useState([0,1,2,3])
 
   useEffect(() => {
     if(services != null && services.length > 0){
@@ -99,7 +101,11 @@ const Cards = ({services}) => {
                     index={card.title + index}
                     title={card.title}
                     img={t("images-url")+(card.img != null ? card.img.url : null)}
-                    description={card.body}
+                    description={
+                      <ReactPlaceholder type='text' rows={7} ready={!isLoading} showLoadingAnimation={true} color="#232323">
+                        {card.body}
+                      </ReactPlaceholder>
+                    }
                     cta={card.targetAnchor}
                     ctaurl={card.target}
                   ></CardImage>

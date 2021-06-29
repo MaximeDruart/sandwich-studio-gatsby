@@ -8,7 +8,6 @@ const StyledFooter = styled.div`
   width: 100vw;
   padding: 20px max(5vw, 40px) 50px max(5vw, 40px);
   margin-top: 30vh;
-
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -48,14 +47,14 @@ const StyledFooter = styled.div`
     }
   }
   @media (max-width: 600px) {
-    height: 20vh;
     flex-flow: column nowrap;
     justify-content: space-around;
     .left {
+      align-items:center;
     }
     .right {
       display: flex;
-      text-align: left;
+      text-align: center;
       .privacy {
         width: 35%;
         display: flex;

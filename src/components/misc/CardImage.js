@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import PlaceHolder from '../misc/imagePlaceholder';
 
 const StyledCard = styled.div`
 
@@ -12,7 +13,7 @@ const StyledCard = styled.div`
         display:flex;
         flex-direction:column;
         justify-content:center;
-        img{
+        &>div:first-child{
             width:150px;
             margin:auto;
             padding:20px 10px;
@@ -53,7 +54,12 @@ const CardImage = ({index,title,description,cta,ctaurl,img}) => {
   return (
     <StyledCard key={index}>
         <div className="card-upper">
-            <img alt="Service logo" src={img}></img>
+            <PlaceHolder
+                src={img}
+                width="150px"
+                height="170px"
+                alt="Service image"
+            ></PlaceHolder>
             <div className="card-header">
                 <h3>{title}</h3>
                 <p>{description}</p>

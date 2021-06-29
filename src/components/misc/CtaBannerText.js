@@ -51,7 +51,7 @@ const CtaBannerText = (apiData) => {
 
   return (
     <StyledBanner>
-        <div className="banner">
+        <div className="banner" data-aos="fade-zoom-in">
             <h3>{apiData.apiData.title}</h3>
             <div className="content">
               {parse(apiData.apiData.content)}

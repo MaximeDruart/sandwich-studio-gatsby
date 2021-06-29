@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
+import Aos from "../misc/Aos"
 
 const Seo = ({ title, description, article }) => {
   const { pathname } = useLocation()
@@ -21,28 +22,31 @@ const Seo = ({ title, description, article }) => {
   }
 
   return (
-    <Helmet>
-      <title>{seo.title}</title>
-      <meta name="description" content={seo.description} />
-      <meta name="image" content={seo.image} />
+    <>
+      <Helmet>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="image" content={seo.image} />
 
-      {seo.url && <meta property="og:url" content={seo.url} />}
+        {seo.url && <meta property="og:url" content={seo.url} />}
 
-      {(article ? true : null) && <meta property="og:type" content="article" />}
+        {(article ? true : null) && <meta property="og:type" content="article" />}
 
-      {seo.title && <meta property="og:title" content={seo.title} />}
+        {seo.title && <meta property="og:title" content={seo.title} />}
 
-      {seo.description && (
-        <meta property="og:description" content={seo.description} />
-      )}
-      <link rel="icon" href="/favicon.ico" />
-      <link
-        rel="preload"
-        href="/fonts/neueRegular.otf"
-        as="font"
-        crossOrigin=""
-      />
-    </Helmet>
+        {seo.description && (
+          <meta property="og:description" content={seo.description} />
+        )}
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          href="/fonts/neueRegular.otf"
+          as="font"
+          crossOrigin=""
+        />
+      </Helmet>
+      <Aos></Aos>
+    </>
   )
 }
 

@@ -174,7 +174,7 @@ const SelectedWorks = (props,apiData) => {
           {ready &&
             apiResp.filter(item => item.tag.includes(filterby))
               .map((work, index) => (
-                <div key={work.title + index} className="work">
+                <div data-aos="fade-zoom-in" data-aos-offset={index*100} key={work.title + index} className="work">
                   <motion.div
                     variants={{ hover: { scale: 0.985 } }}
                     whileHover="hover"
@@ -209,12 +209,24 @@ const SelectedWorks = (props,apiData) => {
               ))}
 
               {isLoading ? (
+                <>
                 <div className="work" style={{backgroundColor:"#1b1b1b",height:"630px"}}>
-                <motion.div
-                  className="image-container"
-                >
-                </motion.div>
-              </div>
+                  <motion.div className="image-container">
+                  </motion.div>
+                </div>
+                <div className="work" style={{backgroundColor:"#1b1b1b",height:"630px"}}>
+                  <motion.div className="image-container">
+                  </motion.div>
+                </div>
+                <div className="work" style={{backgroundColor:"#1b1b1b",height:"630px"}}>
+                  <motion.div className="image-container">
+                  </motion.div>
+                </div>
+                <div className="work" style={{backgroundColor:"#1b1b1b",height:"630px"}}>
+                  <motion.div className="image-container">
+                  </motion.div>
+                </div>
+                </>
               ) : null}
               {filterby!=="all" ? (
                 <div className="work">

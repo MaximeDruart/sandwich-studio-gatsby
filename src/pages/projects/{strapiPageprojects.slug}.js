@@ -5,17 +5,17 @@ import Header from "../../components/Header"
 import getComponentFromApi from "../../components/misc/getComponentFromApi"
 import Footer from "../../components/Footer"
 import Seo from "../../components/misc/Seo"
-import Loco from "../../components/misc/Loco"
+import Luge from '../../components/misc/Luge'
 export default function Service(props) {
   return(
     <>
       <Seo
-        title={props.data.strapiPageprojects.metatitle}
-        description={props.data.strapiPageprojects.metadesc}
-        article={false}>
+      title={props.data.strapiPageprojects.metatitle}
+      description={props.data.strapiPageprojects.metadesc}
+      article={false}>
       </Seo>
       <Header location={props.location}/>
-      <Loco>
+      <Luge location={props.location}>
         <main>
           {props.data.strapiPageprojects.main.map((item,index) => {
             const Component = loadable(() => import('../../components/misc/'+getComponentFromApi(item)))
@@ -25,7 +25,7 @@ export default function Service(props) {
           })}
           <Footer />
         </main>
-      </Loco>
+      </Luge>
     </>
   )
 }

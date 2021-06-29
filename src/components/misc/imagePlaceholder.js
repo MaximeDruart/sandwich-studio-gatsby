@@ -15,6 +15,7 @@ const StyledImage = styled.div`
       height: ${props => props.iHeight};
       ${props => props.ratio ? "aspect-ratio:"+props.ratio+";" : null}
       background:#1b1b1b;
+      border-radius:20px;
     }
     img{
       height:100%;
@@ -28,7 +29,7 @@ const StyledImage = styled.div`
     }
 `
 
-const PlaceHolder = ({width,height,absolute,ratio,src}) => {
+const PlaceHolder = ({width,height,absolute,ratio,src, alt}) => {
   let [isLoading,setIsLoading] = useState(true)
 
   let handleLoad = () =>{
@@ -41,11 +42,10 @@ const PlaceHolder = ({width,height,absolute,ratio,src}) => {
     <StyledImage absolute={absolute} iWidth={width} iHeight={height} ratio={ratio}>
       <img
         src={src}
-        alt=""
+        alt={alt ? alt : null}
         onLoad={handleLoad}
         style={isLoading ? {display:"none"} : null}
         className={isLoading ? null : "loaded"}
-        onDragStart={(e)=>{e.preventDefault()}}
       >
       </img>
       {isLoading ? (
