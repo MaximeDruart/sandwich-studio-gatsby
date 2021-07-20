@@ -14,8 +14,9 @@ const Headline = ({title,apiData}) => {
   return (
     <div>
       <StyledHeadline
-      data-lg-scroll
-      data-lg-scroll-animate="{'x': ['20%', '-20%']}"
+      data-scroll
+      data-scroll-direction="horizontal"
+      data-scroll-speed="7"
       className="headline">
           {title} • {title} • {title} • {title}  • {title}  • {title}  • {title}  • {title}  • {title} 
       </StyledHeadline>

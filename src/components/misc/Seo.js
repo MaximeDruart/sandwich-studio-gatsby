@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
-import Aos from "../misc/Aos"
 
 const Seo = ({ title, description, article }) => {
   const { pathname } = useLocation()
@@ -45,7 +44,6 @@ const Seo = ({ title, description, article }) => {
           crossOrigin=""
         />
       </Helmet>
-      <Aos></Aos>
     </>
   )
 }

@@ -4,6 +4,7 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 import parse from 'html-react-parser';
 import Headline from "../../components/misc/Headline"
 import ReactPlaceholder from 'react-placeholder';
+import { useMediaQuery } from "react-responsive";
 import "react-placeholder/lib/reactPlaceholder.css";
 const StyledAbout = styled.div`
   width: 100vw;
@@ -132,6 +133,7 @@ const StyledAbout = styled.div`
 `
 const About = ({isLoading,titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,bodyMission,imgMission,imgMissionOne,imgMissionTwo}) => {
   const { t } = useTranslation()
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
   return (
     <StyledAbout id="about"
     imgWhoFront={t("images-url")+imgWhoFront}
@@ -143,10 +145,12 @@ const About = ({isLoading,titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,b
       <Headline title="À propos"/>
       <div className="our-mission about-section">
         <div
-        data-lg-parallax data-lg-parallax-amplitude="0.2"
+        data-scroll
+        data-scroll-speed={isMobile ? 0.5 : 2}
         className="photos">
           <div
-          data-lg-parallax data-lg-parallax-amplitude="0.5"
+          data-scroll
+          data-scroll-speed={isMobile ? 1 : 4}
           className="photo">
           </div>
         </div>
@@ -162,12 +166,15 @@ const About = ({isLoading,titleWho,bodyWho,imgWhoFront,imgWhoBack,titleMission,b
       <div className="who-we-are about-section">
         <div 
           className="photos"
-          data-lg-parallax data-lg-parallax-amplitude="0.5">
+          data-scroll
+          data-scroll-speed={isMobile ? 0.5 : 2}>
           <div
-          data-lg-parallax data-lg-parallax-amplitude="0.2"
+          data-scroll
+          data-scroll-speed={isMobile ? 0.25 : 1}
           className="photo photo-bl"></div>
           <div
-          data-lg-parallax data-lg-parallax-amplitude="0.5"
+          data-scroll
+          data-scroll-speed={isMobile ? 0.5 : 2}
           className="photo photo-bm"></div>
         </div>
         <div className="text">

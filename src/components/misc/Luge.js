@@ -1,30 +1,32 @@
 import React,{useRef,useState,useEffect} from "react"
-export default function Luge({location,children}) {
+export default function Loco({children,location}) {
     const mainContainerRef = useRef()
-    let [isLoading,setIsLoading] = useState(true)
-    let [lugeModule,setLuge] = useState(null)
+    const [scroll, setScroll] = useState(null)
     useEffect(()=>{
-      console.log('INIT')
-      import("@waaark/luge")
-      .then((luge) => {
-        setLuge(luge)
-      })
-      .catch((error) => console.error(error));
+        import("locomotive-scroll").then(LocomotiveScroll => {
+        const Loco = LocomotiveScroll.default
+        const s = new Loco({
+            smooth: true,
+            el: mainContainerRef.current,
+            tablet: { smooth: true },
+            smartphone: { smooth: true },
+            reloadOnContextChange: true,
+            lerp: 0.07,
+        })
+        setScroll(s)
+        })
+        return () => scroll && scroll.destroy()
     },[mainContainerRef])
     useEffect(() => {
-        if(isLoading){
-            window.setTimeout(()=>{
-              if(lugeModule!= null){
-                console.log(lugeModule)
-                lugeModule.default.lifecycle.refresh()
-                setIsLoading(false)
-              }
-            },2000)
-          }
-    }, [location,isLoading,lugeModule])
+        if (scroll) {
+        setTimeout(() => {
+            scroll.update()
+        }, 1500)
+        }
+    }, [mainContainerRef.current,scroll,location])
     return (
-        <div data-scroll-container ref={mainContainerRef} data-lg-smooth>
-          {children}
+        <div data-scroll-container ref={mainContainerRef}>
+            {children}
         </div>
     )
 }

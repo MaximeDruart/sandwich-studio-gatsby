@@ -43,7 +43,7 @@ const ImageDuo = (apiData) => {
     const isMobile = useMediaQuery({ query: "(max-width: 1200px)" })
   return (
     <StyledImage >
-        <figure className="block" data-aos="fade-up">
+        <figure className="block" data-scroll data-scroll-class="in-view">
             <div className="duo" >
                 <PlaceHolder
                     src={apiData.apiData.images[0].formats.medium.url}

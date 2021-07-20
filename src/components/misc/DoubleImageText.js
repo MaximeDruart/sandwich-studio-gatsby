@@ -90,7 +90,9 @@ const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiDa
     <StyledAbout isMobile={isMobile} id="about" imgFront={imageFront} imgBack={imageBack} isReverse={reverse}>
       <div className="our-mission about-section">
         <div className="images">
-          <div data-lg-parallax data-lg-parallax-amplitude="1">
+          <div 
+            data-scroll
+            data-scroll-speed={2}>
             <PlaceHolder
               width={isMobile ? "240px" : "450px"}
               height={isMobile ? "240px" : "450px"}
@@ -98,7 +100,9 @@ const DoubleImageText = ({headline,imageFront,imageBack,title,body,reverse,apiDa
               absolute
             ></PlaceHolder>
           </div>
-          <div className="photo-front" data-lg-parallax data-lg-parallax-amplitude="2">
+          <div className="photo-front" 
+            data-scroll
+            data-scroll-speed={4}>
             <PlaceHolder
               width={isMobile ? "240px" : "450px"}
               height={isMobile ? "240px" : "450px"}

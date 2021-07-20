@@ -174,7 +174,7 @@ const SelectedWorks = (props,apiData) => {
           {ready &&
             apiResp.filter(item => item.tag.includes(filterby))
               .map((work, index) => (
-                <div data-aos="fade-zoom-in" data-aos-offset={index*100} key={work.title + index} className="work">
+                <div data-scroll data-scroll-class="in-view" key={work.title + index} className="work">
                   <motion.div
                     variants={{ hover: { scale: 0.985 } }}
                     whileHover="hover"

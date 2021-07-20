@@ -12,6 +12,7 @@ import Headline from "../components/misc/Headline"
 import LeadMagnet from "../components/misc/LeadMagnet"
 import Seo from "../components/misc/Seo"
 import Luge from '../components/misc/Luge'
+import "../global.css"
 export default function Home({ location }) {
   const { t } = useTranslation()
   let [apiData,setApiData] = useState(null)
